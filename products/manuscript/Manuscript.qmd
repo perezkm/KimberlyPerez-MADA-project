@@ -25,24 +25,40 @@ library(knitr)
 ```
 
 
-
 # Summary/Abstract
-_Write a summary of your project._
+Globally, *Salmonella* is a significant public health threat. We evaluated the persistence of *Salmonella* on various surface materials (e.g., picnic tables and bird feeders). Our studies suggest that *Salmonella* can have prolonged persistence on shared spaces. However, persistence depends on surface material and precautionary measures should be adopted to reduce exposure.
 
 
 {{< pagebreak >}}
 
 
-# Introduction 
+# Introduction (Why *Salmonella*?) 
 
-## General Background Information
-_Provide enough background on your topic that others can understand the why and how of your analysis_ 
+*Salmonella enterica* infections are a significant public health threat, responsible for over 93 million annual cases of human illness worldwide. In the United States alone, 1.35 million cases of salmonellosis and 420 deaths are reported annually. Most cases of human salmonellosis are caused by food-borne *Salmonella* strains associated with produce or undercooked meat. However, a rising subset of human infections are often associated with unidentified environmental exposures or contact with animals. 
+
+The American white ibis (Eudocimus albus), forms large nesting colonies in natural wetlands. However, due to habitat destruction in Everglades National Park, this gregarious member of the Pelecaniformes, has begun to urbanize parks with abundant anthropgenic food and water resources throughout South Florida. Infection with *Salmonella* spp. in American white ibis is well documented. It has been found that ibis can harbor diverse *Salmonella* strains and shed it at a higher prevalence than their natural counterparts. Studies have genetically matched the *Salmonella* shed by ibis to human salmonellosis cases in South Florida during the same time period ibis were sampled. 
+
+Similarly, in 2021, following an epidemiological investigation of 29 human cases of *Salmonella enterica* serovar Typhimurium (*S.* Typhimurium), the Centers for Disease Control and Prevention (CDC) documented a relationship between human cases and a concurrent avian salmonellosis outbreak. Of the 29 cases, 14 individuals were hospitalized and the outbreak was likely due to contact with bird feeders, sick or dead wild birds, or pets that had contact with wild birds. 
+
+Persistence of *Salmonella* can be affected by ambient temperature, presence/absence of a biofilm, and environmental nutrient conditions. Under ideal conditions (e.g. optimal temperature 35-43°C, pH 7-7.5, etc.), *Salmonella* is known to persist in the environment for extended periods of time. While *Salmonella* persistence has been examined on soil and poultry litter, there is a lack of understanding of the persistence of *Salmonella* on various surfaces including wood, plastic, and surfaces lined with antimicrobial coatings.
 
 ## Description of data and data source
-_Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section._
+
+The data selected for my MADA project is persistence and prevalence data from two trial studies. The first trial was conducted in South Florida where picnic tables, under the same pavilion and exposed to conditions known to affect *Salmonella*, were selected, swabbed daily for a week and shipped back to the University of Georgia for *Salmonella* isolation. The second trial was conducted in Athens, Georgia, at Whitehall Forest in a modified shade house. Bird feeders of different materials (e.g., cedar, plastic, plastic coated, and wood coated) were hung in triplicate and seeded with an isolate of *S.* Typhimurium isolated from a songbird.
+
+The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez. 
+
+The Picnic Table Trial data is composed of several worksheets embedded in one excel file. After viewing the file (and running it below), there seems to be 192 observations. I am not sure how the Picnic Table Trial was collected but hope to visit with Dr. Hernandez regarding data collection methods soon. Feeder Trial data was collected and noted upon confirmation of *Salmonella* from processed samples. There are 144 observations for the Feeder Trial which spanned nearly 2 months. For both trials, we were attempting to measure *Salmonella* persistence. The Picnic Table Trial collected data in an attempt to measure prevalence as well. (Please Note: Aforementioned data was imported under "Data import and cleaning" section.)    
 
 ## Questions/Hypotheses to be addressed
-_State the research questions you plan to answer with this analysis._
+
+Given the uncertainty of *Salmonella's* persistence on various surface materials, from my data I would like to answer:
+- What is the prevalence of *Salmonella* over time? 
+- How long does *Salmonella* persist on different surface materials (e.g., wood, plastic, and those with an antimicrobial coating) exposed to various climatic factors (e.g., rain, sun, changing temperatures)
+
+From these questions, I hope to better inform the public and public health practitioners on safer feeder handling methods and precautions to take when frequenting public locations where humans and wildlife (e.g., ibis) interact.   
+
+
 
 To cite other work (important everywhere, but likely happens first in introduction), make sure your references are in the bibtex file specified in the YAML header above (here `dataanalysis_template_references.bib`) and have the right bibtex key. Then you can include like this:
 
@@ -51,16 +67,35 @@ Examples of reproducible research projects can for instance be found in [@mckay2
 {{< pagebreak >}}
 
 
-# Methods 
-
+# Methods
+Coming soon...
 _Describe your methods. That should describe the data, the cleaning processes, and the analysis approaches. You might want to provide a shorter description here and all the details in the supplement._
 
 
 ## Data aquisition
 _As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
 
+The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez. 
 
-## Data import and cleaning
+
+
+# Data import and cleaning
+
+## Picnic Table Data 
+```{r}
+library(readxl)
+PTD<- read_excel("C:/GitHub/MADA/KimberlyPerez-MADA-project/data/raw_data/Picnic_Table_Data.xlsx")
+View(PTD)
+summary(PTD)
+```
+## Feeder Data
+```{r}
+library(readcsv)
+FD<- read.csv("C:/GitHub/MADA/KimberlyPerez-MADA-project/data/raw_data/Feeder Data.csv")
+View(FD)
+summary(FD)
+```
+
 _Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g. as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along._
 
 
@@ -93,6 +128,8 @@ knitr::kable(resulttable)
 
 
 ## Basic statistical analysis
+
+While I am unsure of proper analysis, I may start by calculating probabilities. It may also be helpful to run a regression or linear model. Other than this, I am unsure of how to start the analysis process for the Picnic Table data. 
 
 _To get some further insight into your data, if reasonable you could compute simple statistics (e.g. simple models with 1 predictor) to look for associations between your outcome(s) and each individual predictor variable. Though note that unless you pre-specified the outcome and main exposure, any "p<0.05 means statistical significance" interpretation is not valid._
 

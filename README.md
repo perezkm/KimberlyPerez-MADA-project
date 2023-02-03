@@ -1,5 +1,7 @@
 # Overview
 
+This is Kimberly Perez's repository. I will utilize this repository to assist me as I complete my final project for MADA Spring 2023.
+
 A template file and folder structure for a data analysis project/paper done with R/Quarto/Github. 
 
 # Pre-requisites
