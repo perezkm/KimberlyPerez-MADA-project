@@ -84,14 +84,14 @@ The data from the first trial in South Florida was collected by an undergraduate
 ## Picnic Table Data 
 ```{r}
 library(readxl)
-PTD<- read_excel("C:/GitHub/MADA/KimberlyPerez-MADA-project/data/raw_data/Picnic_Table_Data.xlsx")
+PTD<- read_excel(here("data", "raw_data", "Picnic_Table_Data.xlsx"))
 View(PTD)
 summary(PTD)
 ```
 ## Feeder Data
 ```{r}
 library(readcsv)
-FD<- read.csv("C:/GitHub/MADA/KimberlyPerez-MADA-project/data/raw_data/Feeder Data.csv")
+FD<- read.csv(here("data", "raw_data", "Feeder Data.csv"))
 View(FD)
 summary(FD)
 ```
