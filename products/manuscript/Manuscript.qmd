@@ -90,8 +90,8 @@ summary(PTD)
 ```
 ## Feeder Data
 ```{r}
-library(readcsv)
-FD<- read.csv(here("data", "raw_data", "Feeder Data.csv"))
+library(readr)
+FD<- read_csv(here("data", "raw_data", "Feeder Data.csv"))
 View(FD)
 summary(FD)
 ```
