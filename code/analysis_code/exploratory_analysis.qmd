@@ -1,114 +1,130 @@
 ---
-title: "An example exploratory analysis script"
-author: "Andreas Handel"
+title: "Combined Data Cleaning and Exploratory Analysis Script for Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health"
+author: "Kimberly M. Perez"
 date: "10/28/2021"
 output: html_document
 ---
+# **Data Processing Methodology**
+Before attention can be focused on the data analysis portion, removal of unnecessary variables and visualizing data will provide a clearer picture of the data. This section will focus on data cleaning and wrangling. First, both datasets must be loaded. Prior to loading any data into RStudio, ensure that a new Quarto or RMarkdown File is established and linked to the preferred working directory. Basic packages need to be loaded to read in the data. Such packages to download include read_csv(), read_excel(), and here(), each of which can be loaded by utilizing the library() function (e.g., library(here)). Next, the datasets from both the Ibis and Feeder trials are loaded into RStudio utilizing the appropriate function (e.g., read_csv() for .csv files and read_excel() for .xlsx files). After data is loaded into R, it is best to get acquainted with the data by utilizing basic functions such as glimpse(). Glimpse provides me with insight into my data such as column names, number of rows and how each row is classified (e.g., character or numeric). After viewing the data I can work on cleaning the data by removing unnecessary variables. I would like to make the data a little more uniform and easier to work with. With that, I will change "Yes" to 1, and *NAs* to 0. I believe this will help me further in the analysis process. Given the variablility in the column names, I will then clean the names up to make them easier to include in my code as I move forward. With all of that, it is finally time to visualize the data by making some tables and/or graphs. 
 
-  
-  
-This Quarto file loads the cleaned data and does some exploring.
+Here, some more packages were loaded that I forsaw using in this section. Before visualization began, the glimpse() function was utilized to view the recently cleaned data. Given the uncertainty of *Salmonella's* persistence on various surface materials and the information these trials hoped to provide, the summary() function was utilized to provide a quick glimpse of basic result summaries for positive *Salmonella* samples and if the pile present was the original pile or not. Next, I continued to explore these two variables of interest by plotting each using a stacked bar graph via ggplot().
 
-I'm only showing it the way where the code is included in the file. 
-As described in the `processing_code` materials, I currently prefer the approach of having R code in a separate file and pulling it in.
+I followed the same workflow for the Feeder Data, however, this dataset required less wrangling and did not provide as many exploratory options as the main focus was on feeder type, date, and the presence/absence of *Salmonella* for each day the feeders were sampled.
 
-But I already had this written and haven't yet re-done it that way. Feel free to redo and send a pull request on GitHub :)
+## **Data import and cleaning**
 
-Again, it is largely a matter of preference and what makes the most sense to decide if one wants to have code inside Quarto files, or as separate R files.
-And sometimes, an R script with enough comments is good enough and one doesn't need a Quarto file.
-
-Also note that while here I split cleaning and exploring, this is iterative. You saw that as part of the processing, we already had to explore the data somewhat to understand how to clean it. In general, as you explore, you'll find things that need cleaning. As you clean, you can explore more. Therefore, at times it might make more sense to combine the cleaning and exploring code parts into a single R or Quarto file. Or split things in any other logical way.
-
-As part of the exploratory analysis, you should produce plots or tables or other summary quantities for the most interesting/important quantities in your data. Depending on the total number of variables in your dataset, explore all or some of the others. Figures produced here might be histograms or density plots, correlation plots, etc. Tables might summarize your data.
-
-Start by exploring one variable at a time. Then continue by creating plots or tables of the outcome(s) of interest and the predictor/exposure/input variables you are most interested in. If your dataset is small, you can do that for all variables. 
-
-Plots produced here can be scatterplots, boxplots, violinplots, etc. Tables can be simple 2x2 tables or larger ones.
-
-# Setup
-
+## **Initial Package Loading**
 ```{r}
-#load needed packages. make sure they are installed.
-library(here) #for data loading/saving
+# load a few R packages
+library(here)
+library(knitr)
 library(dplyr)
-library(skimr)
-library(ggplot2)
+library(readxl)
 ```
 
+## **Picnic Table Data Loading**
+```{r}
+PTD<- read_excel(here("data", "raw_data", "Picnic_Table_Data.xlsx"))
+View(PTD)
+summary(PTD)
+```
+## **Picnic Table Data Wrangling**
+```{r}
+glimpse(PTD)
 
-Load the data.
+PTD1<- PTD %>% select(-c(Day, `Shippng Date`, Notes, `STAB TUBE NUMBER`, `ORIGIN OF FECES`, ...13)) #Removing columns
+
+PTD1$`Original PP still intact?`<- ifelse(PTD1$`Original PP still intact?`=="Yes", 1, 0)
+
+PTD2<- PTD1 %>% 
+    mutate(`Original PP still intact?` = ifelse(is.na(`Original PP still intact?`), 0, `Original PP still intact?`)) #NAs to 0 for column `Original PP still intact?`
+
+PTD3<- PTD2 %>% 
+    mutate(`Pos orNeg`= ifelse(is.na(`Pos orNeg`), 0, `Pos orNeg`)) #NAs to 0 for column `Pos orNeg`
+
+glimpse(PTD3) #Current variable names
+
+PTD_clean<- PTD3 %>% #Renaming column names
+  rename(
+    ID= `Sample ID`,
+    Sample_Type= `Sample Type (Pooled or Persistence)`,
+    Salmonella_Positive= `Pos orNeg`,
+    Original_Persistence_Pile= `Original PP still intact?`)
+
+glimpse(PTD_clean)
+```
+
+## **Picnic Table Data Exploration and Visualization**
+```{r}
+#After cleaning I have decided I need to download a few more packages for the data visualization 
+
+library(gtsummary) #Tables 
+library(plotly) #I may try for an interactive plot, this is a good resource to use
+library(ggplot2) #For basic visualization
+
+PTDsumt1<- summary(PTD_clean$Salmonella_Positive) #Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Salmonella positivity
+PTDsumt1
+
+PTDsumt2<- summary(PTD_clean$Original_Persistence_Pile) #Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Persistence Piles (e.g., OG or not)
+
+PTDH<- ggplot(PTD_clean, 
+              aes(fill=Sample_Type, y= Salmonella_Positive, x= Date)) + 
+  geom_bar (position="stack", stat="identity") +
+  geom_vline(xintercept= as.numeric (PTD_clean$Date[c(95)]), linetype= "dotted", color="red", lwd=1)
+
+PTDH #Basic Plot: Positive Salmonella Samples by Sample Type via stacked plot, red line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) 
+
+PTD_Quad<- ggplot(PTD_clean, 
+              aes(fill=Quadrant, y= Salmonella_Positive, x= Date)) + 
+  geom_bar (position="stack", stat="identity") +
+  geom_vline(xintercept= as.numeric (PTD_clean$Date[c(95)]), linetype= "dotted", color="green", lwd=1)
+
+PTD_Quad #Basic Plot: Positive Salmonella Samples (pooled v. persistence) by Quadrant via stacked plot green line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.)  
+```
+## **Saving the Figures and Tables from Picnic Table Data**
 
 ```{r}
-#Path to data. Note the use of the here() package and not absolute paths
-data_location <- here::here("data","processed_data","processeddata.rds")
-#load data
-mydata <- readRDS(data_location)
+#Here is where I will save my final tables and figures
+```
+We will continue loading, cleaning, and exploring the data we will use for the final project
+
+## **Feeder Data Loading**
+```{r}
+library(readr)
+FD<- read_csv(
+  here("data", "raw_data", "Feeder Data.csv"))
+
+View(FD)
+
+summary(FD)
+
+str(FD)
+
+glimpse(FD)
 ```
 
+## **Feeder Data Wrangling**
+```{r}
+FD1<- FD %>% select(-c(`Absence (0)/Presence (1)`, `...5`)) #Removing columns
 
+glimpse(FD1) #Quick glimpse at the data, I can determine if I should wrangle the data a bit more
 
+FD_clean<- FD1 #Data looked clean so I will rename it to use with my data exploration and visualization process below 
+```
 
+**Picnic Table Data Exploration and Visualization**
+```{r}
+summary(FD_clean$Absence_0_Presence_1) # Utilizing summary() for a quick look at result summaries- not much info here
 
-# Data exploration through tables
+FD_plot<- ggplot(FD_clean, #Given my limited dataset I will focus my visualization on feeder type and presence/absence of Salmonella 
+              aes(fill=Feeder_Type, y=Absence_0_Presence_1, x= Collection_Date)) + 
+  geom_bar (position="stack", stat="identity") 
 
-Showing a bit of code to produce and save a summary table.
+FD_plot  
+```
 
+## **Saving the Figures and Tables from Feeder Data**
 
 ```{r}
-summary_df = skimr::skim(mydata)
-print(summary_df)
-# save to file
-summarytable_file = here("results", "summarytable.rds")
-saveRDS(summary_df, file = summarytable_file)
+#Here is where I will save my final tables and figures to my results folder/subfolders 
 ```
-
-We are saving the results to the `results` folder. Depending on how many tables/figures you have, it might make sense to have separate folders for each. And/or you could have separate folders for exploratory tables/figures and for final tables/figures. Just choose a setup that makes sense for your project and works for you, and provide enough documentation that someone can understand what you are doing.
-
-
-# Data exploration through figures
-
-Histogram plots for the continuous outcomes. 
-
-Height first.
-
-```{r}
-p1 <- mydata %>% ggplot(aes(x=Height)) + geom_histogram() 
-plot(p1)
-figure_file = here("results","height_distribution.png")
-ggsave(filename = figure_file, plot=p1) 
-```
-
-Now weights.
-
-```{r}
-p2 <- mydata %>% ggplot(aes(x=Weight)) + geom_histogram() 
-plot(p2)
-figure_file = here("results","weight_distribution.png")
-ggsave(filename = figure_file, plot=p2) 
-```
-
-Now height as function of weight.
-
-```{r}
-p3 <- mydata %>% ggplot(aes(x=Height, y=Weight)) + geom_point() + geom_smooth(method='lm')
-plot(p3)
-figure_file = here("results","height_weight.png")
-ggsave(filename = figure_file, plot=p3) 
-```
-
-Once more height as function of weight, stratified by gender. Note that there is so little data, it's a bit silly. But we'll plot it anyway.
-
-```{r}
-p4 <- mydata %>% ggplot(aes(x=Height, y=Weight, color = Gender)) + geom_point() + geom_smooth(method='lm')
-plot(p4)
-figure_file = here("results","height_weight_stratified.png")
-ggsave(filename = figure_file, plot=p4) 
-```
-
-
-
-# Notes
-
-For your own explorations, tables and figures can be "quick and dirty". As long as you can see what's going on, there is no need to polish them. That's in contrast to figures you'll produce for your final products (paper, report, presentation, website, etc.). Those should look as nice, polished and easy to understand as possible.
-
-

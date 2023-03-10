@@ -1,5 +1,5 @@
 ---
-title: "Example Manuscript Template for a Data Analysis Project"
+title: "Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health"
 subtitle: ""
 author: Andreas Handel
 date: "`r Sys.Date()`"
@@ -12,179 +12,180 @@ bibliography: ../dataanalysis_template_references.bib
 csl: ../apa.csl
 ---
 
-The structure below is one possible setup for a data analysis project (including the course project). For a manuscript, adjust as needed. 
-You don't need to have exactly these sections, but the content covering those sections should be addressed.
+# **Summary/Abstract**
 
-This uses MS Word as output format. [See here](https://quarto.org/docs/output-formats/ms-word.html) for more information. You can switch to other formats, like html or pdf. See [the Quarto documentation](https://quarto.org/) for other formats.
-
-
-```{r, echo=FALSE, message=FALSE}
-# load a few R packages
-library(here)
-library(knitr)
-```
-
-
-# Summary/Abstract
 Globally, *Salmonella* is a significant public health threat. We evaluated the persistence of *Salmonella* on various surface materials (e.g., picnic tables and bird feeders). Our studies suggest that *Salmonella* can have prolonged persistence on shared spaces. However, persistence depends on surface material and precautionary measures should be adopted to reduce exposure.
 
+# **Introduction (Why *Salmonella*?)**
 
-{{< pagebreak >}}
+*Salmonella enterica* infections are a significant public health threat, responsible for over 93 million annual cases of human illness worldwide. In the United States alone, 1.35 million cases of salmonellosis and 420 deaths are reported annually. Most cases of human salmonellosis are caused by food-borne *Salmonella* strains associated with produce or undercooked meat. However, a rising subset of human infections are often associated with unidentified environmental exposures or contact with animals.
 
+The American white ibis (Eudocimus albus), forms large nesting colonies in natural wetlands. However, due to habitat destruction in Everglades National Park, this gregarious member of the Pelecaniformes, has begun to urbanize parks with abundant anthropgenic food and water resources throughout South Florida. Infection with *Salmonella* spp. in American white ibis is well documented. It has been found that ibis can harbor diverse *Salmonella* strains and shed it at a higher prevalence than their natural counterparts. Studies have genetically matched the *Salmonella* shed by ibis to human salmonellosis cases in South Florida during the same time period ibis were sampled.
 
-# Introduction (Why *Salmonella*?) 
-
-*Salmonella enterica* infections are a significant public health threat, responsible for over 93 million annual cases of human illness worldwide. In the United States alone, 1.35 million cases of salmonellosis and 420 deaths are reported annually. Most cases of human salmonellosis are caused by food-borne *Salmonella* strains associated with produce or undercooked meat. However, a rising subset of human infections are often associated with unidentified environmental exposures or contact with animals. 
-
-The American white ibis (Eudocimus albus), forms large nesting colonies in natural wetlands. However, due to habitat destruction in Everglades National Park, this gregarious member of the Pelecaniformes, has begun to urbanize parks with abundant anthropgenic food and water resources throughout South Florida. Infection with *Salmonella* spp. in American white ibis is well documented. It has been found that ibis can harbor diverse *Salmonella* strains and shed it at a higher prevalence than their natural counterparts. Studies have genetically matched the *Salmonella* shed by ibis to human salmonellosis cases in South Florida during the same time period ibis were sampled. 
-
-Similarly, in 2021, following an epidemiological investigation of 29 human cases of *Salmonella enterica* serovar Typhimurium (*S.* Typhimurium), the Centers for Disease Control and Prevention (CDC) documented a relationship between human cases and a concurrent avian salmonellosis outbreak. Of the 29 cases, 14 individuals were hospitalized and the outbreak was likely due to contact with bird feeders, sick or dead wild birds, or pets that had contact with wild birds. 
+Similarly, in 2021, following an epidemiological investigation of 29 human cases of *Salmonella enterica* serovar Typhimurium (*S.* Typhimurium), the Centers for Disease Control and Prevention (CDC) documented a relationship between human cases and a concurrent avian salmonellosis outbreak. Of the 29 cases, 14 individuals were hospitalized and the outbreak was likely due to contact with bird feeders, sick or dead wild birds, or pets that had contact with wild birds.
 
 Persistence of *Salmonella* can be affected by ambient temperature, presence/absence of a biofilm, and environmental nutrient conditions. Under ideal conditions (e.g. optimal temperature 35-43°C, pH 7-7.5, etc.), *Salmonella* is known to persist in the environment for extended periods of time. While *Salmonella* persistence has been examined on soil and poultry litter, there is a lack of understanding of the persistence of *Salmonella* on various surfaces including wood, plastic, and surfaces lined with antimicrobial coatings.
 
-## Description of data and data source
+## **Description of data and data source**
 
 The data selected for my MADA project is persistence and prevalence data from two trial studies. The first trial was conducted in South Florida where picnic tables, under the same pavilion and exposed to conditions known to affect *Salmonella*, were selected, swabbed daily for a week and shipped back to the University of Georgia for *Salmonella* isolation. The second trial was conducted in Athens, Georgia, at Whitehall Forest in a modified shade house. Bird feeders of different materials (e.g., cedar, plastic, plastic coated, and wood coated) were hung in triplicate and seeded with an isolate of *S.* Typhimurium isolated from a songbird.
 
-The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez. 
+The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez.
 
-The Picnic Table Trial data is composed of several worksheets embedded in one excel file. After viewing the file (and running it below), there seems to be 192 observations. I am not sure how the Picnic Table Trial was collected but hope to visit with Dr. Hernandez regarding data collection methods soon. Feeder Trial data was collected and noted upon confirmation of *Salmonella* from processed samples. There are 144 observations for the Feeder Trial which spanned nearly 2 months. For both trials, we were attempting to measure *Salmonella* persistence. The Picnic Table Trial collected data in an attempt to measure prevalence as well. (Please Note: Aforementioned data was imported under "Data import and cleaning" section.)    
+The Picnic Table Trial data is composed of several worksheets embedded in one excel file. After viewing the file (and running it below), there seems to be 192 observations. I am not sure how the Picnic Table Trial was collected but hope to visit with Dr. Hernandez regarding data collection methods soon. Feeder Trial data was collected and noted upon confirmation of *Salmonella* from processed samples. There are 144 observations for the Feeder Trial which spanned nearly 2 months. For both trials, we were attempting to measure *Salmonella* persistence. The Picnic Table Trial collected data in an attempt to measure prevalence as well. (Please Note: Aforementioned data was imported under "Data import and cleaning" section.)
 
-## Questions/Hypotheses to be addressed
+## **Questions/Hypotheses to be addressed**
 
-Given the uncertainty of *Salmonella's* persistence on various surface materials, from my data I would like to answer:
-- What is the prevalence of *Salmonella* over time? 
-- How long does *Salmonella* persist on different surface materials (e.g., wood, plastic, and those with an antimicrobial coating) exposed to various climatic factors (e.g., rain, sun, changing temperatures)
+Given the uncertainty of *Salmonella's* persistence on various surface materials, from my data I would like to answer: - What is the prevalence of *Salmonella* over time? - How long does *Salmonella* persist on different surface materials (e.g., wood, plastic, and those with an antimicrobial coating) exposed to various climatic factors (e.g., rain, sun, changing temperatures)
 
-From these questions, I hope to better inform the public and public health practitioners on safer feeder handling methods and precautions to take when frequenting public locations where humans and wildlife (e.g., ibis) interact.   
+From these questions, I hope to better inform the public and public health practitioners on safer feeder handling methods and precautions to take when frequenting public locations where humans and wildlife (e.g., ibis) interact.
 
+# **Methods**
 
+## **Ibis Picnic Table Trial Experimental Design and Sample Collection Methodology**
 
-To cite other work (important everywhere, but likely happens first in introduction), make sure your references are in the bibtex file specified in the YAML header above (here `dataanalysis_template_references.bib`) and have the right bibtex key. Then you can include like this:
+The ibis picnic table trial was conducted at Dreher Park, a public park in Palm Beach County frequented by white ibis who are known to carry *Salmonella*. Because humans and ibis both utilize the wooden picnic tables at the park, three tables under a single pavilion with similar environmental conditions (e.g., exposure to sunlight, rainfall, etc.) were selected. All tables were divided into four quadrants (e.g., tabletop plus bench) and ibis were encouraged to feed on the picnic tables until they deficated. Pictures were taken of every quadrant daily to facilitate the counting of new fecal piles. If feces were not deposited in a quadrant, fresh feces from the concrete pad was collected and placed onto the quadrant. To determine persistence, one large fecal pile from each quadrant was selected as the "persistence pile" and monitored and sampled daily for 8 days. To determine table prevalence, a pooled sample was taken daily from every quadrant by swabbing the surface picnic table surface with a sampling sponge, avoiding the designated "persistence pile". To maintain cleanliness for other park patrons, new piles were not smeared with the sampling sponge. Samples were placed into 20 mL of dulcitol selenite and maintained at room temperature prior to being shipped to the University of Georgia (UGA), every 2-4 days, for processing.
 
-Examples of reproducible research projects can for instance be found in [@mckay2020; @mckay2020a]
+## **Feeder Trial Experimental Design and Sample Collection Methodology**
 
-{{< pagebreak >}}
+Our Feeder trial aimed to assess the persistence of *Salmonella* on four types of feeders (cedar, plastic, cedar + antimicrobial coating, and plastic + antimicrobial coating) in Georgia. 18 g of fresh chicken feces was collected, homogenized, 1 g was aliquoted into individual 15 mL test tubes, then sterilized through autoclaving. The individual alioquots were then inoculated with 1.5x10\^7 mL of a *Salmonella* Typhimurium isolate responsible for a previous avian salmonellosis outbreak. Samples were then transported to a modified shade house at Whitehall Forest where four feeder types, represented in triplicate and randomized, were seeded with 1 g of inoculated feces and 0.5 mL of sterile physiologic saline. Feeders were then swabbed daily for one week, every other day for one week, and weekly for an additional week. Swabs were embedded into 10 mL of Dulcitol Selenite broth and transported back to UGA for processing.
 
+## **Sample Processing Methodology**
+After collection, 100 uL of the sample vortexed in dulcitol selentite was inoculated into 10 mL of Rappaport Vassiliadis (RV) broth. The broth was incubated for 24 hours at 37c. The RV broth was then streaked onto XLT-4 agar plates and incubated at 37c for 24 hours, then an additional 24 hours on the lab bench at room temperature. If colonies morphometrically consistent with *Salmonella* were present, one colony per plate was chosen and a stab in Luria Broth (LB) agar was created. To confirm the presence of *Salmonella*, patch plates were made on ChromAgar using the stabbed colonies. If the patches turned magenta, that indicated positive *Salmonella* samples. A blue color indicated something other than *Salmonella.*
 
-# Methods
-Coming soon...
-_Describe your methods. That should describe the data, the cleaning processes, and the analysis approaches. You might want to provide a shorter description here and all the details in the supplement._
+## **Data acquisition**
+The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez.
 
+## **Data Processing Methodology**
+Before attention can be focused on the data analysis portion, removal of unnecessary variables and visualizing data will provide a clearer picture of the data. This section will focus on data cleaning and wrangling. First, both datasets must be loaded. Prior to loading any data into RStudio, ensure that a new Quarto or RMarkdown File is established and linked to the preferred working directory. Basic packages need to be loaded to read in the data. Such packages to download include read_csv(), read_excel(), and here(), each of which can be loaded by utilizing the library() function (e.g., library(here)). Next, the datasets from both the Ibis and Feeder trials are loaded into RStudio utilizing the appropriate function (e.g., read_csv() for .csv files and read_excel() for .xlsx files). After data is loaded into R, it is best to get acquainted with the data by utilizing basic functions such as glimpse(). Glimpse provides me with insight into my data such as column names, number of rows and how each row is classified (e.g., character or numeric). After viewing the data I can work on cleaning the data by removing unnecessary variables. I would like to make the data a little more uniform and easier to work with. With that, I will change "Yes" to 1, and *NAs* to 0. I believe this will help me further in the analysis process. Given the variablility in the column names, I will then clean the names up to make them easier to include in my code as I move forward. With all of that, it is finally time to visualize the data by making some tables and/or graphs. 
 
-## Data aquisition
-_As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
+Here, some more packages were loaded that I forsaw using in this section. Before visualization began, the glimpse() function was utilized to view the recently cleaned data. Given the uncertainty of *Salmonella's* persistence on various surface materials and the information these trials hoped to provide, the summary() function was utilized to provide a quick glimpse of basic result summaries for positive *Salmonella* samples and if the pile present was the original pile or not. Next, I continued to explore these two variables of interest by plotting each using a stacked bar graph via ggplot().
 
-The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez. 
+I followed the same workflow for the Feeder Data, however, this dataset required less wrangling and did not provide as many exploratory options as the main focus was on feeder type, date, and the presence/absence of *Salmonella* for each day the feeders were sampled.
 
+# **Data import and cleaning**
 
-
-# Data import and cleaning
-
-## Picnic Table Data 
+## **Initial Package Loading**
 ```{r}
+# load a few R packages
+library(here)
+library(knitr)
+library(dplyr)
 library(readxl)
+```
+
+## **Picnic Table Data Loading**
+```{r}
 PTD<- read_excel(here("data", "raw_data", "Picnic_Table_Data.xlsx"))
 View(PTD)
 summary(PTD)
 ```
-## Feeder Data
+## **Picnic Table Data Wrangling**
 ```{r}
-library(readcsv)
-FD<- read.csv(here("data", "raw_data", "Feeder Data.csv"))
+glimpse(PTD)
+
+PTD1<- PTD %>% select(-c(Day, `Shippng Date`, Notes, `STAB TUBE NUMBER`, `ORIGIN OF FECES`, ...13)) #Removing columns
+
+PTD1$`Original PP still intact?`<- ifelse(PTD1$`Original PP still intact?`=="Yes", 1, 0)
+
+PTD2<- PTD1 %>% 
+    mutate(`Original PP still intact?` = ifelse(is.na(`Original PP still intact?`), 0, `Original PP still intact?`)) #NAs to 0 for column `Original PP still intact?`
+
+PTD3<- PTD2 %>% 
+    mutate(`Pos orNeg`= ifelse(is.na(`Pos orNeg`), 0, `Pos orNeg`)) #NAs to 0 for column `Pos orNeg`
+
+glimpse(PTD3) #Current variable names
+
+PTD_clean<- PTD3 %>% #Renaming column names
+  rename(
+    ID= `Sample ID`,
+    Sample_Type= `Sample Type (Pooled or Persistence)`,
+    Salmonella_Positive= `Pos orNeg`,
+    Original_Persistence_Pile= `Original PP still intact?`)
+
+glimpse(PTD_clean)
+```
+## **Picnic Table Data Exploration and Visualization**
+```{r}
+library(gtsummary)
+library(plotly)
+library(ggplot2)
+
+summary(PTD_clean$Salmonella_Positive) #Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Salmonella positivity
+
+summary(PTD_clean$Original_Persistence_Pile) #Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Persistence Piles (e.g., OG or not)
+
+PTDH<- ggplot(PTD_clean, 
+              aes(fill=Sample_Type, y= Salmonella_Positive, x= Date)) + 
+  geom_bar (position="stack", stat="identity") +
+  geom_vline(xintercept= as.numeric (PTD_clean$Date[c(95)]), linetype= "dotted", color="red", lwd=1)
+
+PTDH #Basic Plot: Positive Salmonella Samples by Sample Type via stacked plot, red line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) 
+
+PTD_Quad<- ggplot(PTD_clean, 
+              aes(fill=Quadrant, y= Salmonella_Positive, x= Date)) + 
+  geom_bar (position="stack", stat="identity") +
+  geom_vline(xintercept= as.numeric (PTD_clean$Date[c(95)]), linetype= "dotted", color="green", lwd=1)
+
+PTD_Quad #Basic Plot: Positive Salmonella Samples (pooled v. persistence) by Quadrant via stacked plot green line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.)  
+```
+
+## **Feeder Data Loading**
+```{r}
+library(readr)
+FD<- read_csv(
+  here("data", "raw_data", "Feeder Data.csv"))
 View(FD)
+
 summary(FD)
+
+str(FD)
+
+glimpse(FD)
 ```
+## **Feeder Data Wrangling**
+```{r}
+FD1<- FD %>% select(-c(`Absence (0)/Presence (1)`, `...5`)) #Removing columns
 
-_Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g. as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along._
+glimpse(FD1) #Quick glimpse at the data, I can determine if I should wrangle the data a bit more
+
+FD_clean<- FD1 #Data looked clean so I will rename it to use with my data exploration and visualization process below 
+```
+**Picnic Table Data Exploration and Visualization**
+```{r}
+summary(FD_clean$Absence_0_Presence_1) # Utilizing summary() for a quick look at result summaries- not much info here
+
+FD_plot<- ggplot(FD_clean, #Given my limited dataset I will focus my visualization on feeder type and presence/absence of Salmonella 
+              aes(fill=Feeder_Type, y=Absence_0_Presence_1, x= Collection_Date)) + 
+  geom_bar (position="stack", stat="identity") 
+
+FD_plot  
+```
+{{< pagebreak >}}
+
+# **Future Project PARTS for KP to populate** 
+
+# **Statistical analysis**
+
+# **Results**
+
+## **Exploratory/Descriptive analysis**
 
 
-## Statistical analysis
-_Explain anything related to your statistical analyses._
+## **Basic statistical analysis**
 
+After the modules following Part 1, I am leaning towards running a GLM for both given the binary responses for Salmonella persistence (e.g., presence v. absence). I need to meet with Dr. Hernandez to clear up some questions I have on the picnic table data, specifically regarding the introduction of new feces. I am curious if I should include other data into the mix to make my analysis more robust. At the moment, the variables of interest for both are limited (e.g., two for the picnic table data, and one primary variable of interest for the feeder trial).  
+
+## **Full analysis**
+
+# **Discussion**
+
+## **Summary and Interpretation**
+
+## **Strengths and Limitations**
+
+## **Conclusions**
 
 {{< pagebreak >}}
 
-
-# Results
-
-## Exploratory/Descriptive analysis
-
-_Use a combination of text/tables/figures to explore and describe your data. Show the most important descriptive results here. Additional ones should go in the supplement. Even more can be in the R and Quarto files that are part of your project._
-
-
-@tbl-summarytable shows a summary of the data.
-
-Note the loading of the data providing a **relative** path using the `../../` notation. (Two dots means a folder up). You never want to specify an **absolute** path like `C:\ahandel\myproject\results\` because if you share this with someone, it won't work for them since they don't have that path. You can also use the `here` R package to create paths. See examples of that below.
-
-```{r}
-#| label: tbl-summarytable
-#| tbl-cap: "Data summary table."
-#| echo: FALSE
-resulttable=readRDS("../../results/summarytable.rds")
-knitr::kable(resulttable)
-```
-
-
-
-## Basic statistical analysis
-
-While I am unsure of proper analysis, I may start by calculating probabilities. It may also be helpful to run a regression or linear model. Other than this, I am unsure of how to start the analysis process for the Picnic Table data. 
-
-_To get some further insight into your data, if reasonable you could compute simple statistics (e.g. simple models with 1 predictor) to look for associations between your outcome(s) and each individual predictor variable. Though note that unless you pre-specified the outcome and main exposure, any "p<0.05 means statistical significance" interpretation is not valid._
-
-
-@fig-result shows a scatterplot figure produced by one of the R scripts.
-
-```{r}
-#| label: fig-result
-#| fig-cap: "Height and weight stratified by gender."
-#| echo: FALSE
-knitr::include_graphics(here("results","height_weight_stratified.png"))
-```
-
-
-## Full analysis
-
-_Use one or several suitable statistical/machine learning methods to analyze your data and to produce meaningful figures, tables, etc. This might again be code that is best placed in one or several separate R scripts that need to be well documented. You want the code to produce figures and data ready for display as tables, and save those. Then you load them here._
-
-Example @tbl-resulttable2 shows a summary of a linear model fit.
-
-```{r}
-#| label: tbl-resulttable2
-#| tbl-cap: "Linear model fit table."
-#| echo: FALSE
-resulttable2 = readRDS(here("results","resulttable2.rds"))
-knitr::kable(resulttable2)
-```
-
-
-{{< pagebreak >}}
-
-
-# Discussion
-
-## Summary and Interpretation
-_Summarize what you did, what you found and what it means._
-
-## Strengths and Limitations
-_Discuss what you perceive as strengths and limitations of your analysis._
-
-## Conclusions
-_What are the main take-home messages?_
-
-_Include citations in your Rmd file using bibtex, the list of references will automatically be placed at the end_
-
-This paper [@leek2015] discusses types of analyses. 
-
-These papers [@mckay2020; @mckay2020a] are good examples of papers published using a fully reproducible setup similar to the one shown in this template. 
-
-Note that this cited reference will show up at the end of the document, the reference formatting is determined by the CSL file specified in the YAML header. Many more style files for almost any journal [are available](https://www.zotero.org/styles). You also specify the location of your bibtex reference file in the YAML. You can call your reference file anything you like, I just used the generic word `references.bib` but giving it a more descriptive name is probably better.
-
-
-{{< pagebreak >}}
-
-# References
-
-
-
+# **References**
