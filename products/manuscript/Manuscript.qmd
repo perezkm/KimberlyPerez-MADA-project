@@ -171,7 +171,6 @@ FD_plot
 
 ## **Exploratory/Descriptive analysis**
 
-
 ## **Basic statistical analysis**
 
 After the modules following Part 1, I am leaning towards running a GLM for both given the binary responses for Salmonella persistence (e.g., presence v. absence). I need to meet with Dr. Hernandez to clear up some questions I have on the picnic table data, specifically regarding the introduction of new feces. I am curious if I should include other data into the mix to make my analysis more robust. At the moment, the variables of interest for both are limited (e.g., two for the picnic table data, and one primary variable of interest for the feeder trial).  
