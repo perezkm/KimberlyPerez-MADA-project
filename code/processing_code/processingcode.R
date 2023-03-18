@@ -1,7 +1,7 @@
 ###############################
 # Processing Picnic Table and Feeder Data Script
 #
-# The script I use below will load the raw data, process and clean it for both 
+# The script I use below will load the raw data, process and clean it for both. 
 # The picnic table data and the feeder data will also be saved as a RDS file in the processed_data folder
 # I will also include full text and code in my manuscript in the meantime. 
 #

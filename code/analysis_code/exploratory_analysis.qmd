@@ -66,6 +66,7 @@ PTDsumt1<- summary(PTD_clean$Salmonella_Positive) #Quick glimpse of samples, non
 PTDsumt1
 
 PTDsumt2<- summary(PTD_clean$Original_Persistence_Pile) #Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Persistence Piles (e.g., OG or not)
+PTDsumt2
 
 PTDH<- ggplot(PTD_clean, 
               aes(fill=Sample_Type, y= Salmonella_Positive, x= Date)) + 
@@ -73,21 +74,17 @@ PTDH<- ggplot(PTD_clean,
   geom_vline(xintercept= as.numeric (PTD_clean$Date[c(95)]), linetype= "dotted", color="red", lwd=1)
 
 PTDH #Basic Plot: Positive Salmonella Samples by Sample Type via stacked plot, red line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) 
+ggsave(PTDH, file="Picnic_Table_PosSamp.png")
 
 PTD_Quad<- ggplot(PTD_clean, 
               aes(fill=Quadrant, y= Salmonella_Positive, x= Date)) + 
   geom_bar (position="stack", stat="identity") +
   geom_vline(xintercept= as.numeric (PTD_clean$Date[c(95)]), linetype= "dotted", color="green", lwd=1)
 
-PTD_Quad #Basic Plot: Positive Salmonella Samples (pooled v. persistence) by Quadrant via stacked plot green line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.)  
-```
-## **Saving the Figures and Tables from Picnic Table Data**
+PTD_Quad #Basic Plot: Positive Salmonella Samples (pooled v. persistence) by Quadrant via stacked plot green line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) 
+ggsave(PTD_Quad, file="Picnic_Table_Quad.png")
 
-```{r}
-#Here is where I will save my final tables and figures
 ```
-We will continue loading, cleaning, and exploring the data we will use for the final project
-
 ## **Feeder Data Loading**
 ```{r}
 library(readr)
@@ -121,10 +118,5 @@ FD_plot<- ggplot(FD_clean, #Given my limited dataset I will focus my visualizati
   geom_bar (position="stack", stat="identity") 
 
 FD_plot  
-```
-
-## **Saving the Figures and Tables from Feeder Data**
-
-```{r}
-#Here is where I will save my final tables and figures to my results folder/subfolders 
+ggsave(FD_plot, file="Feeder_PA.png")
 ```

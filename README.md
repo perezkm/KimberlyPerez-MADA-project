@@ -1,37 +1,55 @@
-# Overview
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
-This is Kimberly Perez's repository. I will utilize this repository to assist me as I complete my final project for MADA Spring 2023.
+# Description of Included Files
 
-A template file and folder structure for a data analysis project/paper done with R/Quarto/Github. 
+[**Please note, Feeder Data is abbreviated FD, while Picnic Table Data
+is abbreviated as PT**]
 
-# Pre-requisites
-
-This is a template for a data analysis project using R, Quarto, Github and a reference manager that can handle bibtex. It is also assumed that you have a word processor installed (e.g. MS Word or [LibreOffice](https://www.libreoffice.org/)). You need that software stack to make use of this template.
-
-# Template structure
-
-* All data goes into the subfolders inside the `data` folder.
-* All code goes into the `code` folder or subfolders.
-* All results (figures, tables, computed values) go into `results` folder or subfolders.
-* All products (manuscripts, supplement, presentation slides, web apps, etc.) go into `products` subfolders.
-* See the various `readme.md` files in those folders for some more information.
-
-# Template content 
-
-The template comes with a few files that are meant as illustrative examples of the kinds of content you would place in the different folders. See the `readme` files in each folder for more details.
-
-* There is a simple, made-up dataset in the `raw_data` folder. 
-* The `processing_code` folder contains several files that load the raw data, perform a bit of cleaning, and save the result in the `processed_data` folder. 
-* The `analysis_code` folder contains several files that load the processed data, do an exploratory analysis, and fit a simple model. These files produce figures and some numeric output (tables), which are saved to the `results` folder.
-* The `products` folder contains an example `bibtex` and CSL style files for references. Those files are used by the example manuscript and slides.
-* The  `manuscript` folder contains a template for a report written as Quarto file. If you access this repository as part of [my Modern Applied Data Science course](https://andreashandel.github.io/MADAcourse/), the sections are guides for your project. If you found your way to this repository outside the course, you might only be interested in seeing how the file pulls in results and references and generates a word document as output, without paying attention to the detailed structure. There is also a sub-folder containing an example template for a supplementary material file.
-* The `slides` folder contains a basic example of slides made with Quarto. 
-
-
-# Getting started
-
-This is a Github template repository. The best way to get it and start using it is [by following these steps.](https://help.github.com/en/articles/creating-a-repository-from-a-template)
-
-Once you got the repository, you can check out the examples by executing them in order. First run the processing code, which will produce the processed data. Then run the analysis scripts, which will take the processed data and produce some results. Then you can run the manuscript, poster and slides example files in any order. Those files pull in the generated results and display them. These files also pull in references from the `bibtex` file and format them according to the CSL style.
-
-
+-   **code**- This folder contains the R script needed to clean and
+    analyze the data. Two sub folders and a readme.md file are also
+    included in this folder and contain further instructions.
+    -   **processing_code** folder
+        -   **processingcode.R** contains all of the R Script needed to
+            clean both datasets and save them to the appropriate folder
+            ("processed_data").
+    -   The **analysis_code** sub folder houses all R Script needed to
+        explore both datasets. It also contains **three** documents:
+        -   **exploratory_analysis.html**- This document will render the
+            code written in the exploratory_analysis.qmd file in a
+            browser window. Here you can utilize the document to view
+            code and outputs without having to run the associated code.
+        -   **exploratory_analysis.qmd**- This document contains the
+            actual R Script written to conduct the exploratory analysis
+            on both data sets. Here you can run my code and edit any
+            visuals created.
+        -   **statistical_analysis.R**- At the moment, this Markdown
+            file contains some basic statistical analysis (lm fits) I
+            have run on the data. However, as I tighten up my project,
+            this will house the code I utilize for my model.
+        -   The **exploratory_analysis_files**, specifically the
+            **figure-html** folder houses all of the saved figures from
+            the .qmd and R Markdown documents housed in the **Code**
+            folder. These figures are also found in my Manuscript.qmd
+            file.
+-   **data**- This folder contains **two** subfolders-
+    **processed_data** and **raw_data**, respectively, plus a readme.md
+    file.
+    -   **processed_data** houses saved RDS files of the processed data
+        for both datasets
+    -   **raw_data** houses the raw data for both data sets which are
+        saved as .csv and .xlsx. Plus a readme.md file **I MAY DELETE
+        THIS README**
+-   **product**- This folder contains **one** subfolder- **manuscript**,
+    and two files necessary for references.
+    -   **manuscript**- contains **two** documents- Manuscript.qmd and
+        Manuscript.docx, and **two** subfolders- images and supplement
+        **(as of Part 3, I have not decided if I will keep either
+        subfolder but should have this decided by Part 4)**
+        * **Manuscript.qmd**- This document contains my written portion of my manuscript along with figures and analysis rendered in other sections.
+        * **Manuscript.docx**- This is the culminating document that is produced when the Manuscrit.qmd file is run.
+* **results**- This folder contains **four** subfolders- **FD_Graphs**, **FD_Sum_T**, **RTD_Graphs**, **RTD_Sum_T**, and a readme.md. **I AM TRYING TO DECIDE IF I WILL USE THIS FOLDER OR IF I WILL HOUSE THINGS IN A SUBFOLDER IN ANOTHER SECTION. 
+  
