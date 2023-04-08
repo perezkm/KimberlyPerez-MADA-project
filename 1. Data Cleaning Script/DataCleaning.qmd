@@ -1,0 +1,122 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# **Processing Picnic Table and Feeder Data Script**
+
+The script I use below will load the raw data, process and clean it for
+both.
+
+The picnic table data and the feeder data will also be saved as a RDS
+file in the processed_data folder.
+
+I will also include full text and code in my manuscript in the meantime.
+
+# **Loading Packages**
+```{r, message=FALSE, warning=FALSE}
+# Let's load a few R packages for processing
+library(knitr)
+library(dplyr) #Loading in for data cleaning
+library(readxl) #This will load in excel files (picnic table )
+library(here) #Very important as this will circumvent any absolute path issues, makes more reproducible, easily set paths
+library(readr) #Easy to get data from csv files
+```
+
+# **1a. Loading: Picnic Table Data**
+```{r}
+PTD<- read_excel(here("0. Raw Data", "Picnic_Table_Data.xlsx"))
+```
+
+# **2a. Exploring: Picnic Table Data**
+Let's take a look at the data we just loaded in.
+```{r}
+View(PTD)
+
+summary(PTD)
+
+glimpse(PTD)
+```
+
+# **3a. Cleaning: Picnic Table Data**
+
+There is a lot to clean here. Overall, the excel seems a bit messy and
+disorganized. From what I saw in step 2a, I want to:
+
+-   Replace NAs
+
+-   Keep the dates, type of sample (e.g., persistence/pooled), positive
+    samples
+
+-   Rename columns
+
+-   Check how the cleaning process is going
+```{r}
+ PTD1<- PTD %>% 
+  select(-c(Day, `Shippng Date`, Notes,`STAB TUBE NUMBER`, `ORIGIN OF FECES`, ...13)) #Removing columns
+```
+
+```{r}
+PTD1$`Original PP still intact?`<- ifelse(PTD1$`Original PP still intact?`=="Yes", 1, 0)
+
+PTD2<- PTD1 %>% mutate(`Original PP still intact?` =
+    ifelse(is.na(`Original PP still intact?`), 0,
+    `Original PP still intact?`)) #NAs to 0 for column`Original PP still intact?`
+
+PTD3<- PTD2 %>% mutate(`Pos orNeg`= ifelse(is.na(`Pos orNeg`), 0,
+`Pos orNeg`)) #NAs to 0 for column `Pos orNeg`
+
+glimpse(PTD3) #Current variable names
+
+PTD_clean<- PTD3 %>% #Renaming column names 
+  rename( ID= `Sample ID`, Sample_Type= `Sample Type (Pooled or Persistence)`,
+  Salmonella_Positive=`Pos orNeg`, Original_Persistence_Pile= `Original PP still intact?`)
+
+glimpse(PTD_clean)
+```
+
+## **4a. Save the Data!**
+The cleaned data looks much better! I would like to pick a location to save this portion as a file. In this step, I will save the file as an RDS to the **2. Cleaned Data** folder under the name "PTprocessed".
+```{r}
+save_data_location <- here::here("2. Clean Data","PTprocessed.rds")
+saveRDS(PTD_clean, file = save_data_location)
+```
+
+# **Let's do it all again, this time with the Feeder Data**
+# **1b. Loading: Feeder Data**
+```{r}
+FD<- read_csv(here("0. Raw Data", "Feeder Data.csv"))
+```
+
+# **2b. Exploring: Feeder Data**
+Let's take a look at the data we just loaded into R!
+```{r}
+View(FD)
+
+summary(FD)
+
+str(FD)
+
+glimpse(FD)
+```
+
+
+# **3b. Cleaning: Feeder Data**
+Unlike the picnic table data, this is a fairly clean and short dataset. I think we can clean this with a few lines of code.
+```{r}
+FD1<- FD %>% select(-c(`Absence (0)/Presence (1)`, `...5`)) #Removing columns
+
+glimpse(FD1) #Quick glimpse at the data, I can determine if I should wrangle the data a bit more
+
+FD_clean<- FD1 #Data looked clean so I will rename it to use with my data exploration and visualization process below
+```
+
+
+## **4b. Save the Data!**
+The cleaned data looks good. I would like to pick a location to save this portion as a file. I will save the file as an RDS to the **2. Cleaned Data** folder under the name "FDprocessed".
+```{r}
+save_data_location2<- here::here("2. Clean Data","FDprocessed.rds")
+saveRDS(FD_clean, file = save_data_location2)
+```
+
