@@ -1,15 +1,14 @@
 ---
-title: "Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health"
+title: "*Salmonella* Environmental Persistence Informs Management Relevant to Avian and Public Health"
 subtitle: ""
-author: Andreas Handel
+author: Kimberly M. Perez
 date: "`r Sys.Date()`"
 format:
   docx:
     toc: false
     number-sections: true
     highlight-style: github
-bibliography: ../dataanalysis_template_references.bib
-csl: ../apa.csl
+bibliography: Ref.bib
 ---
 
 # **Summary/Abstract**
@@ -18,13 +17,13 @@ Globally, *Salmonella* is a significant public health threat. We evaluated the p
 
 # **Introduction (Why *Salmonella*?)**
 
-*Salmonella enterica* infections are a significant public health threat, responsible for over 93 million annual cases of human illness worldwide. In the United States alone, 1.35 million cases of salmonellosis and 420 deaths are reported annually. Most cases of human salmonellosis are caused by food-borne *Salmonella* strains associated with produce or undercooked meat. However, a rising subset of human infections are often associated with unidentified environmental exposures or contact with animals.
+*Salmonella enterica* infections are a significant public health threat, responsible for over 93 million annual cases of human illness worldwide [@Majowicz2010]. In the United States alone, 1.35 million cases of salmonellosis and 420 deaths are reported annually [@CentersforDiseaseControlandPrevention2021a]. Most cases of human salmonellosis are caused by food-borne *Salmonella* strains associated with produce or undercooked meat. However, a rising subset of human infections are often associated with unidentified environmental exposures or contact with animals [@CentersforDiseaseControlandPrevention2016].
 
-The American white ibis (Eudocimus albus), forms large nesting colonies in natural wetlands. However, due to habitat destruction in Everglades National Park, this gregarious member of the Pelecaniformes, has begun to urbanize parks with abundant anthropgenic food and water resources throughout South Florida. Infection with *Salmonella* spp. in American white ibis is well documented. It has been found that ibis can harbor diverse *Salmonella* strains and shed it at a higher prevalence than their natural counterparts. Studies have genetically matched the *Salmonella* shed by ibis to human salmonellosis cases in South Florida during the same time period ibis were sampled.
+The American white ibis (Eudocimus albus), forms large nesting colonies in natural wetlands. However, due to habitat destruction in Everglades National Park, this gregarious member of the Pelecaniformes, has begun to urbanize parks with abundant anthropgenic food and water resources throughout South Florida. Infection with *Salmonella* spp. in American white ibis is well documented. It has been found that ibis can harbor diverse *Salmonella* strains and shed it at a higher prevalence than their natural counterparts [@Hernandez2016]. Studies have genetically matched the *Salmonella* shed by ibis to human salmonellosis cases in South Florida during the same time period ibis were sampled [@Hernandez2016].
 
-Similarly, in 2021, following an epidemiological investigation of 29 human cases of *Salmonella enterica* serovar Typhimurium (*S.* Typhimurium), the Centers for Disease Control and Prevention (CDC) documented a relationship between human cases and a concurrent avian salmonellosis outbreak. Of the 29 cases, 14 individuals were hospitalized and the outbreak was likely due to contact with bird feeders, sick or dead wild birds, or pets that had contact with wild birds.
+Similarly, in 2021, following an epidemiological investigation of 29 human cases of *Salmonella enterica* serovar Typhimurium (*S.* Typhimurium), the Centers for Disease Control and Prevention (CDC) documented a relationship between human cases and a concurrent avian salmonellosis outbreak. Of the 29 cases, 14 individuals were hospitalized and the outbreak was likely due to contact with bird feeders, sick or dead wild birds, or pets that had contact with wild birds [@CentersforDiseaseControlandPrevention2021].
 
-Persistence of *Salmonella* can be affected by ambient temperature, presence/absence of a biofilm, and environmental nutrient conditions. Under ideal conditions (e.g. optimal temperature 35-43°C, pH 7-7.5, etc.), *Salmonella* is known to persist in the environment for extended periods of time. While *Salmonella* persistence has been examined on soil and poultry litter, there is a lack of understanding of the persistence of *Salmonella* on various surfaces including wood, plastic, and surfaces lined with antimicrobial coatings.
+Persistence of *Salmonella* can be affected by ambient temperature, presence/absence of a biofilm, and environmental nutrient conditions [@Will1973; @Davies1995; @Barker2000; @Renner2002]. Under ideal conditions (e.g. optimal temperature 35-43°C, pH 7-7.5, etc.), *Salmonella* is known to persist in the environment for extended periods of time. While *Salmonella* persistence has been examined on soil and poultry litter, there is a lack of understanding of the persistence of *Salmonella* on various surfaces including wood, plastic, and surfaces lined with antimicrobial coatings.
 
 ## **Description of data and data source**
 
@@ -52,7 +51,7 @@ Our Feeder trial aimed to assess the persistence of *Salmonella* on four types o
 
 ## **Sample Processing Methodology**
 
-After collection, 100 uL of the sample vortexed in dulcitol selentite was inoculated into 10 mL of Rappaport Vassiliadis (RV) broth. The broth was incubated for 24 hours at 37c. The RV broth was then streaked onto XLT-4 agar plates and incubated at 37c for 24 hours, then an additional 24 hours on the lab bench at room temperature. If colonies morphometrically consistent with *Salmonella* were present, one colony per plate was chosen and a stab in Luria Broth (LB) agar was created. To confirm the presence of *Salmonella*, patch plates were made on ChromAgar using the stabbed colonies. If the patches turned magenta, that indicated positive *Salmonella* samples. A blue color indicated something other than *Salmonella.*
+After collection, 100 uL of the sample vortexed in dulcitol selentite was inoculated into 10 mL of Rappaport Vassiliadis (RV) broth. The broth was incubated for 24 hours at 37c. The RV broth was then streaked onto XLT-4 agar plates and incubated at 37c for 24 hours, then an additional 24 hours on the lab bench at room temperature. If colonies morphometrically consistent with *Salmonella* were present, one colony per plate was chosen and a stab in Luria Broth (LB) agar was created. To confirm the presence of *Salmonella*, patch plates were made on ChromAgar using the stabbed colonies. If the patches turned magenta, that indicated positive *Salmonella* samples. A blue color indicated something other than *Salmonella* [@Maurer2015].
 
 ## **Data acquisition**
 
