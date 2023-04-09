@@ -9,75 +9,224 @@ format:
     number-sections: true
     highlight-style: github
 bibliography: Ref.bib
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 # **Summary/Abstract**
 
-Globally, *Salmonella* is a significant public health threat. We evaluated the persistence of *Salmonella* on various surface materials (e.g., picnic tables and bird feeders). Our studies suggest that *Salmonella* can have prolonged persistence on shared spaces. However, persistence depends on surface material and precautionary measures should be adopted to reduce exposure.
+Globally, *Salmonella* is a significant public health threat. We
+evaluated the persistence of *Salmonella* on various surface materials
+(e.g., picnic tables and bird feeders). Our studies suggest that
+*Salmonella* can have prolonged persistence on shared spaces. However,
+persistence depends on surface material and precautionary measures
+should be adopted to reduce exposure.
 
 # **Introduction (Why *Salmonella*?)**
 
-*Salmonella enterica* infections are a significant public health threat, responsible for over 93 million annual cases of human illness worldwide [@Majowicz2010]. In the United States alone, 1.35 million cases of salmonellosis and 420 deaths are reported annually [@CentersforDiseaseControlandPrevention2021a]. Most cases of human salmonellosis are caused by food-borne *Salmonella* strains associated with produce or undercooked meat. However, a rising subset of human infections are often associated with unidentified environmental exposures or contact with animals [@CentersforDiseaseControlandPrevention2016].
+*Salmonella enterica* infections are a significant public health threat,
+responsible for over 93 million annual cases of human illness worldwide
+[@Majowicz2010]. In the United States alone, 1.35 million cases of
+salmonellosis and 420 deaths are reported annually
+[@CentersforDiseaseControlandPrevention2021a]. Most cases of human
+salmonellosis are caused by food-borne *Salmonella* strains associated
+with produce or undercooked meat. However, a rising subset of human
+infections are often associated with unidentified environmental
+exposures or contact with animals
+[@CentersforDiseaseControlandPrevention2016].
 
-The American white ibis (Eudocimus albus), forms large nesting colonies in natural wetlands. However, due to habitat destruction in Everglades National Park, this gregarious member of the Pelecaniformes, has begun to urbanize parks with abundant anthropgenic food and water resources throughout South Florida. Infection with *Salmonella* spp. in American white ibis is well documented. It has been found that ibis can harbor diverse *Salmonella* strains and shed it at a higher prevalence than their natural counterparts [@Hernandez2016]. Studies have genetically matched the *Salmonella* shed by ibis to human salmonellosis cases in South Florida during the same time period ibis were sampled [@Hernandez2016].
+The American white ibis (Eudocimus albus), forms large nesting colonies
+in natural wetlands. However, due to habitat destruction in Everglades
+National Park, this gregarious member of the Pelecaniformes, has begun
+to urbanize parks with abundant anthropgenic food and water resources
+throughout South Florida. Infection with *Salmonella* spp. in American
+white ibis is well documented. It has been found that ibis can harbor
+diverse *Salmonella* strains and shed it at a higher prevalence than
+their natural counterparts [@Hernandez2016]. Studies have genetically
+matched the *Salmonella* shed by ibis to human salmonellosis cases in
+South Florida during the same time period ibis were sampled
+[@Hernandez2016].
 
-Similarly, in 2021, following an epidemiological investigation of 29 human cases of *Salmonella enterica* serovar Typhimurium (*S.* Typhimurium), the Centers for Disease Control and Prevention (CDC) documented a relationship between human cases and a concurrent avian salmonellosis outbreak. Of the 29 cases, 14 individuals were hospitalized and the outbreak was likely due to contact with bird feeders, sick or dead wild birds, or pets that had contact with wild birds [@CentersforDiseaseControlandPrevention2021].
+Similarly, in 2021, following an epidemiological investigation of 29
+human cases of *Salmonella enterica* serovar Typhimurium (*S.*
+Typhimurium), the Centers for Disease Control and Prevention (CDC)
+documented a relationship between human cases and a concurrent avian
+salmonellosis outbreak. Of the 29 cases, 14 individuals were
+hospitalized and the outbreak was likely due to contact with bird
+feeders, sick or dead wild birds, or pets that had contact with wild
+birds [@CentersforDiseaseControlandPrevention2021].
 
-Persistence of *Salmonella* can be affected by ambient temperature, presence/absence of a biofilm, and environmental nutrient conditions [@Will1973; @Davies1995; @Barker2000; @Renner2002]. Under ideal conditions (e.g. optimal temperature 35-43°C, pH 7-7.5, etc.), *Salmonella* is known to persist in the environment for extended periods of time. While *Salmonella* persistence has been examined on soil and poultry litter, there is a lack of understanding of the persistence of *Salmonella* on various surfaces including wood, plastic, and surfaces lined with antimicrobial coatings.
+Persistence of *Salmonella* can be affected by ambient temperature,
+presence/absence of a biofilm, and environmental nutrient conditions
+[@Will1973; @Davies1995; @Barker2000; @Renner2002]. Under ideal
+conditions (e.g. optimal temperature 35-43°C, pH 7-7.5, etc.),
+*Salmonella* is known to persist in the environment for extended periods
+of time. While *Salmonella* persistence has been examined on soil and
+poultry litter, there is a lack of understanding of the persistence of
+*Salmonella* on various surfaces including wood, plastic, and surfaces
+lined with antimicrobial coatings.
 
 ## **Description of data and data source**
 
-The data selected for my MADA project is persistence and prevalence data from two trial studies. The first trial was conducted in South Florida where picnic tables, under the same pavilion and exposed to conditions known to affect *Salmonella*, were selected, swabbed daily for a week and shipped back to the University of Georgia for *Salmonella* isolation. The second trial was conducted in Athens, Georgia, at Whitehall Forest in a modified shade house. Bird feeders of different materials (e.g., cedar, plastic, plastic coated, and wood coated) were hung in triplicate and seeded with an isolate of *S.* Typhimurium isolated from a songbird.
+The data selected for my MADA project is persistence and prevalence data
+from two trial studies. The first trial was conducted in South Florida
+where picnic tables, under the same pavilion and exposed to conditions
+known to affect *Salmonella*, were selected, swabbed daily for a week
+and shipped back to the University of Georgia for *Salmonella*
+isolation. The second trial was conducted in Athens, Georgia, at
+Whitehall Forest in a modified shade house. Bird feeders of different
+materials (e.g., cedar, plastic, plastic coated, and wood coated) were
+hung in triplicate and seeded with an isolate of *S.* Typhimurium
+isolated from a songbird.
 
-The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez.
+The data from the first trial in South Florida was collected by an
+undergraduate student of Dr. Sonia Hernandez and provided to me by Dr.
+Hernandez. All data from the Feeder Trial was collected by me, Kimberly
+Perez under the guidance of Dr. Sonia Hernandez.
 
-The Picnic Table Trial data is composed of several worksheets embedded in one excel file. After viewing the file (and running it below), there seems to be 192 observations. I am not sure how the Picnic Table Trial was collected but hope to visit with Dr. Hernandez regarding data collection methods soon. Feeder Trial data was collected and noted upon confirmation of *Salmonella* from processed samples. There are 144 observations for the Feeder Trial which spanned nearly 2 months. For both trials, we were attempting to measure *Salmonella* persistence. The Picnic Table Trial collected data in an attempt to measure prevalence as well. (Please Note: Aforementioned data was imported under "Data import and cleaning" section.)
+The Picnic Table Trial data is composed of several worksheets embedded
+in one excel file. After viewing the file (and running it below), there
+seems to be 192 observations. I am not sure how the Picnic Table Trial
+was collected but hope to visit with Dr. Hernandez regarding data
+collection methods soon. Feeder Trial data was collected and noted upon
+confirmation of *Salmonella* from processed samples. There are 144
+observations for the Feeder Trial which spanned nearly 2 months. For
+both trials, we were attempting to measure *Salmonella* persistence. The
+Picnic Table Trial collected data in an attempt to measure prevalence as
+well. (Please Note: Aforementioned data was imported under "Data import
+and cleaning" section.)
 
 ## **Questions/Hypotheses to be addressed**
 
-Given the uncertainty of *Salmonella's* persistence on various surface materials, from my data I would like to answer: - What is the prevalence of *Salmonella* over time? - How long does *Salmonella* persist on different surface materials (e.g., wood, plastic, and those with an antimicrobial coating) exposed to various climatic factors (e.g., rain, sun, changing temperatures)
+Given the uncertainty of *Salmonella's* persistence on various surface
+materials, questions such as:
 
-From these questions, I hope to better inform the public and public health practitioners on safer feeder handling methods and precautions to take when frequenting public locations where humans and wildlife (e.g., ibis) interact.
+-   What is the prevalence of *Salmonella* over time?
+
+-   How long does *Salmonella* persist on different surface materials
+    (e.g., wood, plastic, and those with an antimicrobial coating)?
+
+-   Is there a greater risk of acquiring *Salmonella* from objects that
+    both humans and animals use (e.g. picnic tables in parks)?
+
+From these questions, we hope to better inform the public and public
+health practitioners on safer feeder handling methods and precautions to
+take when frequenting public locations where humans and wildlife (e.g.,
+ibis) interact.
 
 # **Methods**
 
 ## **Ibis Picnic Table Trial Experimental Design and Sample Collection Methodology**
 
-The ibis picnic table trial was conducted at Dreher Park, a public park in Palm Beach County frequented by white ibis who are known to carry *Salmonella*. Because humans and ibis both utilize the wooden picnic tables at the park, three tables under a single pavilion with similar environmental conditions (e.g., exposure to sunlight, rainfall, etc.) were selected. All tables were divided into four quadrants (e.g., tabletop plus bench) and ibis were encouraged to feed on the picnic tables until they deficated. Pictures were taken of every quadrant daily to facilitate the counting of new fecal piles. If feces were not deposited in a quadrant, fresh feces from the concrete pad was collected and placed onto the quadrant. To determine persistence, one large fecal pile from each quadrant was selected as the "persistence pile" and monitored and sampled daily for 8 days. To determine table prevalence, a pooled sample was taken daily from every quadrant by swabbing the surface picnic table surface with a sampling sponge, avoiding the designated "persistence pile". To maintain cleanliness for other park patrons, new piles were not smeared with the sampling sponge. Samples were placed into 20 mL of dulcitol selenite and maintained at room temperature prior to being shipped to the University of Georgia (UGA), every 2-4 days, for processing.
+The ibis picnic table trial was conducted at Dreher Park, a public park
+in Palm Beach County frequented by white ibis who are known to carry
+*Salmonella*. Because humans and ibis both utilize the wooden picnic
+tables at the park, three tables under a single pavilion with similar
+environmental conditions (e.g., exposure to sunlight, rainfall, etc.)
+were selected. All tables were divided into four quadrants (e.g.,
+tabletop plus bench) and ibis were encouraged to feed on the picnic
+tables until they deficated. Pictures were taken of every quadrant daily
+to facilitate the counting of new fecal piles. If feces were not
+deposited in a quadrant, fresh feces from the concrete pad was collected
+and placed onto the quadrant. To determine persistence, one large fecal
+pile from each quadrant was selected as the "persistence pile" and
+monitored and sampled daily for 8 days. To determine table prevalence, a
+pooled sample was taken daily from every quadrant by swabbing the picnic table surface with a sampling sponge, avoiding the designated "persistence pile". To maintain cleanliness for other park
+patrons, new piles were not smeared with the sampling sponge. Samples
+were placed into 20 mL of dulcitol selenite and maintained at room
+temperature prior to being shipped to the University of Georgia (UGA),
+every 2-4 days, for processing.
 
 ## **Feeder Trial Experimental Design and Sample Collection Methodology**
 
-Our Feeder trial aimed to assess the persistence of *Salmonella* on four types of feeders (cedar, plastic, cedar + antimicrobial coating, and plastic + antimicrobial coating) in Georgia. 18 g of fresh chicken feces was collected, homogenized, 1 g was aliquoted into individual 15 mL test tubes, then sterilized through autoclaving. The individual alioquots were then inoculated with 1.5x10\^7 mL of a *Salmonella* Typhimurium isolate responsible for a previous avian salmonellosis outbreak. Samples were then transported to a modified shade house at Whitehall Forest where four feeder types, represented in triplicate and randomized, were seeded with 1 g of inoculated feces and 0.5 mL of sterile physiologic saline. Feeders were then swabbed daily for one week, every other day for one week, and weekly for an additional week. Swabs were embedded into 10 mL of Dulcitol Selenite broth and transported back to UGA for processing.
+Our Feeder trial aimed to assess the persistence of *Salmonella* on four
+types of feeders (cedar, plastic, cedar + antimicrobial coating, and
+plastic + antimicrobial coating) in Georgia. 18 g of fresh chicken feces
+was collected, homogenized, 1 g was aliquoted into individual 15 mL test
+tubes, then sterilized through autoclaving. The individual alioquots
+were then inoculated with 1.5x10\^7 mL of a *Salmonella* Typhimurium
+isolate responsible for a previous avian salmonellosis outbreak. Samples
+were then transported to a modified shade house at Whitehall Forest
+where four feeder types, represented in triplicate and randomized, were
+seeded with 1 g of inoculated feces and 0.5 mL of sterile physiologic
+saline. Feeders were then swabbed daily for one week, every other day
+for one week, and weekly for an additional week. Swabs were embedded
+into 10 mL of Dulcitol Selenite broth and transported back to UGA for
+processing.
 
 ## **Sample Processing Methodology**
 
-After collection, 100 uL of the sample vortexed in dulcitol selentite was inoculated into 10 mL of Rappaport Vassiliadis (RV) broth. The broth was incubated for 24 hours at 37c. The RV broth was then streaked onto XLT-4 agar plates and incubated at 37c for 24 hours, then an additional 24 hours on the lab bench at room temperature. If colonies morphometrically consistent with *Salmonella* were present, one colony per plate was chosen and a stab in Luria Broth (LB) agar was created. To confirm the presence of *Salmonella*, patch plates were made on ChromAgar using the stabbed colonies. If the patches turned magenta, that indicated positive *Salmonella* samples. A blue color indicated something other than *Salmonella* [@Maurer2015].
+After collection, 100 uL of the sample vortexed in dulcitol selentite
+was inoculated into 10 mL of Rappaport Vassiliadis (RV) broth. The broth
+was incubated for 24 hours at 37c. The RV broth was then streaked onto
+XLT-4 agar plates and incubated at 37c for 24 hours, then an additional
+24 hours on the lab bench at room temperature. If colonies
+morphometrically consistent with *Salmonella* were present, one colony
+per plate was chosen and a stab in Luria Broth (LB) agar was created. To
+confirm the presence of *Salmonella*, patch plates were made on
+ChromAgar using the stabbed colonies. If the patches turned magenta,
+that indicated positive *Salmonella* samples. A blue color indicated
+something other than *Salmonella* [@Maurer2015].
 
 ## **Data acquisition**
 
-The data from the first trial in South Florida was collected by an undergraduate student of Dr. Sonia Hernandez and provided to me by Dr. Hernandez. All data from the Feeder Trial was collected by me, Kimberly Perez under the guidance of Dr. Sonia Hernandez.
+The data from the Picnic Table Trial in South Florida was collected by an
+undergraduate student of Dr. Sonia M. Hernandez and provided to me by Dr.
+Hernandez. All data from the Feeder Trial was collected by me, Kimberly
+Perez under the guidance of Dr. Sonia Hernandez.
 
 ## **Data Processing Methodology**
 
-Before attention can be focused on the data analysis portion, removal of unnecessary variables and visualizing data will provide a clearer picture of the data. This section will focus on data cleaning and wrangling. First, both datasets must be loaded. Prior to loading any data into RStudio, ensure that a new Quarto or RMarkdown File is established and linked to the preferred working directory. Basic packages need to be loaded to read in the data. Such packages to download include read_csv(), read_excel(), and here(), each of which can be loaded by utilizing the library() function (e.g., library(here)). Next, the datasets from both the Ibis and Feeder trials are loaded into RStudio utilizing the appropriate function (e.g., read_csv() for .csv files and read_excel() for .xlsx files). After data is loaded into R, it is best to get acquainted with the data by utilizing basic functions such as glimpse(). Glimpse provides me with insight into my data such as column names, number of rows and how each row is classified (e.g., character or numeric). After viewing the data I can work on cleaning the data by removing unnecessary variables. I would like to make the data a little more uniform and easier to work with. With that, I will change "Yes" to 1, and *NAs* to 0. I believe this will help me further in the analysis process. Given the variablility in the column names, I will then clean the names up to make them easier to include in my code as I move forward. With all of that, it is finally time to visualize the data by making some tables and/or graphs.
+Before attention can be focused on the data analysis portion, removal of
+unnecessary variables and visualizing data will provide a clearer
+picture of the data. This section will focus on data cleaning and
+wrangling. First, both datasets must be loaded. Prior to loading any
+data into RStudio, ensure that a new Quarto or RMarkdown File is
+established and linked to the preferred working directory. Basic
+packages need to be loaded to read in the data. Such packages to
+download include read_csv(), read_excel(), and here(), each of which can
+be loaded by utilizing the library() function (e.g., library(here)).
+Next, the datasets from both the Ibis and Feeder trials are loaded into
+RStudio utilizing the appropriate function (e.g., read_csv() for .csv
+files and read_excel() for .xlsx files). After data is loaded into R, it
+is best to get acquainted with the data by utilizing basic functions
+such as glimpse(). Glimpse provides users with insight into the data
+such as column names, number of rows and how each row is classified
+(e.g., character or numeric). After viewing the data, cleaning the data
+by removing unnecessary variables can occur. 
 
-Here, some more packages were loaded that I forsaw using in this section. Before visualization began, the glimpse() function was utilized to view the recently cleaned data. Given the uncertainty of *Salmonella's* persistence on various surface materials and the information these trials hoped to provide, the summary() function was utilized to provide a quick glimpse of basic result summaries for positive *Salmonella* samples and if the pile present was the original pile or not. Next, I continued to explore these two variables of interest by plotting each using a stacked bar graph via ggplot().
+Ensuring the data is uniform by removing unnecessary variables and renaming columns will assist in the analysis process downstream. To begin, "Yes" responses should be coded to produce a 1, while *NAs* would produce a 0. Given the variability in the column names, standardizing or renaming them a preferred name I will streamline future coding or analysis. With all of that, it is finally time to visualize the data by making some tables and/or graphs.
 
-I followed the same workflow for the Feeder Data, however, this dataset required less wrangling and did not provide as many exploratory options as the main focus was on feeder type, date, and the presence/absence of *Salmonella* for each day the feeders were sampled.
+More packages were loaded that would assist in the visualization process before begining this process. Before visualization began, the glimpse() function was utilized
+to view the recently cleaned data. Given the uncertainty of
+*Salmonella's* persistence on various surface materials and the
+information these trials hoped to provide, the summary() function was
+utilized to provide a quick glimpse of basic result summaries for
+positive *Salmonella* samples and if the pile present was the original
+pile or not. Exploration continued on these two variables of
+interest by plotting each using a stacked bar graph via ggplot().
+
+The same workflow for the Feeder Data was utilized, however, this dataset
+required less wrangling and did not provide as many exploratory options
+as the main focus was on feeder type, date, and the presence/absence of
+*Salmonella* for each day the feeders were sampled.
 
 **Picnic Table Data Exploration and Visualization**
 
-![Positive Salmonella Samples by Type and Date](images/Picnic_Table_PosSamp-04.png) Positive *Salmonella* Samples by Sample Type and Date
+![Positive Salmonella Samples by Type and
+Date](images/Picnic_Table_PosSamp-04.png) Positive *Salmonella* Samples
+by Sample Type and Date
 
-![Positive *Salmonella* Samples by Quadrant and Date](images/Picnic_Table_Quad-01.png)
+![Positive *Salmonella* Samples by Quadrant and
+Date](images/Picnic_Table_Quad-01.png)
 
 **Bird Feeder Data Exploration and Visualization**
 
-![Positive *Salmonella* Samples by feeder type and date.](images/Picnic_Table_PosSamp.png)
+![Positive *Salmonella* Samples by feeder type and
+date.](images/Picnic_Table_PosSamp.png)
 
 {{< pagebreak >}}
-
-# **Future Project PARTS for KP to populate**
 
 # **Statistical analysis**
 
@@ -85,34 +234,46 @@ I followed the same workflow for the Feeder Data, however, this dataset required
 
 ## **Ibis Trial**
 
-Of 96 deposited feces, we obtained 27% positive.
-*Salmonella* persisted for an average of 3 days, and maximum of 4 days on
-wooden picnic tables.
+### **Persistence**
+On Day 1 of the study, four fecal piles per table (one per quadrant, n = 12) were designated for tracking *Salmonella* persistence.  **Salmonella** was isolated from three of the 12 designated persistence study piles on Day 1, allowing the persistence to be tracked on these three piles.   Persistence, expressed as the number of days that a positive fecal pile on Day 1 remained positive, ranged from 1 to 4 days with an average persistence of 3 days. The probability of an already positive sample to remain positive the next day declined consistently throughout the study period.  
 
-## *Feeder Trial*
-We confirmed successful inoculation of all
-feeders with *Salmonella* (presence on day post inoculation \[DPI\]
-0). Further, results indicate that *Salmonella* may persist on
-some feeders up to DPI 5 and current analysis indicates that *Salmonella* persisted
-on both coated and uncoated plastic feeders at a higher rate than wood and wood
-coated. Figure 2 depicts the percent of samples positive based on feeder type
-throughout the study period. While plastic and plastic coated feeders had an
-overall higher percent positivity, a spike in percent positivity in wood feeders occurred on DPI 5 after a rain event. Further analyses should be conducted to determine whether environmental
-conditions (e.g., rain event) had a significant influence on persistence.
+### **Prevalence**
+Of 96 deposited feces, we obtained 27% positive. *Salmonella* persisted for an average of 3 days, and maximum of 4 days on wooden picnic tables. *Salmonella* was isolated from all tables, at least once. While there appears to be a significant positive correlation between the number of new fecal piles and the probability of yielding a positive pooled sample. The probabilities of a positive sample varied throughout the week, with day 4 having the lowest probability of positive *Salmonella* isolation and day 7 having the most error. 
 
-Our samples persisted for an average of 2 days (feeders), 3 days (picnic tables) with 4 (picnic tables)
-and 5 (feeders) being the maximum number of days persisted. The varied
-persistence during both trials could be as a result of a lack of moisture, the
-fluctuation in ambient temperature during sampling, and water activity. Our studies
-suggest that *Salmonella* can have prolonged persistence on shared spaces,
-persistence depends on surface material, and precautionary measures (i.e.,
-increased hygiene) should be adopted to reduce human exposure.
+## **Feeder Trial**
+We confirmed successful inoculation of all feeders with *Salmonella*
+(presence on day post inoculation \[DPI\] 0). Further, results indicate
+that *Salmonella* may persist on some feeders up to DPI 5 and current
+analysis indicates that *Salmonella* persisted on both coated and
+uncoated plastic feeders at a higher rate than wood and wood coated.
+Figure 2 depicts the percent of samples positive based on feeder type
+throughout the study period. While plastic and plastic coated feeders
+had an overall higher percent positivity, a spike in percent positivity
+in wood feeders occurred on DPI 5 after a rain event. Further analyses
+should be conducted to determine whether environmental conditions (e.g.,
+rain event) had a significant influence on persistence.
+
+Our samples persisted for an average of 2 days (feeders), 3 days (picnic
+tables) with 4 (picnic tables) and 5 (feeders) being the maximum number
+of days persisted. The varied persistence during both trials could be
+a result of a lack of moisture, the fluctuation in ambient temperature
+during sampling, and water activity. Our studies suggest that
+*Salmonella* can have prolonged persistence on shared spaces,
+persistence depends on surface material, and precautionary measures
+(i.e., increased hygiene) should be adopted to reduce human exposure.
 
 ## **Exploratory/Descriptive analysis**
 
 ## **Basic statistical analysis**
 
-After the modules following Part 1, I am leaning towards running a GLM for both given the binary responses for *Salmonella* persistence (e.g., presence v. absence). I need to meet with Dr. Hernandez to clear up some questions I have on the picnic table data, specifically regarding the introduction of new feces. I am curious if I should include other data into the mix to make my analysis more robust. At the moment, the variables of interest for both are limited (e.g., two for the picnic table data, and one primary variable of interest for the feeder trial).
+After the modules following Part 1, I am leaning towards running a GLM
+for both given the binary responses for *Salmonella* persistence (e.g.,
+presence v. absence). I need to meet with Dr. Hernandez to clear up some
+questions I have on the picnic table data, specifically regarding the
+introduction of new feces. I am curious if I should include other data
+into the mix to make my analysis more robust. At the moment, the
+variables of interest for both are limited (e.g., two for the picnic
+table data, and one primary variable of interest for the feeder trial).
 
 ## **Full analysis**
 
