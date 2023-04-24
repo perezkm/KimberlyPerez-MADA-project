@@ -177,19 +177,63 @@ plot_summs(lmall_FD, robust=TRUE) #KP NOTE: I need to clean this up so it is a b
 
 #**Time to event**
 ```{r}
+#KP needs to edit this! Not running as expected....
+
 library(finalfit)
 library(forcats)
+library(survival)
 
-ff_glimpse(PT_Data)
+glimpse(PT_Data)
 
-PT_Data= PT_Data %>%
+as.Date(PT_Data$Date, format= "%Y-%M-%D")
+
+PT_Data$Date<- as.numeric(PT_Data$Date)
+
+PT_Data = PT_Data %>% 
   mutate(
-    
-  )
+    Salmonella_Positive_os = ifelse(Salmonella_Positive == 0,1,0),
+      status_crr= case_when(
+        `Salmonella_Positive` == 1~0,
+        `Salmonella_Positive` == 1~1)) 
+
+dependent_crr= "Surv(Date, status_crr)"
+explanatory= c("Table", "Quadrant", "Sample_Type")
+
+PT_Data %>% finalfit(dependent_crr, explanatory)
+
+PT_Data %>% 
+   finalfit(dependent_crr, explanatory, add_dependent_label = FALSE) %>% 
+    rename("Overall survival" = label) %>% 
+    rename(" " = levels) %>% 
+    rename("  " = all) 
 ```
 
-
-#**Cox regression**
+#**Cox regression: Picnic Table Data**
 ```{r}
-```
 
+as.Date(PT_Data$Date, format= "%Y-%M-%D")
+
+PT_Data$Date<- as.numeric(PT_Data$Date)
+
+coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data)
+
+coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
+  tbl_regression(exp=TRUE)
+```
+#**Cox regression: Feeder Data**
+```{r}
+library(lubridate)
+
+#Date needs to be fixed in this DS
+
+FD_Data <- FD_Data %>%
+  mutate(Collection_Date=lubridate::dmy(Collection_Date))
+
+FD_Data$Collection_Date<- as.numeric(FD_Data$Collection_Date)
+
+
+coxph(Surv(Collection_Date, Absence_0_Presence_1 ~ Sample_Type, FD_Data))
+
+coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
+  tbl_regression(exp=TRUE)
+```

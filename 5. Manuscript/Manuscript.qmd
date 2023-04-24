@@ -212,6 +212,12 @@ required less wrangling and did not provide as many exploratory options
 as the main focus was on feeder type, date, and the presence/absence of
 *Salmonella* for each day the feeders were sampled.
 
+{{< pagebreak >}}
+
+# **Statistical analysis**
+
+# **Results**
+
 **Picnic Table Data Exploration and Visualization**
 
 ![Positive Salmonella Samples by Type and
@@ -225,12 +231,6 @@ Date](images/Picnic_Table_Quad-01.png)
 
 ![Positive *Salmonella* Samples by feeder type and
 date.](images/Picnic_Table_PosSamp.png)
-
-{{< pagebreak >}}
-
-# **Statistical analysis**
-
-# **Results**
 
 ## **Ibis Trial**
 
