@@ -225,20 +225,25 @@ presence/absence of *Salmonella* for each day the feeders were sampled.
 
 # **Statistical analysis**
 
+Statistical analysis was conducted on both datasets, Picnic Table Data
+and Feeder Data, utilizing RStudio "Cherry Blossom" (2023-03-09).
+Analysis for both datasets were evaluated utilizing a linear regression
+model.
+
 # **Results**
 
 **Picnic Table Data Exploration and Visualization**
 
 ![Positive Salmonella Samples by Type and
-Date](images/Picnic_Table_PosSamp-05.png) Positive *Salmonella* Samples
-by Sample Type and Date
+Date](images/Picnic_Table_PosSamp-05.png)***Figure 1.*** Positive
+*Salmonella* Samples by Sample Type and Date
 
-![Positive *Salmonella* Samples by Quadrant and
+![***Figure 2.*** Positive *Salmonella* Samples by Quadrant and
 Date](images/Picnic_Table_Quad-02.png)
 
 **Bird Feeder Data Exploration and Visualization**
 
-![Positive *Salmonella* Samples by feeder type and
+![***Figure 3.*** Positive *Salmonella* Samples by feeder type and
 date.](images/Feeder_PA.png)
 
 ## **Ibis Trial**
