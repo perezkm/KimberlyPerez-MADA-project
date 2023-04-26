@@ -45,7 +45,9 @@ Let's Begin with some Linear Model Fitting; I will try this multiple ways, with 
 lmog<-linear_reg() %>% 
   set_engine("lm")
 
-lmfit_PT<- lmog %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+model_lm<- linear_reg()
+
+lmfit_PT<- model_lm %>% #Training; outcome: Salmonella Pos and Main Predictor Table
   fit(Salmonella_Positive~Date, PT_Data) 
 
 lmfit_PT
@@ -67,17 +69,21 @@ tidy(lmfit_PT) %>%
     dwplot(dot_args = list(size = 2, color = "coral1"),
          whisker_args = list(color = "coral1"),
          vline = geom_vline(xintercept = 0, color = "darkred", linetype = 4))
+```
 
+```{r}
 #Fitting other specific indicators
 lmog_1<-linear_reg() %>% 
   set_engine("lm")
 
-model_lm<- linear_reg()
+model_lm1<- linear_reg()
 
-lmfit_PT1<- lmog_1 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
-  fit(Salmonella_Positive~Sample_Type+Date, PT_Data) 
+lmfit_PT1<- model_lm1 %>% #Training; outcome: Salmonella Pos
+  fit(Salmonella_Positive~Sample_Type, PT_Data) 
 
 lmfit_PT1
+
+tidy(lmfit_PT1)
 
 glimpse(lmfit_PT1)
 
@@ -96,7 +102,10 @@ tidy(lmfit_PT1) %>%
     dwplot(dot_args = list(size = 2, color = "coral1"),
          whisker_args = list(color = "coral1"),
          vline = geom_vline(xintercept = 0, color = "darkred", linetype = 4))
+```
 
+
+```{r}
 #Trying ALL predictors of Picnic Table dataset 
 lmog_PT<- linear_reg() %>%
   set_engine("lm")
@@ -242,7 +251,9 @@ lmog_glm2<-linear_reg() %>%
 
 lmfit_PTglm2<- lmog_glm2 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
   fit(Salmonella_Positive~Quadrant+Table, PT_Data) 
+```
 
+```{r}
 lmfit_PTglm2
 
 glimpse(lmfit_PTglm2)
@@ -266,6 +277,7 @@ lmall_PTGLM
 
 tidy(lmall_PTGLM)
 ```
+
 # **Generalized Linear Model: Picnic Table (Persistence & Prevalence)** 
 ```{r}
 PT_GLM_PER <- glm(Salmonella_Positive ~ Date, data = PT_Data, family = binomial)
@@ -276,6 +288,7 @@ PT_GLM_PREV <- glm(Salmonella_Positive ~ Sample_Type + as.factor(Date) + Table, 
 
 PT_GLM_PREV
 ```
+
 # **Generalized Linear Model: Feeder Data**
 ```{r}
 lmog_FD<-linear_reg() %>% 
@@ -337,7 +350,7 @@ FD_GLM_PREV <- glm(Absence_0_Presence_1 ~ Feeder_Type + as.factor(Collection_Dat
 
 FD_GLM_PREV
 ```
-#**Time to event**
+# **Time to event**
 ```{r}
 library(finalfit)
 library(forcats)
@@ -345,16 +358,14 @@ library(survival)
 
 glimpse(PT_Data)
 
-as.Date(PT_Data$Date, format= "%Y-%M-%D")
-
 PT_Data$Date<- as.numeric(PT_Data$Date)
 
 PT_Data = PT_Data %>% 
   mutate(
-    Salmonella_Positive_os = ifelse(Salmonella_Positive == 0,1,0),
-      status_crr= case_when(
-        `Salmonella_Positive` == 1~0,
-        `Salmonella_Positive` == 1~1)) 
+      salmonella_crr= case_when(
+        Salmonella_Positive ==  0~1
+        Salmonella_Positive == 1~1
+        TRUE ~ 1))
 
 dependent_crr= "Surv(Date, status_crr)"
 explanatory= c("Table", "Quadrant", "Sample_Type")
@@ -366,6 +377,12 @@ PT_Data %>%
     rename("Overall survival" = label) %>% 
     rename(" " = levels) %>% 
     rename("  " = all) 
+
+survfit(Surv(Date, Salmonella_Positive)~1, data=PT_Data)
+
+PT_Data %>%
+  filter(status==1) %>%
+  summarize(median_surv=median(Date))
 ```
 
 #**Cox regression: Picnic Table Data**

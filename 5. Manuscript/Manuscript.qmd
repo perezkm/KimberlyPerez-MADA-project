@@ -132,11 +132,13 @@ deposited in a quadrant, fresh feces from the concrete pad was collected
 and placed onto the quadrant. To determine persistence, one large fecal
 pile from each quadrant was selected as the "persistence pile" and
 monitored and sampled daily for 8 days. To determine table prevalence, a
-pooled sample was taken daily from every quadrant by swabbing the picnic table surface with a sampling sponge, avoiding the designated "persistence pile". To maintain cleanliness for other park
-patrons, new piles were not smeared with the sampling sponge. Samples
-were placed into 20 mL of dulcitol selenite and maintained at room
-temperature prior to being shipped to the University of Georgia (UGA),
-every 2-4 days, for processing.
+pooled sample was taken daily from every quadrant by swabbing the picnic
+table surface with a sampling sponge, avoiding the designated
+"persistence pile". To maintain cleanliness for other park patrons, new
+piles were not smeared with the sampling sponge. Samples were placed
+into 20 mL of dulcitol selenite and maintained at room temperature prior
+to being shipped to the University of Georgia (UGA), every 2-4 days, for
+processing.
 
 ## **Feeder Trial Experimental Design and Sample Collection Methodology**
 
@@ -171,10 +173,10 @@ something other than *Salmonella* [@Maurer2015].
 
 ## **Data acquisition**
 
-The data from the Picnic Table Trial in South Florida was collected by an
-undergraduate student of Dr. Sonia M. Hernandez and provided to me by Dr.
-Hernandez. All data from the Feeder Trial was collected by me, Kimberly
-Perez under the guidance of Dr. Sonia Hernandez.
+The data from the Picnic Table Trial in South Florida was collected by
+an undergraduate student of Dr. Sonia M. Hernandez and provided to me by
+Dr. Hernandez. All data from the Feeder Trial was collected by me,
+Kimberly Perez under the guidance of Dr. Sonia Hernandez.
 
 ## **Data Processing Methodology**
 
@@ -194,23 +196,30 @@ is best to get acquainted with the data by utilizing basic functions
 such as glimpse(). Glimpse provides users with insight into the data
 such as column names, number of rows and how each row is classified
 (e.g., character or numeric). After viewing the data, cleaning the data
-by removing unnecessary variables can occur. 
+by removing unnecessary variables can occur.
 
-Ensuring the data is uniform by removing unnecessary variables and renaming columns will assist in the analysis process downstream. To begin, "Yes" responses should be coded to produce a 1, while *NAs* would produce a 0. Given the variability in the column names, standardizing or renaming them a preferred name I will streamline future coding or analysis. With all of that, it is finally time to visualize the data by making some tables and/or graphs.
+Ensuring the data is uniform by removing unnecessary variables and
+renaming columns will assist in the analysis process downstream. To
+begin, "Yes" responses should be coded to produce a 1, while *NAs* would
+produce a 0. Given the variability in the column names, standardizing or
+renaming them a preferred name I will streamline future coding or
+analysis. With all of that, it is finally time to visualize the data by
+making some tables and/or graphs.
 
-More packages were loaded that would assist in the visualization process before begining this process. Before visualization began, the glimpse() function was utilized
-to view the recently cleaned data. Given the uncertainty of
-*Salmonella's* persistence on various surface materials and the
-information these trials hoped to provide, the summary() function was
-utilized to provide a quick glimpse of basic result summaries for
-positive *Salmonella* samples and if the pile present was the original
-pile or not. Exploration continued on these two variables of
-interest by plotting each using a stacked bar graph via ggplot().
+More packages were loaded that would assist in the visualization process
+before begining this process. Before visualization began, the glimpse()
+function was utilized to view the recently cleaned data. Given the
+uncertainty of *Salmonella's* persistence on various surface materials
+and the information these trials hoped to provide, the summary()
+function was utilized to provide a quick glimpse of basic result
+summaries for positive *Salmonella* samples and if the pile present was
+the original pile or not. Exploration continued on these two variables
+of interest by plotting each using a stacked bar graph via ggplot().
 
-The same workflow for the Feeder Data was utilized, however, this dataset
-required less wrangling and did not provide as many exploratory options
-as the main focus was on feeder type, date, and the presence/absence of
-*Salmonella* for each day the feeders were sampled.
+The same workflow for the Feeder Data was utilized, however, this
+dataset required less wrangling and did not provide as many exploratory
+options as the main focus was on feeder type, date, and the
+presence/absence of *Salmonella* for each day the feeders were sampled.
 
 {{< pagebreak >}}
 
@@ -221,26 +230,44 @@ as the main focus was on feeder type, date, and the presence/absence of
 **Picnic Table Data Exploration and Visualization**
 
 ![Positive Salmonella Samples by Type and
-Date](images/Picnic_Table_PosSamp-04.png) Positive *Salmonella* Samples
+Date](images/Picnic_Table_PosSamp-05.png) Positive *Salmonella* Samples
 by Sample Type and Date
 
 ![Positive *Salmonella* Samples by Quadrant and
-Date](images/Picnic_Table_Quad-01.png)
+Date](images/Picnic_Table_Quad-02.png)
 
 **Bird Feeder Data Exploration and Visualization**
 
 ![Positive *Salmonella* Samples by feeder type and
-date.](images/Picnic_Table_PosSamp.png)
+date.](images/Feeder_PA.png)
 
 ## **Ibis Trial**
 
 ### **Persistence**
-On Day 1 of the study, four fecal piles per table (one per quadrant, n = 12) were designated for tracking *Salmonella* persistence.  **Salmonella** was isolated from three of the 12 designated persistence study piles on Day 1, allowing the persistence to be tracked on these three piles.   Persistence, expressed as the number of days that a positive fecal pile on Day 1 remained positive, ranged from 1 to 4 days with an average persistence of 3 days. The probability of an already positive sample to remain positive the next day declined consistently throughout the study period.  
+
+On Day 1 of the study, four fecal piles per table (one per quadrant, n =
+12) were designated for tracking *Salmonella* persistence.
+**Salmonella** was isolated from three of the 12 designated persistence
+study piles on Day 1, allowing the persistence to be tracked on these
+three piles. Persistence, expressed as the number of days that a
+positive fecal pile on Day 1 remained positive, ranged from 1 to 4 days
+with an average persistence of 3 days. The probability of an already
+positive sample to remain positive the next day declined consistently
+throughout the study period.
 
 ### **Prevalence**
-Of 96 deposited feces, we obtained 27% positive. *Salmonella* persisted for an average of 3 days, and maximum of 4 days on wooden picnic tables. *Salmonella* was isolated from all tables, at least once. While there appears to be a significant positive correlation between the number of new fecal piles and the probability of yielding a positive pooled sample. The probabilities of a positive sample varied throughout the week, with day 4 having the lowest probability of positive *Salmonella* isolation and day 7 having the most error. 
+
+Of 96 deposited feces, we obtained 27% positive. *Salmonella* persisted
+for an average of 3 days, and maximum of 4 days on wooden picnic tables.
+*Salmonella* was isolated from all tables, at least once. While there
+appears to be a significant positive correlation between the number of
+new fecal piles and the probability of yielding a positive pooled
+sample. The probabilities of a positive sample varied throughout the
+week, with day 4 having the lowest probability of positive *Salmonella*
+isolation and day 7 having the most error.
 
 ## **Feeder Trial**
+
 We confirmed successful inoculation of all feeders with *Salmonella*
 (presence on day post inoculation \[DPI\] 0). Further, results indicate
 that *Salmonella* may persist on some feeders up to DPI 5 and current
@@ -255,8 +282,8 @@ rain event) had a significant influence on persistence.
 
 Our samples persisted for an average of 2 days (feeders), 3 days (picnic
 tables) with 4 (picnic tables) and 5 (feeders) being the maximum number
-of days persisted. The varied persistence during both trials could be
-a result of a lack of moisture, the fluctuation in ambient temperature
+of days persisted. The varied persistence during both trials could be a
+result of a lack of moisture, the fluctuation in ambient temperature
 during sampling, and water activity. Our studies suggest that
 *Salmonella* can have prolonged persistence on shared spaces,
 persistence depends on surface material, and precautionary measures
