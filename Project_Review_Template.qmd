@@ -1,0 +1,168 @@
+# Overview
+
+Title of project:Salmonella* Environmental Persistence Informs Management Relevant to Avian and Public Health
+
+Name of project author(s): Kimberly M. Perez
+
+Name of project reviewer: Connor Ross
+
+
+
+# Specific project content evaluation
+Evaluate the different parts of the project by filling in the sections below.
+
+
+## Background, Context and Motivation
+How well is the context of the project described? Is a comprehensive background, including summary of previous/related work given? Is the project well placed into the context of existing work (including proper referencing of existing work). Is it clear why the project was undertaken and what new information it hopes to provide?
+
+### Feedback and Comments
+
+Beautifully written introduction and description of data/data source(s). The writing in these sections were clear and succinct while providing plenty of background regarding the existence and context of existing work and why the project was undertaken. 
+
+### Summary assessment (PICK ONE, DELETE THE OTHERS)
+
+* strong contextualization and motivation
+
+
+## Question description
+How well and clear are the question(s)/hypotheses the project aims to address described? Is it clear how the questions relate to the data?
+
+
+### Feedback and Comments
+
+Questions/hypotheses to be addressed in this project are clear and well formed. Questions relate to the data in their dataset(s).
+
+### Summary assessment
+
+* question/hypotheses fully clear
+
+
+## Data description
+How well is the data overall described? Is the source provided? Is a codebook or other meta-information available that makes it clear what the data is? 
+
+### Feedback and Comments
+
+The data and the methods from which the data was collected are well described and give the reader a good understanding of the context in which the data was collected and a lense from which the analysis should be interpreted. 
+
+### Summary assessment
+
+* source and overall structure of data well explained
+
+
+## Data wrangling and exploratory analysis
+How well is the data cleaned/processed and explored? Are all steps reasonable and well explained? Are alternatives discussed and considered? Are meaningful exploratory results shown (e.g. in the supplementary materials)?
+
+### Feedback and Comments
+
+Data was adequately cleaned and formatted for meaningful analysis. Exploratory analysis. Exploratory analysis results were meaningful to the reader and provided a good understanding and summary of the data in the dataset(s). I would consider providing a summary table of the dataset(s). This can be easily done using the gtsummary package with tbl_summary().
+
+### Summary assessment
+
+* essentially no weaknesses in wrangling and exploratory component
+
+
+
+## Appropriateness of Analysis
+Were the analysis methods appropriate for the data? Was the analysis done properly? Were different components of the analysis (e.g. performance measure, variable selection, data pre-processing, model evaluation) done in the best way possible and explained well?
+
+### Feedback and Comments
+
+Analysis methods were appropriate for the data and appear to have been performed properly without errors. Performance measures were taken from built models and explained the results well.  
+
+### Summary assessment
+ 
+* strong and reasonable analysis
+
+## Presentation
+How well are results presented? Are tables and figures easy to read and understand? Are the main figures/tables publication level quality? 
+
+### Feedback and Comments
+
+Overall the figures/results presented are easy to read and understand, however, on my end of things, the figures in the manuscript do not have axis titles or labels and do not match the figures in the StatisticalAnalysis.qmd or exploratory_analysis.qmd. Reloading the images to refresh them may be necessary. Outside of that, the figures are of high quality and explain the results well.
+
+### Summary assessment
+
+* results are very well presented
+
+
+## Discussion/Conclusions
+Are the study findings properly discussed? Are strengths and limitations acknowledged? Are findings interpreted properly?
+
+### Feedback and Comments
+
+Sections 5.5 Full analysis, 6. Discussion, 6.1 Summary and Interpretation, 6.2 Strengths and Limitations, and 6.3 Conclusions are missing from the Manuscript.qmd and Manuscript.docx.
+
+### Summary assessment
+
+* minor parts wrong, missing or unclear
+
+
+
+## Further comments
+
+Awesome job! I can tell you put a lot of thought and effort into this project and it turned out really well. 
+
+
+
+# Overall project content evaluation
+Evaluate overall features of the project  by filling in the sections below.
+
+
+## Structure
+Is the project well structured? Are files in well labeled folders? Do files have reasonable names? Are all "junk" files not needed for analysis/reproduction removed? By just looking at files and folders, can you get an idea of how things fit together?
+
+### Feedback and Comments
+
+Overall the project is well structured, however, some cleaning is required to remove unused files and make the organization more clear. Further updating the README.md is necessary.
+
+### Summary assessment
+
+* well structured
+
+
+## Documentation 
+How well is the project documented? Are you able to understand each step of the whole analysis, each decision that was made, and each line of code? Is enough information provided as comments in code or as part of Rmd files? 
+
+### Feedback and Comments
+
+The project was well documented in coding files as well as the manuscript. Adequate information was provided to understand the analysis and the decisions made by the author. 
+
+### Summary assessment
+
+* fully and well documented
+
+
+
+## Reproducibility
+Are all results fully reproducible? Is documentation provided which clearly explains how to reproduce things, and does it work without the need for any manual intervention? Are you able to re-run the whole analysis without having to do manual interventions/edits?
+
+### Feedback and Comments
+
+The results are fully reproducible, however, documentation (README.md) needs to be updated.Further, there was an error ("Error: object 'PTD_Quad' not found") in line 61 of the exploratory_analysis.qmd file. Neither of which was detrimental to reproducibility and did not require manual intervention.
+
+
+### Summary assessment
+ 
+* fully reproducible without issues
+
+
+## Thoroughness
+How thorough was the overall study? Were alternatives (e.g. different ways of processing the data or different models) considered? Were alternatives discussed? Were the questions/hypotheses fully and thoroughly addressed?
+
+### Feedback and Comments
+
+The author demonstrated a deep understanding of the subject matter and the analysis through the manuscript and the code (comments included) despite sections 5.5 and 6.0 - 6.3 of the manuscript being incomplete/missing. Code and write-up was well thought out and well worded.
+
+### Summary assessment
+
+* strong level of thorougness
+
+
+## Further comments
+
+Awesome job! I enjoyed reading about your project and look forward to its finalization. 
+
+
+
+
+
