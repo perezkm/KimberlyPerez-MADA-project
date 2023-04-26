@@ -109,6 +109,39 @@ FD1<- FD %>% select(-c(`Absence (0)/Presence (1)`, `...5`)) #Removing columns
 
 glimpse(FD1) #Quick glimpse at the data, I can determine if I should wrangle the data a bit more
 
+str(FD1)
+ 
+#Replacing Collection Dates (removing DPI_...) 
+FD1[FD1== "2/22/22 (DPI_0)"]<- "2022/02/22"
+
+FD1[FD1== "2/23/22 (DPI_1)"]<- "2022/02/23"
+
+FD1[FD1== "2/24/22 (DPI_2)"]<- "2022/02/24"
+
+FD1[FD1== "2/25/22 (DPI_3)"]<- "2022/02/25"
+
+FD1[FD1== "2/26/22 (DPI_4)"]<- "2022/02/26"
+
+FD1[FD1== "2/27/22 (DPI_5)"]<- "2022/02/27"
+
+FD1[FD1== "2/28/22 (DPI_6)"]<- "2022/02/28"
+
+FD1[FD1== "3/1/22 (DPI_7)"]<- "2022/03/01"
+
+FD1[FD1== "3/3/22 (DPI_9)"]<- "2022/03/03"
+
+FD1[FD1== "3/5/22 (DPI_11)"]<- "2022/03/05"
+
+FD1[FD1== "3/7/22 (DPI_13)"]<- "2022/03/07"
+
+FD1[FD1== "3/14/22 (DPI_20)"]<- "2022/03/14"
+
+FD1 #Looks much better! Now, let's use as.Date to convert these
+
+FD1$Collection_Date<- as.Date(FD1$Collection_Date, fomrat= "%Y %M %D")
+
+FD1
+
 FD_clean<- FD1 #Data looked clean so I will rename it to use with my data exploration and visualization process below
 ```
 

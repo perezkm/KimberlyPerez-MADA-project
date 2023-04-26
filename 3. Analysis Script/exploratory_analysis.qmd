@@ -63,7 +63,7 @@ PTD_Quad<- ggplot(PTD_clean,
   geom_bar (position="stack", stat="identity") +
   geom_vline(xintercept= as.numeric (PTD_clean$Date[c(95)]), linetype= "dotted", color="green", lwd=1) +
   ggtitle("Positive Salmonella Samples by Date and Quadrant") +
-  labs(y= "Salmonella Positive", x= "Collection Date")
+  labs(y= "Salmonella Positive", x= "Collection Date") + 
 
 PTD_Quad #Basic Plot: Positive Salmonella Samples (pooled v. persistence) by Quadrant via stacked plot green line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) 
 
@@ -97,7 +97,7 @@ FD_plot<- ggplot(FD_clean, #Given my limited dataset I will focus my visualizati
   ggtitle("Absence or Presence of Salmonella by Date based on Feeder Type")+ 
   labs(x= "Collection Date", y= "Salmonella Absence/Presence")
 
-FD_plot_final<- FD_plot + labs(fill="Feeder Type")
+FD_plot_final<- FD_plot + labs(fill="Feeder Type") + scale_fill_discrete(labels=c('Plastic', 'Plastic Coated', 'Wood', 'Wood Coated'))
 
 FD_plot_final
 

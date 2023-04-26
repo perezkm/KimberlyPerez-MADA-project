@@ -14,6 +14,7 @@ This script loads the cleaned data, does a simple analysis, and saves the result
 library(tidyverse)
 library(ggplot2) #for plotting
 library(broom) #for cleaning up output from lm()
+library(dotwhisker)
 library(here) #for data loading/saving
 library(tidymodels)
 library(tidyr)
@@ -45,7 +46,7 @@ lmog<-linear_reg() %>%
   set_engine("lm")
 
 lmfit_PT<- lmog %>% #Training; outcome: Salmonella Pos and Main Predictor Table
-  fit(Salmonella_Positive~Table, PT_Data) 
+  fit(Salmonella_Positive~Date, PT_Data) 
 
 lmfit_PT
 
@@ -59,12 +60,22 @@ tidy(lmfit_PT)
 
 plot_summs(lmfit_PT)
 
+#Checking model performance: Picnic Table
+check_model(lmfit_PT$fit)
+
+tidy(lmfit_PT) %>%
+    dwplot(dot_args = list(size = 2, color = "coral1"),
+         whisker_args = list(color = "coral1"),
+         vline = geom_vline(xintercept = 0, color = "darkred", linetype = 4))
+
 #Fitting other specific indicators
 lmog_1<-linear_reg() %>% 
   set_engine("lm")
 
+model_lm<- linear_reg()
+
 lmfit_PT1<- lmog_1 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
-  fit(Salmonella_Positive~Original_Persistence_Pile+Table, PT_Data) 
+  fit(Salmonella_Positive~Sample_Type+Date, PT_Data) 
 
 lmfit_PT1
 
@@ -78,6 +89,14 @@ tidy(lmfit_PT1)
 
 plot_summs(lmfit_PT1)
 
+#Checking model performance: Picnic Table
+check_model(lmfit_PT1$fit)
+
+tidy(lmfit_PT1) %>%
+    dwplot(dot_args = list(size = 2, color = "coral1"),
+         whisker_args = list(color = "coral1"),
+         vline = geom_vline(xintercept = 0, color = "darkred", linetype = 4))
+
 #Trying ALL predictors of Picnic Table dataset 
 lmog_PT<- linear_reg() %>%
   set_engine("lm")
@@ -89,9 +108,11 @@ lmall_PT
 
 tidy(lmall_PT)
 
-plot_summs(lmall_PT, robust=TRUE) #KP NOTE: I need to clean this up so it is a bit more readable, must fullscreen it
-```
+#Do not want all predictors...
 
+#Checking model performance: Picnic Table
+check_model(lmall_PT$fit)
+```
 
 ```{r} 
 #### Model fit another way
@@ -140,6 +161,9 @@ tidy(lmfit_FD)
 
 plot_summs(lmfit_FD)
 
+#Checking model performance: FEEDER
+check_model(lmfit_FD$fit)
+
 #More fitting with some other indicators
 
 lmog_FD2<-linear_reg() %>% 
@@ -173,12 +197,148 @@ tidy(lmall_FD)
 
 plot_summs(lmall_FD, robust=TRUE) #KP NOTE: I need to clean this up so it is a bit more readable, must fullscreen it
 ```
-# **IP Analysis KP finish by 4/9!!**
+# **Generalized Linear Model: Picnic Table** 
+```{r}
+lmog<-linear_reg() %>% 
+  set_engine("glm")
 
+lmfit_PT_glm<- lmog %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+  fit(Salmonella_Positive~Table, PT_Data) 
+
+lmfit_PT_glm
+
+glimpse(lmfit_PT_glm)
+
+#Way 1
+glance(lmfit_PT_glm)
+
+#Way 2
+tidy(lmfit_PT_glm)
+
+plot_summs(lmfit_PT_glm)
+
+#Fitting other specific indicators
+lmog_glm1<-linear_reg() %>% 
+  set_engine("glm")
+
+lmfit_PTglm1<- lmog_glm1 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+  fit(Salmonella_Positive~Original_Persistence_Pile+Table, PT_Data) 
+
+lmfit_PTglm1
+
+glimpse(lmfit_PTglm1)
+
+#Way 1
+glance(lmfit_PTglm1)
+
+#Way 2
+tidy(lmfit_PTglm1)
+
+plot_summs(lmfit_PTglm1)
+
+#Fitting other specific indicators
+lmog_glm2<-linear_reg() %>% 
+  set_engine("glm")
+
+lmfit_PTglm2<- lmog_glm2 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+  fit(Salmonella_Positive~Quadrant+Table, PT_Data) 
+
+lmfit_PTglm2
+
+glimpse(lmfit_PTglm2)
+
+#Way 1
+glance(lmfit_PTglm2)
+
+#Way 2
+tidy(lmfit_PTglm2)
+
+plot_summs(lmfit_PTglm2)
+
+#Trying ALL predictors of Picnic Table dataset 
+lmog_PTGLM<- linear_reg() %>%
+  set_engine("glm")
+
+lmall_PTGLM<- lmog_PTGLM %>% #Training 
+  fit(Salmonella_Positive~., data=PT_Data)
+
+lmall_PTGLM
+
+tidy(lmall_PTGLM)
+```
+# **Generalized Linear Model: Picnic Table (Persistence & Prevalence)** 
+```{r}
+PT_GLM_PER <- glm(Salmonella_Positive ~ Date, data = PT_Data, family = binomial)
+
+PT_GLM_PER
+
+PT_GLM_PREV <- glm(Salmonella_Positive ~ Sample_Type + as.factor(Date) + Table, data= PT_Data, family = binomial)
+
+PT_GLM_PREV
+```
+# **Generalized Linear Model: Feeder Data**
+```{r}
+lmog_FD<-linear_reg() %>% 
+  set_engine("glm")
+
+lmfit_FD_glm<- lmog_FD %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+  fit(Absence_0_Presence_1~Feeder_number, FD_Data) 
+
+lmfit_FD_glm
+
+glimpse(lmfit_FD_glm)
+
+#Way 1
+glance(lmfit_FD_glm)
+
+#Way 2
+tidy(lmfit_FD_glm)
+
+plot_summs(lmfit_FD_glm)
+
+#Fitting other specific indicators
+lmog_FD_GLM<-linear_reg() %>% 
+  set_engine("glm")
+
+lmfit_FD_GLM<- lmog_FD_GLM %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+  fit(Absence_0_Presence_1~Feeder_number+Feeder_Type, FD_Data) 
+
+lmfit_FD_GLM
+
+glimpse(lmfit_FD_GLM)
+
+#Way 1
+glance(lmfit_FD_GLM)
+
+#Way 2
+tidy(lmfit_FD_GLM)
+
+plot_summs(lmfit_FD_GLM)
+
+#Trying ALL predictors of Picnic Table dataset 
+lmog_FDGLM_all<- linear_reg() %>%
+  set_engine("glm")
+
+lmall_FDGLM_all1<- lmog_FDGLM_all %>% #Training 
+  fit(Absence_0_Presence_1~., FD_Data)
+
+lmall_FDGLM_all1
+
+tidy(lmall_FDGLM_all1)
+```
+
+# **Generalized Linear Model: Feeder Data (Persistence & Prevalence)**
+```{r}
+FD_GLM_PER <- glm(Absence_0_Presence_1 ~ Collection_Date, data = FD_Data, family = binomial)
+
+FD_GLM_PER
+
+FD_GLM_PREV <- glm(Absence_0_Presence_1 ~ Feeder_Type + as.factor(Collection_Date), data= FD_Data, family = binomial)
+
+FD_GLM_PREV
+```
 #**Time to event**
 ```{r}
-#KP needs to edit this! Not running as expected....
-
 library(finalfit)
 library(forcats)
 library(survival)
@@ -210,9 +370,6 @@ PT_Data %>%
 
 #**Cox regression: Picnic Table Data**
 ```{r}
-
-as.Date(PT_Data$Date, format= "%Y-%M-%D")
-
 PT_Data$Date<- as.numeric(PT_Data$Date)
 
 coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data)
@@ -224,16 +381,10 @@ coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
 ```{r}
 library(lubridate)
 
-#Date needs to be fixed in this DS
-
-FD_Data <- FD_Data %>%
-  mutate(Collection_Date=lubridate::dmy(Collection_Date))
-
 FD_Data$Collection_Date<- as.numeric(FD_Data$Collection_Date)
 
+coxph(Surv(Collection_Date, Absence_0_Presence_1) ~ Feeder_Type, FD_Data)
 
-coxph(Surv(Collection_Date, Absence_0_Presence_1 ~ Sample_Type, FD_Data))
-
-coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
+coxph(Surv(Collection_Date, Absence_0_Presence_1) ~ Feeder_Type, FD_Data) %>%
   tbl_regression(exp=TRUE)
 ```
