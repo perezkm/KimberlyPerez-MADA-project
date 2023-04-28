@@ -1,0 +1,145 @@
+---
+title: Part5 Project Review 
+author: NICOLE LUISI
+date: "`r file.mtime(knitr::current_input())`"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+# Overview
+
+Title of project: Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health
+
+Name of project author(s): Kimberly Perez
+
+Name of project reviewer: Nicole Luisi
+
+# Specific project content evaluation
+
+## Background, Context and Motivation
+
+### Feedback and Comments
+
+The background is well done; this topic is outside of my wheelhouse, but I did not have any trouble following the explanation provided. Good description of previous work with references to explain the rationale.   
+
+### Summary assessment
+
+* strong contextualization and motivation
+
+## Question description
+
+### Feedback and Comments
+
+Given the background provided, the proposed questions are very clear. I'm not sure why these particular data sources were selected (I assume convenience/access) but these seem like very reasonable data sources to address these hypotheses. 
+
+### Summary assessment
+
+* question/hypotheses fully clear
+
+## Data description
+
+### Feedback and Comments
+
+The data description is a sufficient overview, though it seems like there may still be some information still pending for the Picnic Table Trial data. If this information is not available, would recommend rewording this section a bit. I would reorganize this section so that everything about each source is together - after the opening line write all about the Florida data, then all about the Georgia data; it's a little difficult to follow when it goes from FL to GA to FL. Looking ahead to the methods, it seems like you may have actually put more info together about the data collection. There is some repetition throughout the manuscript document as far as the data sources; I think maybe you can combine and simplify these sections....within methods you can do the data source description, etc. I don't see a codebook; the FD data is pretty straight forward, some of the variables in the PTD set aren't as obvious. Could describe specifics about the variables and how they were coded in this section or within comments in the code as they are being processed.   
+
+### Summary assessment
+
+* source and overall structure of data somewhat explained
+
+## Data wrangling and exploratory analysis
+
+### Feedback and Comments
+
+Data cleaning file was simple and able to be run; comments explained the purpose for each step. Exploratory analysis file also clean ad easy to run. I think this one could use some more comments explaining the steps (or the thought process after viewing the output). 
+
+### Summary assessment
+
+* essentially no weaknesses in wrangling and exploratory component
+
+## Appropriateness of Analysis
+
+### Feedback and Comments
+
+I had some trouble following this section.  I think the progression in the statistical analysis code good and I was able to run those steps, but it seems like maybe you didn't have time to finish writing this up in the manuscript file. There are some notes about leaning towards GLM or including other data. The code looks good (and like you did more than you wrote up) but there aren't many comments, so I'm not sure I have a good handle on the thought process. I'm giving this a good rating because I think you have a lot of good work here, but the manuscript sections related to analysis are missing a lot of info. 
+
+### Summary assessment
+
+* strong and reasonable analysis
+
+## Presentation
+
+### Feedback and Comments
+
+The figures are nice, I would just recommend organizing more like a manuscript where you explain the results, then present the table or figure, etc. rather than having everything at the beginning before the text. None of the statistical analysis results seem to be included in tables, etc. or represented in the write-up. There are also some sections with headers and no content (full analysis, exploratory/descriptive analysis. Rating on this one is mostly just due to the missing info in the manuscript, I think it will be good once you get everything in there. 
+
+### Summary assessment
+
+* results are poorly presented, hard to understand, poor quality
+
+## Discussion/Conclusions
+
+### Feedback and Comments
+
+Unfortunately this section is missing from the manuscript so I'm not able to evaluate it. 
+
+### Summary assessment
+
+* major parts of discussion missing or wrong
+
+## Further comments
+
+For summary/abstract at beginning, would recommend formatting more like a manuscript abstract, so adding in some of the primary findings/discussion points. Overall, the early sections are good shape, it looks like you may have run out of time on the results/discussion. Given that this was likely a time issue I don't much specific advice other than cleaning up these sections and pulling everything together. 
+
+# Overall project content evaluation
+
+## Structure
+
+### Feedback and Comments
+
+Everything is mostly well structured, but there are a lot of extra things in the repo. It's clear that users should follow the numbered folder structure but it is a little confusing to have folders "4. Results" and "results", similar with "code" and the code within the numbered folders, "products" and "5. Manuscript". Some of the text within the QMD files also indicates that there were plans to move some things around and maybe that didn't get cleaned up, I would recommend reading through the QMD files again at the end to make sure placeholder language is removed. 
+
+### Summary assessment
+
+* mostly clear, but some confusing parts (e.g. useless files, things in the wrong folders)
+
+## Documentation 
+
+### Feedback and Comments
+
+Some files could use additional comments, these are noted in the sections above. Overall, things are not difficult to follow. I think some of the README files throughout are a little out of date and need to be updated (may have been ones you made early on and then changed your files and structure).
+
+### Summary assessment
+
+* decently documented with some gaps
+
+## Reproducibility
+
+### Feedback and Comments
+
+I was able to run everything provided without any issues. Some documentation updates would be helpful, these are noted above. 
+
+### Summary assessment
+
+* fully reproducible without issues
+
+## Thoroughness
+
+### Feedback and Comments
+
+Overall, I think this is well thought out, again it just seems like there was an issue with time. I think that all the pieces are mostly there, but more work is needed to summarize the findings and conclusion and pull everything together. Without some of this documentation it is difficult to get a sense of the whole thought process and whether or not the questions will be answered sufficiently. 
+
+### Summary assessment
+
+* decent level of thoroughness
+
+## Further comments
+
+Early sections are strong, mostly need to spend more time on results and discussion. Overall, would recommend going through the repo to remove unnecessary folders/files and clean up old placeholder text. The manuscript document also has some overlapping sections that could be simplified. I don't have a lot of specific advice because everything you did is good, I think you just didn't have time to finish pulling it all together and double checking/cleaning up the language and files. Hopefully you have some time to make updates for part 6 it will all come together nicely!   
+
+
+
+
+
