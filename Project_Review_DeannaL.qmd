@@ -1,0 +1,161 @@
+---
+title: Project Review Template 
+author: Deanna Lanier
+date: "`r file.mtime(knitr::current_input())`"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+# Overview
+
+Title of project: Salmonella Enzironmental Persistence Informs Management Relevant to Avian and Public Health
+
+Name of project author(s): Kimberly Perez
+
+Name of project reviewer: Deanna Lanier
+
+
+# Instructions
+
+
+# Specific project content evaluation
+
+## Background, Context and Motivation
+You provided a very comprehensive background and included great sources. The previous and related work was included, as well as the gap in the current knowledge which was very helpful. This was well written and very informative. It is clear why this project was undertaken. This section does not explicitly state the new information you hope to provide, however it is implied and I was still able to determine the purpose of the project. 
+
+
+### Feedback and Comments
+
+It would be helpful to add 1 or 2 sentences to your introduction about what you will do for this study and what new information you are providing by completing this analysis, or the goal of the study.
+
+### Summary assessment (PICK ONE, DELETE THE OTHERS)
+* strong contextualization and motivation
+
+
+## Question description
+
+The questions were stated and there relation to the data were clear. The questions tie in your description of the data and background very well and it is easy to make the connection. 
+
+### Summary assessment
+* question/hypotheses fully clear
+
+
+## Data description
+How well is the data overall described? Is the source provided? Is a codebook or other meta-information available that makes it clear what the data is? 
+
+### Feedback and Comments
+
+The data is described very clearly and the source of the data and collection was explained. Although the data source is explained and a description of the data is provided, there is no codebood in the repository. I would recommend adding some codebook just to help understand what data are included in these spreadsheets.
+
+### Summary assessment
+* source and overall structure of data somewhat explained
+
+
+## Data wrangling and exploratory analysis
+How well is the data cleaned/processed and explored? Are all steps reasonable and well explained? Are alternatives discussed and considered? Are meaningful exploratory results shown (e.g. in the supplementary materials)?
+
+
+### Feedback and Comments
+
+The data were processed fully and was explained in the manuscript well. I would have liked a little explanation about the rational behind certain processing steps in the manuscript, however the data processing code was well documented. All of the steps were reasonable and well explained. I do think there could have been more added to the exploratory visualizations. For figure 1, there is no reference to this figure in your manuscript. I believe you describe it in section 5.1.1, however you did not reference that you are describing that figure. For the figures, I would recommend larger text on the x and y axis just to make it easier to visualize. Also, All of the figures are exploratory/descriptive analysis so you should move that label (5.3 Exploratory/Descriptive analysis) to above the text corresponding to those figures.  
+
+### Summary assessment
+* some weaknesses in wrangling and exploratory component
+
+
+## Appropriateness of Analysis
+Were the analysis methods appropriate for the data? Was the analysis done properly? Were different components of the analysis (e.g. performance measure, variable selection, data pre-processing, model evaluation) done in the best way possible and explained well?
+
+### Feedback and Comments
+
+For the statistical analysis, I would recommend adding all packages at the beginning of the script to avoid having the install packages midway through. I also was not able to run the script all the way through to the end due to errors that should be fixed. The errors started at line 362 in the statistical analysis code. It looks like you are off to a good start with the analysis, however there is no description or explaination in the manuscript of code so I do not have alot of feedback for this section.
+
+### Summary assessment
+* defensible but not optimal analysis 
+
+## Presentation
+How well are results presented? Are tables and figures easy to read and understand? Are the main figures/tables publication level quality? 
+
+### Feedback and Comments
+
+There are great figures for the exploratory analysis in the manuscript, but none included of the statistical analysis. I mentioned above that I would increase the axis text size and also include the figure number in the text that describes the findings.
+
+### Summary assessment
+* results are presented ok, with room for improvement
+
+
+## Discussion/Conclusions
+Are the study findings properly discussed? Are strengths and limitations acknowledged? Are findings interpreted properly?
+
+### Feedback and Comments
+
+Sections 5.5, 6.1, 6.2, and 6.3 are not included in the analysis so I cannot provide adequate feedback.
+
+### Summary assessment
+* major parts of discussion missing or wrong 
+
+
+## Further comments
+
+The project is off to a great start and the topic is very interesting, but I think there are still some major gaps in the analysis. 
+
+
+
+# Overall project content evaluation
+Evaluate overall features of the project  by filling in the sections below.
+
+
+## Structure
+Is the project well structured? Are files in well labeled folders? Do files have reasonable names? Are all "junk" files not needed for analysis/reproduction removed? By just looking at files and folders, can you get an idea of how things fit together?
+
+### Feedback and Comments
+
+The project is well structured and the README file explains the folder contents. There were no junk folders that were not needed for analysis. The folders were numbered which was very helpful.
+
+### Summary assessment
+* well structured
+
+
+## Documentation 
+How well is the project documented? Are you able to understand each step of the whole analysis, each decision that was made, and each line of code? Is enough information provided as comments in code or as part of Rmd files? 
+
+### Feedback and Comments
+
+Project is well documented. The only file that I believe could benefit from additional comments is your statistical analysis script. 
+
+### Summary assessment
+* fully and well documented
+
+
+
+## Reproducibility
+Are all results fully reproducible? Is documentation provided which clearly explains how to reproduce things, and does it work without the need for any manual intervention? Are you able to re-run the whole analysis without having to do manual interventions/edits?
+
+### Feedback and Comments
+
+The statistical analysis is not fully reproducible as there are errors that prevent me from completing the analysis. All other aspects of the project are reproducible.
+
+
+### Summary assessment
+* small parts not reproducible or required manual intervention 
+
+
+## Thoroughness
+How thorough was the overall study? Were alternatives (e.g. different ways of processing the data or different models) considered? Were alternatives discussed? Were the questions/hypotheses fully and thoroughly addressed?
+
+### Feedback and Comments
+
+There background and explanation of the project is extremely thorough, but there are gaps in the statistical analysis. There also was no additional information provided to address the questions you posed in the beginning of the analysis. 
+
+### Summary assessment
+* decent level of thoroughness
+
+
+
+
+
+
+
