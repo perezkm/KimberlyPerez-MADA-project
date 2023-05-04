@@ -1,8 +1,8 @@
 ---
-title: "Supplement to Example Manuscript Template for a Data Analysis Project"
+title: "Supplement to *Salmonella* Environmental Persistence Informs Management Relevant to Avian and Public Health for a Data Analysis Project"
 
 subtitle: ""
-author: Andreas Handel
+author: Kimberly Perez
 date: "`r Sys.Date()`"
 format:
   pdf:

@@ -69,7 +69,7 @@ lined with antimicrobial coatings.
 
 ## **Description of data and data source**
 
-The data selected for my MADA project is persistence and prevalence data
+The data selected for this project is persistence and prevalence data
 from two trial studies. The first trial was conducted in South Florida
 where picnic tables, under the same pavilion and exposed to conditions
 known to affect *Salmonella*, were selected, swabbed daily for a week
@@ -86,16 +86,12 @@ Hernandez. All data from the Feeder Trial was collected by me, Kimberly
 Perez under the guidance of Dr. Sonia Hernandez.
 
 The Picnic Table Trial data is composed of several worksheets embedded
-in one excel file. After viewing the file (and running it below), there
-seems to be 192 observations. I am not sure how the Picnic Table Trial
-was collected but hope to visit with Dr. Hernandez regarding data
-collection methods soon. Feeder Trial data was collected and noted upon
-confirmation of *Salmonella* from processed samples. There are 144
-observations for the Feeder Trial which spanned nearly 2 months. For
-both trials, we were attempting to measure *Salmonella* persistence. The
-Picnic Table Trial collected data in an attempt to measure prevalence as
-well. (Please Note: Aforementioned data was imported under "Data import
-and cleaning" section.)
+in one excel file. After viewing the file, 192 observations were
+returned. Feeder Trial data was collected and noted upon confirmation of
+*Salmonella* from processed samples. The Feeder Trial data returned 144
+observations for the nearly two months of sample collection. Both trials
+were designed to determine the persistence of *Salmonella*. The Picnic
+Table Trial also collected data in an attempt to determine prevalence.
 
 ## **Questions/Hypotheses to be addressed**
 
@@ -154,7 +150,7 @@ where four feeder types, represented in triplicate and randomized, were
 seeded with 1 g of inoculated feces and 0.5 mL of sterile physiologic
 saline. Feeders were then swabbed daily for one week, every other day
 for one week, and weekly for an additional week. Swabs were embedded
-into 10 mL of Dulcitol Selenite broth and transported back to UGA for
+into 10 mL of dulcitol selenite broth and transported back to UGA for
 processing.
 
 ## **Sample Processing Methodology**

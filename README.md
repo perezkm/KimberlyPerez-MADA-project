@@ -9,47 +9,88 @@ editor_options:
 [**Please note, Feeder Data is abbreviated FD, while Picnic Table Data
 is abbreviated as PT**]
 
--   **code**- This folder contains the R script needed to clean and
-    analyze the data. Two sub folders and a readme.md file are also
-    included in this folder and contain further instructions.
-    -   **processing_code** folder
-        -   **processingcode.R** contains all of the R Script needed to
-            clean both datasets and save them to the appropriate folder
-            ("processed_data").
-    -   The **analysis_code** sub folder houses all R Script needed to
-        explore both datasets. It also contains **three** documents:
-        -   **exploratory_analysis.html**- This document will render the
-            code written in the exploratory_analysis.qmd file in a
-            browser window. Here you can utilize the document to view
-            code and outputs without having to run the associated code.
-        -   **exploratory_analysis.qmd**- This document contains the
-            actual R Script written to conduct the exploratory analysis
-            on both data sets. Here you can run my code and edit any
-            visuals created.
-        -   **statistical_analysis.R**- At the moment, this Markdown
-            file contains some basic statistical analysis (lm fits) I
-            have run on the data. However, as I tighten up my project,
-            this will house the code I utilize for my model.
-        -   The **exploratory_analysis_files**, specifically the
-            **figure-html** folder houses all of the saved figures from
-            the .qmd and R Markdown documents housed in the **Code**
-            folder. These figures are also found in my Manuscript.qmd
-            file.
--   **data**- This folder contains **two** subfolders-
-    **processed_data** and **raw_data**, respectively, plus a readme.md
-    file.
-    -   **processed_data** houses saved RDS files of the processed data
-        for both datasets
-    -   **raw_data** houses the raw data for both data sets which are
-        saved as .csv and .xlsx. Plus a readme.md file **I MAY DELETE
-        THIS README**
--   **product**- This folder contains **one** subfolder- **manuscript**,
-    and two files necessary for references.
-    -   **manuscript**- contains **two** documents- Manuscript.qmd and
-        Manuscript.docx, and **two** subfolders- images and supplement
-        **(as of Part 3, I have not decided if I will keep either
-        subfolder but should have this decided by Part 4)**
-        * **Manuscript.qmd**- This document contains my written portion of my manuscript along with figures and analysis rendered in other sections.
-        * **Manuscript.docx**- This is the culminating document that is produced when the Manuscrit.qmd file is run.
-* **results**- This folder contains **four** subfolders- **FD_Graphs**, **FD_Sum_T**, **RTD_Graphs**, **RTD_Sum_T**, and a readme.md. **I AM TRYING TO DECIDE IF I WILL USE THIS FOLDER OR IF I WILL HOUSE THINGS IN A SUBFOLDER IN ANOTHER SECTION. 
-  
+-   **0. Raw Data**- This folder contains the raw data for both the
+    Picnic Table and Feeder Trials, which are saved as .xlsx and .csv,
+    respectivelty, along with a readme file.
+
+    -   **Picnic_Table_Data.xlsx**- *Salmonella* persistence and
+        prevalence data collected in South Florida.
+
+    -   **Feeder Data.csv**- *Salmonella* persistence data collected on
+        feeders of various materials (e.g., wood [cedar, wood [cedar]
+        coated, plastic, and plastic coated) in Athens, Georgia.
+
+    -    **readme. html**/**readme.md**- Provides a succinct snapshot of
+        the items contained in the given folder for ease and to reduce
+        navigation back to this file.
+
+-   **1. Data Cleaning Script**- This folder contains two documents
+    **DataCleaning.qmd** and **readme.qmd**.
+
+    -   **DataCleaning.qmd**- This file contains all of the R Script
+        needed to clean both datasets and save the cleaned data (.rds)
+        to the appropriate folder ["2. Clean Data"].
+
+    -    **readme.qmd**- Provides a succinct snapshot of the items
+        contained in the given folder for ease and to reduce navigation
+        back to this file. Also guides viewers back to the "0. Raw Data"
+        folder if this was missed or overlooked as the project's
+        starting point.
+
+-   **2. Clean Data**- This folder contains the cleaned .rds files of
+    the Feeder and Picnic Table Trial datasets titled "FDprocessed.rds"
+    and "PTprocessed.rds", respectively.
+
+-   **3. Analysis Script**- This folder houses all R Script needed to
+    explore and run statistical analysis on both cleaned datasets:
+
+    -   **exploratory_analysis.html**- This document will render the
+        code written in the exploratory_analysis.qmd file in a browser
+        window. Here you can utilize the document to view code and
+        outputs without having to run the associated code.
+    -   **exploratory_analysis.qmd**- This document contains the actual
+        R Script written to conduct the exploratory analysis on both
+        datasets. Here you can run my code and edit any visuals created.
+        An option to save visuals for inclusion in the manuscript occurs
+        throughout the R Script [Lines 57-58, 70-71, & 104-105]. These
+        visuals are saved as .png to the folder titled **"4. Results"**
+    -   **statistical_analysis.qmd**- This document contains several
+        statistical analysis run on both datasets. Detailed step-by-step
+        notes are included in this analysis to ensure ease of
+        reproducibility.
+
+-   **4. Results**- This folder contains saved .pngs, high-quality
+    graphics, that are included in the final product of this project,
+    the manuscript.
+
+    -   **Feeder_PA.png**- Graphical depiction of the presence or
+        absence of *Salmonella* by feeder type and date.
+
+    -   **Picnic_Table_PosSamp.png**- Graphical depiction of the number
+        of positive samples by sample type by date for the Picnic Table
+        Trial.
+
+    -   **Picnic_Table_Quad.png**- Graphical depiction of positive
+        *Salmonella* samples by date and quadrant.
+
+-   **5. Manuscript**- This folder contains **three** documents-
+    Manuscript.qmd, Manuscript.docx, and ref.bib, along with a subfolder
+    [**supplement**].
+
+    -   **Manuscript.qmd**- This document contains the written portion
+        of my manuscript along with code that will render outputs
+        including figures and various data analysis.
+
+    -   **Manuscript.docx**- This is the culminating document that is
+        produced via a Word document when the Manuscript.qmd file is
+        run.
+
+    -   **Ref.bib**- This document houses the text needed to render
+        in-text citations in the manuscript documents mentioned above.
+
+    -   **supplement**- This file contains a .qmd file with supplemental
+        code that was run but not included in the final manuscript.
+
+        -   **Supplemental_Material.qmd**- code, visualizations, and
+            data analysis that were omitted from the final manuscript
+            draft can be viewed and run in this corresponding file.
