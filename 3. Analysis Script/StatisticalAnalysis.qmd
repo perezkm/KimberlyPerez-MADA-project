@@ -6,28 +6,35 @@ output: html_document
 ---
 
 # **Analysis script**
-This script loads the cleaned data, does a simple analysis, and saves the results to the "4. Results" folder
+
+This script loads the cleaned data, does a series of analysis and saves the results to the "4. Results" folder.
 
 ## **Loading Packages**
+
 ```{r}
 #Load needed packages
 library(tidyverse)
-library(ggplot2) #for plotting
-library(broom) #for cleaning up output from lm()
-library(dotwhisker)
-library(here) #for data loading/saving
-library(tidymodels)
-library(tidyr)
-library(gtsummary)
+library(ggplot2) #For plotting/data vis.
+library(broom) #For cleaning up output from lm()
+library(dotwhisker) #Visualization for regression outputs
+library(here) #Setting paths/for data loading/saving
+library(tidymodels) #Great package for models and other resources used for fitting
+library(tidyr) #Helps with data wrangling
+library(gtsummary) #To create tables 
 library(dplyr)
 library(vip)
-library(performance)
+library(performance) #Model evaluation
 library(jtools)
 library(broom)
-library(broom.mixed)
+library(broom.mixed) #Converts fitted to tiddy dfs
 ```
 
-## **1. Loading: Picnic Table & Feeder Data**
+After reviewing both the Picnic Table and Feeder Trial datasets, I will run several analysis including linear regression, generalized linear model, time to event, and cox regression. Given that both datasets are exploring presence/absence of *Salmonella*, I believe the above models will provide the most flexibility with the continuous and categorical predictors contained in the data.
+
+# **1. Loading: Picnic Table & Feeder Data**
+
+Now that the packages we need are loaded, let's read in and view our cleaned data
+
 ```{r}
 #Picnic Table Data
 PT_Data<- readRDS(here::here("2. Clean Data","PTprocessed.rds"))
@@ -39,59 +46,62 @@ glimpse(PT_Data)
 
 glimpse (FD_Data)
 ```
-# 2. **Data Fitting/Statistical Analysis: Picnic Table**
+
+# 2. **Data Fitting/Statistical Analysis: Linear Regression \[Picnic Table Trial\]**
+
 Let's Begin with some Linear Model Fitting; I will try this multiple ways, with several predictors.
+
+To begin fitting, we will first need to define the linear regression.
+
 ```{r}
 lmog<-linear_reg() %>% 
-  set_engine("lm")
+  set_engine("lm") #Setting
 
 model_lm<- linear_reg()
+```
 
-lmfit_PT<- model_lm %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+Now that we have defined our linear regression (LR), we will have to train the model to our given data.
+
+```{r}
+lmfit_PT<- model_lm %>% #Training outcome: Salmonella Positive and Main Predictor Date
   fit(Salmonella_Positive~Date, PT_Data) 
 
-lmfit_PT
+lmfit_PT #With this function we can view what we just did 
 
-glimpse(lmfit_PT)
 
-#Way 1
-glance(lmfit_PT)
-
-#Way 2
-tidy(lmfit_PT)
+tidy(lmfit_PT) #We can use the tidy() function to produce the output/ summary statistics 
 
 plot_summs(lmfit_PT)
 
 #Checking model performance: Picnic Table
 check_model(lmfit_PT$fit)
 
+#Plotting the above 
 tidy(lmfit_PT) %>%
     dwplot(dot_args = list(size = 2, color = "coral1"),
          whisker_args = list(color = "coral1"),
          vline = geom_vline(xintercept = 0, color = "darkred", linetype = 4))
 ```
 
+Again, we will need to define the linear regression for fitting of other specific indicators.
+
 ```{r}
 #Fitting other specific indicators
 lmog_1<-linear_reg() %>% 
-  set_engine("lm")
+  set_engine("lm") #Setting
 
 model_lm1<- linear_reg()
+```
 
+We have defined our LR, now we will train the model to our given data and new predictor.
+
+```{r}
 lmfit_PT1<- model_lm1 %>% #Training; outcome: Salmonella Pos
   fit(Salmonella_Positive~Sample_Type, PT_Data) 
 
-lmfit_PT1
+lmfit_PT1 #Let's view what we just did
 
-tidy(lmfit_PT1)
-
-glimpse(lmfit_PT1)
-
-#Way 1
-glance(lmfit_PT1)
-
-#Way 2
-tidy(lmfit_PT1)
+tidy(lmfit_PT1) #We can use the tidy() function to produce the output/ summary statistics
 
 plot_summs(lmfit_PT1)
 
@@ -104,26 +114,33 @@ tidy(lmfit_PT1) %>%
          vline = geom_vline(xintercept = 0, color = "darkred", linetype = 4))
 ```
 
+We will follow the same workflow as above, however, now we will utilize all predictors of the Picnic Table Trial Data.
 
 ```{r}
 #Trying ALL predictors of Picnic Table dataset 
 lmog_PT<- linear_reg() %>%
   set_engine("lm")
 
-lmall_PT<- lmog_PT %>% #Training 
+model_lmall<- linear_reg()
+
+lmall_PT<- model_lmall %>% #Training 
   fit(Salmonella_Positive~., data=PT_Data)
 
 lmall_PT
 
 tidy(lmall_PT)
+```
 
-#Do not want all predictors...
+I do not believe all predictors will be beneficial in this analysis. However, we will continue to check the model performance and include it in the supplemental section.
 
+```{r}
 #Checking model performance: Picnic Table
 check_model(lmall_PT$fit)
 ```
 
-```{r} 
+The code below \[lines132-154\] will likely be included in the supplemental section as it should produce similar values as the above code. I wanted to include this as an alternate way of writing the code and most importantly a resource to refer back to in the future.
+
+```{r}
 #### Model fit another way
 # fit linear model using Salmonella_Pos as outcome, Table as predictor
 lmfit3.0 <- lm(Salmonella_Positive~Table, PT_Data) 
@@ -136,7 +153,7 @@ lmtable1 <- broom::tidy(lmfit3.0)
 #Let's check out the results
 print(lmtable1)
 
-#A different way Part Deux 
+#A different way 
 # I will do the same as above, however, I am now adding persistence pile
 lmfit2 <- lm(Salmonella_Positive~Original_Persistence_Pile+Table, PT_Data) 
 plot(lmfit2)
@@ -148,51 +165,52 @@ lmtable2 <- broom::tidy(lmfit2)
 print(lmtable2)
 ```
 
+# 2. **Data Fitting/Statistical Analysis: Linear Regression \[Feeder Trial\]**
 
-Second model fit
+This section is a continuation of what was produced above, however, we will now be utilizing the Feeder Trial Data
+
 ```{r}
 #Doing the same for FEEDER DATA
 lmog_FD<-linear_reg() %>% 
   set_engine("lm")
 
-lmfit_FD<- lmog_FD %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+model_lmFD<- linear_reg()
+
+lmfit_FD<- model_lmFD %>% #Training; outcome: Salmonella Pos and Main Predictor Table
   fit(Absence_0_Presence_1~Feeder_number, FD_Data) 
 
-lmfit_FD
+lmfit_FD #Let's view what we just did
 
 glimpse(lmfit_FD)
 
-#Way 1
-glance(lmfit_FD)
-
-#Way 2
-tidy(lmfit_FD)
+tidy(lmfit_FD) #We can use the tidy() function to produce the output/ summary statistics
 
 plot_summs(lmfit_FD)
 
 #Checking model performance: FEEDER
 check_model(lmfit_FD$fit)
+```
 
+```{r}
 #More fitting with some other indicators
-
 lmog_FD2<-linear_reg() %>% 
   set_engine("lm")
 
-lmfit_FD2<- lmog_FD2 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+lmfit_FD2<- lmog_FD2 %>% #Training; outcome: Salmonella Positive and Main Predictor Feeder Number and Type (e.g., wood v. plastic)
   fit(Absence_0_Presence_1~Feeder_number+Feeder_Type, FD_Data) 
 
-lmfit_FD2
+lmfit_FD2 #Let's view what we just did
 
 glimpse(lmfit_FD2)
 
-#Way 1
-glance(lmfit_FD2)
-
-#Way 2
-tidy(lmfit_FD2)
+tidy(lmfit_FD2) #We can use the tidy() function to produce the output/ summary statistics
 
 plot_summs(lmfit_FD2)
 
+check_model(lmfit_FD2$fit)
+```
+
+```{r}
 #Trying ALL predictors of Feeder dataset 
 lmog_FD<- linear_reg() %>%
   set_engine("lm")
@@ -202,11 +220,17 @@ lmall_FD<- lmog_FD %>% #Training
 
 lmall_FD
 
-tidy(lmall_FD)
+tidy(lmall_FD) #We can use the tidy() function to produce the output/ summary statistics
 
-plot_summs(lmall_FD, robust=TRUE) #KP NOTE: I need to clean this up so it is a bit more readable, must fullscreen it
+plot_summs(lmall_FD, robust=TRUE)
+
+check_model(lmall_FD$fit)
 ```
-# **Generalized Linear Model: Picnic Table** 
+
+# 3. **Data Fitting/Statistical Analysis: Generalized Linear Model \[Picnic Table Trial\]**
+
+Unlike linear regressions, generalized linear models (GLMs) are often more flexible and allow for change in inputs. Below I will run GLMs for both datasets and check each model. 
+
 ```{r}
 lmog<-linear_reg() %>% 
   set_engine("glm")
@@ -218,32 +242,26 @@ lmfit_PT_glm
 
 glimpse(lmfit_PT_glm)
 
-#Way 1
-glance(lmfit_PT_glm)
-
-#Way 2
 tidy(lmfit_PT_glm)
 
 plot_summs(lmfit_PT_glm)
+
+check_model(lmfit_PT_glm$fit)
 
 #Fitting other specific indicators
 lmog_glm1<-linear_reg() %>% 
   set_engine("glm")
 
-lmfit_PTglm1<- lmog_glm1 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
-  fit(Salmonella_Positive~Original_Persistence_Pile+Table, PT_Data) 
+lmfit_PTglm1<- lmog_glm1 %>% #Training; outcome: Salmonella Positive and MPs: Pile, Table, and Date
+  fit(Salmonella_Positive~Original_Persistence_Pile+Table+Date, PT_Data) 
 
 lmfit_PTglm1
 
-glimpse(lmfit_PTglm1)
-
-#Way 1
-glance(lmfit_PTglm1)
-
-#Way 2
 tidy(lmfit_PTglm1)
 
 plot_summs(lmfit_PTglm1)
+
+check_model(lmfit_PTglm1$fit)
 
 #Fitting other specific indicators
 lmog_glm2<-linear_reg() %>% 
@@ -251,6 +269,8 @@ lmog_glm2<-linear_reg() %>%
 
 lmfit_PTglm2<- lmog_glm2 %>% #Training; outcome: Salmonella Pos and Main Predictor Table
   fit(Salmonella_Positive~Quadrant+Table, PT_Data) 
+
+check_model(lmfit_PTglm2$fit)
 ```
 
 ```{r}
@@ -258,13 +278,11 @@ lmfit_PTglm2
 
 glimpse(lmfit_PTglm2)
 
-#Way 1
-glance(lmfit_PTglm2)
-
-#Way 2
 tidy(lmfit_PTglm2)
 
 plot_summs(lmfit_PTglm2)
+
+check_model(lmfit_PTglm2$fit)
 
 #Trying ALL predictors of Picnic Table dataset 
 lmog_PTGLM<- linear_reg() %>%
@@ -278,18 +296,27 @@ lmall_PTGLM
 tidy(lmall_PTGLM)
 ```
 
-# **Generalized Linear Model: Picnic Table (Persistence & Prevalence)** 
+## a. **Generalized Linear Model: Picnic Table (Persistence & Prevalence)**
+Again, this is an alternative way to run a glm.
+
 ```{r}
-PT_GLM_PER <- glm(Salmonella_Positive ~ Date, data = PT_Data, family = binomial)
+PT_GLM_PER <- glm(Salmonella_Positive ~ Date, data = PT_Data, family = binomial) #Persistence
 
 PT_GLM_PER
 
-PT_GLM_PREV <- glm(Salmonella_Positive ~ Sample_Type + as.factor(Date) + Table, data= PT_Data, family = binomial)
+tidy(PT_GLM_PER)
+
+PT_GLM_PREV <- glm(Salmonella_Positive ~ Sample_Type + as.factor(Date) + Table, data= PT_Data, family = binomial) #Prevalence
 
 PT_GLM_PREV
+
+tidy(PT_GLM_PREV)
+
+lmall_PTGLM
 ```
 
-# **Generalized Linear Model: Feeder Data**
+# 4. **Data Fitting/Statistical Analysis: Generalized Linear Model [Feeder Trial]**
+
 ```{r}
 lmog_FD<-linear_reg() %>% 
   set_engine("glm")
@@ -301,13 +328,12 @@ lmfit_FD_glm
 
 glimpse(lmfit_FD_glm)
 
-#Way 1
-glance(lmfit_FD_glm)
-
 #Way 2
 tidy(lmfit_FD_glm)
 
 plot_summs(lmfit_FD_glm)
+
+check_model(lmfit_FD_glm$fit)
 
 #Fitting other specific indicators
 lmog_FD_GLM<-linear_reg() %>% 
@@ -320,13 +346,11 @@ lmfit_FD_GLM
 
 glimpse(lmfit_FD_GLM)
 
-#Way 1
-glance(lmfit_FD_GLM)
-
-#Way 2
 tidy(lmfit_FD_GLM)
 
 plot_summs(lmfit_FD_GLM)
+
+check_model(lmfit_FD_GLM$fit)
 
 #Trying ALL predictors of Picnic Table dataset 
 lmog_FDGLM_all<- linear_reg() %>%
@@ -338,19 +362,24 @@ lmall_FDGLM_all1<- lmog_FDGLM_all %>% #Training
 lmall_FDGLM_all1
 
 tidy(lmall_FDGLM_all1)
+
+check_model(lmall_FDGLM_all1$fit)
 ```
 
-# **Generalized Linear Model: Feeder Data (Persistence & Prevalence)**
+# **Generalized Linear Model: Feeder Data (Persistence)**
+
 ```{r}
-FD_GLM_PER <- glm(Absence_0_Presence_1 ~ Collection_Date, data = FD_Data, family = binomial)
+FD_GLM_PER <- glm(Absence_0_Presence_1 ~ Collection_Date, data = FD_Data, family = binomial) #Persistence
 
 FD_GLM_PER
 
-FD_GLM_PREV <- glm(Absence_0_Presence_1 ~ Feeder_Type + as.factor(Collection_Date), data= FD_Data, family = binomial)
+FD_GLM_PREV <- glm(Absence_0_Presence_1 ~ Feeder_Type + as.factor(Collection_Date), data= FD_Data, family = binomial) #Prevalence 
 
 FD_GLM_PREV
 ```
+
 # **Time to event**
+
 ```{r}
 library(finalfit)
 library(forcats)
@@ -385,7 +414,8 @@ PT_Data %>%
   summarize(median_surv=median(Date))
 ```
 
-#**Cox regression: Picnic Table Data**
+# **Cox regression: Picnic Table Data**
+
 ```{r}
 PT_Data$Date<- as.numeric(PT_Data$Date)
 
@@ -394,7 +424,9 @@ coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data)
 coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
   tbl_regression(exp=TRUE)
 ```
-#**Cox regression: Feeder Data**
+
+\#**Cox regression: Feeder Data**
+
 ```{r}
 library(lubridate)
 

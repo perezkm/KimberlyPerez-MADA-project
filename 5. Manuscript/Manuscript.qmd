@@ -67,6 +67,13 @@ poultry litter, there is a lack of understanding of the persistence of
 *Salmonella* on various surfaces including wood, plastic, and surfaces
 lined with antimicrobial coatings.
 
+## **Data acquisition**
+
+The data from the Picnic Table Trial in South Florida was collected by
+an undergraduate student of Dr. Sonia M. Hernandez and provided to me by
+Dr. Hernandez. All data from the Feeder Trial was collected by me,
+Kimberly Perez under the guidance of Dr. Sonia Hernandez.
+
 ## **Description of data and data source**
 
 The data selected for this project is persistence and prevalence data
@@ -155,10 +162,11 @@ processing.
 
 ## **Sample Processing Methodology**
 
-After collection, 100 uL of the sample vortexed in dulcitol selentite
-was inoculated into 10 mL of Rappaport Vassiliadis (RV) broth. The broth
-was incubated for 24 hours at 37c. The RV broth was then streaked onto
-XLT-4 agar plates and incubated at 37c for 24 hours, then an additional
+After collection, dulcitol selenite was incubated overnight at 37°c,
+before 100 uL of the sample vortexed in dulcitol selentite was
+inoculated into 10 mL of Rappaport Vassiliadis (RV) broth. The broth was
+incubated for 24 hours at 37°c. The RV broth was then streaked onto
+XLT-4 agar plates and incubated at 37°c for 24 hours, then an additional
 24 hours on the lab bench at room temperature. If colonies
 morphometrically consistent with *Salmonella* were present, one colony
 per plate was chosen and a stab in Luria Broth (LB) agar was created. To
@@ -166,13 +174,6 @@ confirm the presence of *Salmonella*, patch plates were made on
 ChromAgar using the stabbed colonies. If the patches turned magenta,
 that indicated positive *Salmonella* samples. A blue color indicated
 something other than *Salmonella* [@Maurer2015].
-
-## **Data acquisition**
-
-The data from the Picnic Table Trial in South Florida was collected by
-an undergraduate student of Dr. Sonia M. Hernandez and provided to me by
-Dr. Hernandez. All data from the Feeder Trial was collected by me,
-Kimberly Perez under the guidance of Dr. Sonia Hernandez.
 
 ## **Data Processing Methodology**
 
@@ -229,20 +230,29 @@ model.
 # **Results**
 
 **Picnic Table Data Exploration and Visualization**
+```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 1 Positive Salmonella Samples by Sample Type and Date"}
 
-![Positive Salmonella Samples by Type and
-Date](images/Picnic_Table_PosSamp-05.png)***Figure 1.*** Positive
-*Salmonella* Samples by Sample Type and Date
+library(here)
 
-![***Figure 2.*** Positive *Salmonella* Samples by Quadrant and
-Date](images/Picnic_Table_Quad-02.png)
+knitr::include_graphics(here("4. Results/Picnic_Table_PosSamp.png"))
+```
+
+```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 2 Positive Salmonella Samples by Quadrant and Date"}
+
+library(here)
+
+knitr::include_graphics(here("4. Results/Picnic_Table_Quad.png"))
+```
 
 **Bird Feeder Data Exploration and Visualization**
+```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 3 Positive Salmonella Samples by Feeder Type and Date"}
 
-![***Figure 3.*** Positive *Salmonella* Samples by feeder type and
-date.](images/Feeder_PA.png)
+library(here)
 
-## **Ibis Trial**
+knitr::include_graphics(here("4. Results/Feeder_PA.png"))
+```
+
+## **Picnic Table Trial**
 
 ### **Persistence**
 
