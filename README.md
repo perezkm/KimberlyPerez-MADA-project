@@ -20,7 +20,7 @@ is abbreviated as PT**]
         feeders of various materials (e.g., wood [cedar, wood [cedar]
         coated, plastic, and plastic coated) in Athens, Georgia.
 
-    -    **readme. html**/**readme.md**- Provides a succinct snapshot of
+    -   **readme. html**/**readme.md**- Provides a succinct snapshot of
         the items contained in the given folder for ease and to reduce
         navigation back to this file.
 
@@ -31,7 +31,7 @@ is abbreviated as PT**]
         needed to clean both datasets and save the cleaned data (.rds)
         to the appropriate folder ["2. Clean Data"].
 
-    -    **readme.qmd**- Provides a succinct snapshot of the items
+    -   **readme.qmd**- Provides a succinct snapshot of the items
         contained in the given folder for ease and to reduce navigation
         back to this file. Also guides viewers back to the "0. Raw Data"
         folder if this was missed or overlooked as the project's
@@ -72,6 +72,20 @@ is abbreviated as PT**]
 
     -   **Picnic_Table_Quad.png**- Graphical depiction of positive
         *Salmonella* samples by date and quadrant.
+
+    -   **FD_Cox.rds**- Table depicting the Cox Regression output for
+        the Feeder data.
+
+    -   **Feeder_Median_Survival.rds**- Simple table depicting the
+        median time of *Salmonella* survival for the duration of the FD
+        trial.
+
+    -   **Picnic_Table_Median_Survival.rds**- Simple table depicting the
+        median time of *Salmonella* survival for the duration of the PT
+        trial.
+
+    -    **PT_Cox.rds**- Table depicting the Cox Regression output for
+        the Picnic Table Data.
 
 -   **5. Manuscript**- This folder contains **three** documents-
     Manuscript.qmd, Manuscript.docx, and ref.bib, along with a subfolder

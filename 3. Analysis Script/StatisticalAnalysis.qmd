@@ -27,6 +27,14 @@ library(performance) #Model evaluation
 library(jtools)
 library(broom)
 library(broom.mixed) #Converts fitted to tiddy dfs
+library(finalfit) #Needed for Time to Event Analysis 
+library(forcats) #Needed for Time to Event Analysis 
+library(survival) #Needed for Time to Event Analysis 
+library(lubridate)
+library(ggsurvfit)
+library(gt)
+library(webshot) #To save tables
+library(knitr) #For tables
 ```
 
 After reviewing both the Picnic Table and Feeder Trial datasets, I will run several analysis including linear regression, generalized linear model, time to event, and cox regression. Given that both datasets are exploring presence/absence of *Salmonella*, I believe the above models will provide the most flexibility with the continuous and categorical predictors contained in the data.
@@ -165,7 +173,7 @@ lmtable2 <- broom::tidy(lmfit2)
 print(lmtable2)
 ```
 
-# 2. **Data Fitting/Statistical Analysis: Linear Regression \[Feeder Trial\]**
+# 2a. **Data Fitting/Statistical Analysis: Linear Regression \[Feeder Trial\]**
 
 This section is a continuation of what was produced above, however, we will now be utilizing the Feeder Trial Data
 
@@ -227,9 +235,9 @@ plot_summs(lmall_FD, robust=TRUE)
 check_model(lmall_FD$fit)
 ```
 
-# 3. **Data Fitting/Statistical Analysis: Generalized Linear Model \[Picnic Table Trial\]**
+# 2b. **Data Fitting/Statistical Analysis: Generalized Linear Model \[Picnic Table Trial\]**
 
-Unlike linear regressions, generalized linear models (GLMs) are often more flexible and allow for change in inputs. Below I will run GLMs for both datasets and check each model. 
+Unlike linear regressions, generalized linear models (GLMs) are often more flexible and allow for change in inputs. Below I will run GLMs for both datasets and check each model.
 
 ```{r}
 lmog<-linear_reg() %>% 
@@ -295,8 +303,8 @@ lmall_PTGLM
 
 tidy(lmall_PTGLM)
 ```
+## 3a. **Generalized Linear Model: Picnic Table (Persistence & Prevalence)**
 
-## a. **Generalized Linear Model: Picnic Table (Persistence & Prevalence)**
 Again, this is an alternative way to run a glm.
 
 ```{r}
@@ -315,7 +323,7 @@ tidy(PT_GLM_PREV)
 lmall_PTGLM
 ```
 
-# 4. **Data Fitting/Statistical Analysis: Generalized Linear Model [Feeder Trial]**
+# 3b. **Data Fitting/Statistical Analysis: Generalized Linear Model \[Feeder Trial\]**
 
 ```{r}
 lmog_FD<-linear_reg() %>% 
@@ -365,8 +373,7 @@ tidy(lmall_FDGLM_all1)
 
 check_model(lmall_FDGLM_all1$fit)
 ```
-
-# **Generalized Linear Model: Feeder Data (Persistence)**
+## 3b. **Generalized Linear Model: Feeder Data (Persistence)**
 
 ```{r}
 FD_GLM_PER <- glm(Absence_0_Presence_1 ~ Collection_Date, data = FD_Data, family = binomial) #Persistence
@@ -377,27 +384,52 @@ FD_GLM_PREV <- glm(Absence_0_Presence_1 ~ Feeder_Type + as.factor(Collection_Dat
 
 FD_GLM_PREV
 ```
+# 4a. **Time to Event Analysis: Picnic Table Trial**
+```{r}
 
-# **Time to event**
+PT_Data_TTE<- #First let's format the dates 
+  PT_Data %>% 
+  mutate(
+    Date= ymd(Date))
+
+PT_Data_TTE$Date<- as.numeric(PT_Data_TTE$Date) #Let's make these numeric
+
+PT_Data_TTE <- #I want to add a column displaying time between events (by day)
+  PT_Data_TTE %>%
+  mutate(
+    os_day= as.duration(Date)/ddays(1))
+
+PT_Data_TTE$os_day<- as.numeric(PT_Data_TTE$os_day) #Again let's make sure our new column is in the proper format
+
+surv1<- Surv(PT_Data_TTE$Date,PT_Data_TTE$Salmonella_Positive) 
+
+#Let's visualize!
+sfit1<- survfit(Surv(Date, Salmonella_Positive) ~  1, data=PT_Data_TTE)  %>% 
+  ggsurvfit() + 
+  labs(
+    x = "Days",
+    y = "Overall Salmonella Persistence") + #Let's add some labels
+  add_confidence_interval() +
+  add_risktable()
+
+#I am not confident with this graphic so I will include this in my supplemental section
+```
 
 ```{r}
-library(finalfit)
-library(forcats)
-library(survival)
-
 glimpse(PT_Data)
 
-PT_Data$Date<- as.numeric(PT_Data$Date)
 
 PT_Data = PT_Data %>% 
-  mutate(
-      salmonella_crr= case_when(
-        Salmonella_Positive ==  0~1
-        Salmonella_Positive == 1~1
-        TRUE ~ 1))
+ mutate(
+  salmonella_crr= case_when(
+   Salmonella_Positive ==  0~1,
+    Salmonella_Positive == 1~1,
+     TRUE ~ 1))
 
-dependent_crr= "Surv(Date, status_crr)"
+dependent_crr= "Surv(Date, salmonella_crr)"
 explanatory= c("Table", "Quadrant", "Sample_Type")
+
+PT_Data$Date<- as.numeric(PT_Data$Date)
 
 PT_Data %>% finalfit(dependent_crr, explanatory)
 
@@ -409,31 +441,125 @@ PT_Data %>%
 
 survfit(Surv(Date, Salmonella_Positive)~1, data=PT_Data)
 
-PT_Data %>%
-  filter(status==1) %>%
+PT_MedSurv<-PT_Data %>%
+ filter(salmonella_crr==1) %>%
   summarize(median_surv=median(Date))
+
+PT_MedSurv <- ((PT_MedSurv)/31556952000)*100
+
+PT_Surv_Table<- gt(PT_MedSurv) %>%
+   tab_header(
+    title = "Median Survival of Salmonella",
+    subtitle = ("01/02/2020 to 01/09/2020")) %>%
+  cols_label(
+    median_surv= "Median Salmonella Survival (days)") 
+
+PT_Surv_Table
+
+PT_Surv_Table %>%
+  saveRDS(here("4. Results", "Picnic_Table_Median_Survival.rds")) #To include in my manuscript, persistence seems to be roughly 5 days
+```
+# 4b. **Time to Event Analysis: Feeder Trial**
+```{r}
+FD_Data_TTE<- #First let's format the dates 
+  FD_Data %>% 
+  mutate(
+    Date= ymd(Collection_Date))
+
+FD_Data_TTE$Collection_Date<- as.numeric(FD_Data_TTE$Collection_Date) #Let's make these numeric
+
+FD_Data_TTE <- #I want to add a column displaying time between events (by day)
+  FD_Data_TTE %>%
+  mutate(
+    os_day= as.duration(Collection_Date)/ddays(1))
+
+FD_Data_TTE$os_day<- as.numeric(FD_Data_TTE$os_day) #Again let's make sure our new column is in the proper format
+
+surv1_FD<- Surv(FD_Data_TTE$Collection_Date,FD_Data_TTE$Absence_0_Presence_1) 
+
+#Let's visualize!
+sfit1<- survfit(Surv(Collection_Date, Absence_0_Presence_1) ~  1, data=FD_Data_TTE)  %>% 
+  ggsurvfit() + 
+  labs(
+    x = "Days",
+    y = "Overall Salmonella Persistence") + #Let's add some labels
+  add_confidence_interval() +
+  add_risktable()
+
+sfit1
+```
+```{r}
+FD_Data = FD_Data %>% 
+ mutate(
+  salmonella_crr= case_when(
+   Absence_0_Presence_1 ==  0~1,
+    Absence_0_Presence_1 == 1~1,
+     TRUE ~ 1))
+
+dependent_crr= "Surv(Collection_Date, salmonella_crr)"
+explanatory= c("Feeder_Type")
+
+FD_Data$Collection_Date<- as.numeric(FD_Data$Collection_Date)
+
+FD_Data %>% finalfit(dependent_crr, explanatory)
+
+FD_Data %>% 
+   finalfit(dependent_crr, explanatory, add_dependent_label = FALSE) %>% 
+    rename("Overall survival" = label) %>% 
+    rename(" " = levels) %>% 
+    rename("  " = all) 
+
+survfit(Surv(Collection_Date, Absence_0_Presence_1)~1, data=FD_Data)
+
+FD_MedSurv<-FD_Data %>%
+ filter(salmonella_crr==1) %>%
+  summarize(median_surv=median(Collection_Date))
+
+FD_MedSurv <- ((FD_MedSurv)/604800)*100 #Persistence seems to be roughly 3 days for the FD
+
+FD_Surv_Table<- gt(FD_MedSurv) %>%
+   tab_header(
+    title = "Median Survival of Salmonella",
+    subtitle = ("02/22/2022 to 03/14/2022")) %>%
+  cols_label(
+    median_surv= "Median Salmonella Survival (days)") 
+
+FD_Surv_Table
+
+FD_Surv_Table %>%
+  saveRDS(here("4. Results", "Feeder_Median_Survival.rds")) #To include in my manuscript, seems to be roughly 3 days
 ```
 
-# **Cox regression: Picnic Table Data**
+# 5a. **Cox regression: Picnic Table Trial**
 
 ```{r}
 PT_Data$Date<- as.numeric(PT_Data$Date)
 
 coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data)
 
-coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
+CR_PT1<-coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
   tbl_regression(exp=TRUE)
+
+CR_PT1
+
+CR_PT1%>%
+  saveRDS(here("4. Results", "PT_Cox.rds"))
+  
 ```
 
-\#**Cox regression: Feeder Data**
+# 5b. **Cox regression: Feeder Trial**
 
 ```{r}
-library(lubridate)
-
 FD_Data$Collection_Date<- as.numeric(FD_Data$Collection_Date)
 
 coxph(Surv(Collection_Date, Absence_0_Presence_1) ~ Feeder_Type, FD_Data)
 
-coxph(Surv(Collection_Date, Absence_0_Presence_1) ~ Feeder_Type, FD_Data) %>%
+CR_FD1<- coxph(Surv(Collection_Date, Absence_0_Presence_1) ~ Feeder_Type, FD_Data) %>%
   tbl_regression(exp=TRUE)
+
+CR_FD1
+
+CR_FD1%>%
+  saveRDS(here("4. Results", "FD_Cox.rds"))
 ```
+It looks like the 

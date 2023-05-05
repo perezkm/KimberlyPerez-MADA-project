@@ -74,7 +74,7 @@ an undergraduate student of Dr. Sonia M. Hernandez and provided to me by
 Dr. Hernandez. All data from the Feeder Trial was collected by me,
 Kimberly Perez under the guidance of Dr. Sonia Hernandez.
 
-## **Description of data and data source**
+### **Description of data and data source**
 
 The data selected for this project is persistence and prevalence data
 from two trial studies. The first trial was conducted in South Florida
@@ -204,7 +204,7 @@ analysis. With all of that, it is finally time to visualize the data by
 making some tables and/or graphs.
 
 More packages were loaded that would assist in the visualization process
-before begining this process. Before visualization began, the glimpse()
+before beginning this process. Before visualization began, the glimpse()
 function was utilized to view the recently cleaned data. Given the
 uncertainty of *Salmonella's* persistence on various surface materials
 and the information these trials hoped to provide, the summary()
@@ -222,14 +222,37 @@ presence/absence of *Salmonella* for each day the feeders were sampled.
 
 # **Statistical analysis**
 
-Statistical analysis was conducted on both datasets, Picnic Table Data
-and Feeder Data, utilizing RStudio "Cherry Blossom" (2023-03-09).
-Analysis for both datasets were evaluated utilizing a linear regression
-model.
+Statistical analysis was conducted on the Picnic Table Data and Feeder
+Data, utilizing RStudio "Cherry Blossom" (2023-03-09). Analysis for both
+datasets were evaluated utilizing several models including Linear
+Regression (LR), Generalized Linear Model (GLM), and Cox Regression
+(CR). Given that two datasets were utilized for this analysis, a
+holistic approach, considering various limitations of both trials, such
+as sample size, was taken into account when selecting a model. Because
+the majority of data is binary in nature (e.g., presence v. absences)
+and few variables exist for comparison, a LR was the first model
+selected to run on both datasets, followed by a GLM, and CR. Several
+predictors were selected to include in this the analysis including
+'Salmonella_Positive\~Date' , 'Salmonella_Positive\~Sample_Type' (e.g.,
+pooled v. persistent), and 'Salmonella_Positive\~.' with all predictors
+for the Picnic Table Trial and 'Absence_0\_Presence_1\~Feeder_number',
+'Absence_0\_Presence_1\~Feeder_number+Feeder_Type', and
+'Absence_0\_Presence_1\~.' and all predictors for the Feeder Trial.
+
+Both Linear Regression and Generalized Linear Models performed as
+expected when model performance was checked utilizing the check_models()
+function. Given the flexibility and model performance of the GLM, it was
+selected as the model for inclusion in our analysis between predictors
+(e.g., 'Date' \[PT\], 'Sample_Type' \[PD\], 'Feeder_Type' \[FD\]) and
+outcomes (e.g., 'Salmonella_Positive' \[PT\], 'Absence_0\_Presence_1'
+\[FD\]). To
+
+While LR and GLM provide insight into
 
 # **Results**
 
 **Picnic Table Data Exploration and Visualization**
+
 ```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 1 Positive Salmonella Samples by Sample Type and Date"}
 
 library(here)
@@ -245,6 +268,7 @@ knitr::include_graphics(here("4. Results/Picnic_Table_Quad.png"))
 ```
 
 **Bird Feeder Data Exploration and Visualization**
+
 ```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 3 Positive Salmonella Samples by Feeder Type and Date"}
 
 library(here)
