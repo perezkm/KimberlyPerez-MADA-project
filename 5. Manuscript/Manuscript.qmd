@@ -105,7 +105,7 @@ Table Trial also collected data in an attempt to determine prevalence.
 Given the uncertainty of *Salmonella's* persistence on various surface
 materials, questions such as:
 
--   What is the prevalence of *Salmonella* over time?
+-   What is the persistence of *Salmonella* over time?
 
 -   How long does *Salmonella* persist on different surface materials
     (e.g., wood, plastic, and those with an antimicrobial coating)?
@@ -220,100 +220,9 @@ presence/absence of *Salmonella* for each day the feeders were sampled.
 
 {{< pagebreak >}}
 
-# **Statistical analysis**
-
-Statistical analysis was conducted on the Picnic Table Data and Feeder
-Data, utilizing RStudio "Cherry Blossom" (2023-03-09). Analysis for both
-datasets were evaluated utilizing several models including Linear
-Regression (LR), Generalized Linear Model (GLM), and Cox Regression
-(CR). Given that two datasets were utilized for this analysis, a
-holistic approach, considering various limitations of both trials, such
-as sample size, was taken into account when selecting a model. Because
-the majority of data is binary in nature (e.g., presence v. absences)
-and few variables exist for comparison, a LR was the first model
-selected to run on both datasets, followed by a GLM, and CR. Several
-predictors were selected to include in this the analysis including
-'Salmonella_Positive\~Date' , 'Salmonella_Positive\~Sample_Type' (e.g.,
-pooled v. persistent), and 'Salmonella_Positive\~.' with all predictors
-for the Picnic Table Trial and 'Absence_0\_Presence_1\~Feeder_number',
-'Absence_0\_Presence_1\~Feeder_number+Feeder_Type', and
-'Absence_0\_Presence_1\~.' and all predictors for the Feeder Trial.
-
-Both Linear Regression and Generalized Linear Models performed as
-expected when model performance was checked utilizing the check_models()
-function. Given the flexibility and model performance of the GLM, it was
-selected as the model for inclusion in our analysis between predictors
-(e.g., 'Date' \[PT\], 'Sample_Type' \[PD\], 'Feeder_Type' \[FD\]) and
-outcomes (e.g., 'Salmonella_Positive' \[PT\], 'Absence_0\_Presence_1'
-\[FD\]). To
-
-While LR and GLM provide insight into
-
 # **Results**
 
-**Picnic Table Data Exploration and Visualization**
-
-```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 1 Positive Salmonella Samples by Sample Type and Date"}
-
-library(here)
-
-knitr::include_graphics(here("4. Results/Picnic_Table_PosSamp.png"))
-```
-
-```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 2 Positive Salmonella Samples by Quadrant and Date"}
-
-library(here)
-
-knitr::include_graphics(here("4. Results/Picnic_Table_Quad.png"))
-```
-
-**Bird Feeder Data Exploration and Visualization**
-
-```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 3 Positive Salmonella Samples by Feeder Type and Date"}
-
-library(here)
-
-knitr::include_graphics(here("4. Results/Feeder_PA.png"))
-```
-
-## **Picnic Table Trial**
-
-### **Persistence**
-
-On Day 1 of the study, four fecal piles per table (one per quadrant, n =
-12) were designated for tracking *Salmonella* persistence.
-**Salmonella** was isolated from three of the 12 designated persistence
-study piles on Day 1, allowing the persistence to be tracked on these
-three piles. Persistence, expressed as the number of days that a
-positive fecal pile on Day 1 remained positive, ranged from 1 to 4 days
-with an average persistence of 3 days. The probability of an already
-positive sample to remain positive the next day declined consistently
-throughout the study period.
-
-### **Prevalence**
-
-Of 96 deposited feces, we obtained 27% positive. *Salmonella* persisted
-for an average of 3 days, and maximum of 4 days on wooden picnic tables.
-*Salmonella* was isolated from all tables, at least once. While there
-appears to be a significant positive correlation between the number of
-new fecal piles and the probability of yielding a positive pooled
-sample. The probabilities of a positive sample varied throughout the
-week, with day 4 having the lowest probability of positive *Salmonella*
-isolation and day 7 having the most error.
-
-## **Feeder Trial**
-
-We confirmed successful inoculation of all feeders with *Salmonella*
-(presence on day post inoculation \[DPI\] 0). Further, results indicate
-that *Salmonella* may persist on some feeders up to DPI 5 and current
-analysis indicates that *Salmonella* persisted on both coated and
-uncoated plastic feeders at a higher rate than wood and wood coated.
-Figure 2 depicts the percent of samples positive based on feeder type
-throughout the study period. While plastic and plastic coated feeders
-had an overall higher percent positivity, a spike in percent positivity
-in wood feeders occurred on DPI 5 after a rain event. Further analyses
-should be conducted to determine whether environmental conditions (e.g.,
-rain event) had a significant influence on persistence.
+## **Exploratory/Descriptive Analysis**
 
 Our samples persisted for an average of 2 days (feeders), 3 days (picnic
 tables) with 4 (picnic tables) and 5 (feeders) being the maximum number
@@ -324,28 +233,161 @@ during sampling, and water activity. Our studies suggest that
 persistence depends on surface material, and precautionary measures
 (i.e., increased hygiene) should be adopted to reduce human exposure.
 
-## **Exploratory/Descriptive analysis**
+### **Picnic Table Data: Exploration and Visualization**
 
-## **Basic statistical analysis**
+```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 1 Positive Salmonella Samples by Sample Type and Date"}
 
-After the modules following Part 1, I am leaning towards running a GLM
-for both given the binary responses for *Salmonella* persistence (e.g.,
-presence v. absence). I need to meet with Dr. Hernandez to clear up some
-questions I have on the picnic table data, specifically regarding the
-introduction of new feces. I am curious if I should include other data
-into the mix to make my analysis more robust. At the moment, the
-variables of interest for both are limited (e.g., two for the picnic
-table data, and one primary variable of interest for the feeder trial).
+library(here)
 
-## **Full analysis**
+knitr::include_graphics(here("4. Results/Picnic_Table_PosSamp.png"))
+```
+
+Figure 1 depicts the the number of positive *Sallmonella* samples by
+sample type, persistence or pooled. Pooled samples were collected from
+every quadrant daily, by swabbing a sampling sponge along the picnic
+table surface. Persistence piles, on the other hand were, selected based
+on two criteria, quadrant and size of fecal pile. The persistence pile
+was sampled everyday for 8 days. While the information presented in
+Figure 1 depicts count data, it is a useful visual to convey numbers of
+positive samples for each sample type based on day.
+
+```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 2 Positive Salmonella Samples by Quadrant and Date"}
+
+library(here)
+
+knitr::include_graphics(here("4. Results/Picnic_Table_Quad.png"))
+```
+
+Figure 2 depicts the the number of positive *Sallmonella* samples by
+quadrant. While the information presented in Figure 2 depicts count
+data, it is a useful visual to convey which quadrants may have been "hot
+spots" for the presence of *Salmonella*.
+
+**Persistence** On Day 1 of the study, four fecal piles per table (one
+per quadrant, n = 12) were designated for tracking *Salmonella*
+persistence. **Salmonella** was isolated from three of the 12 designated
+persistence study piles on Day 1, allowing the persistence to be tracked
+on these three piles. Persistence, expressed as the number of days that
+a positive fecal pile on Day 1 remained positive, varied with an average
+persistence of 3 days.
+
+**Prevalence** Of 96 deposited feces, we obtained 27% positive (26/96).
+*Salmonella* persisted for an average of 3 days, and maximum of 4 days
+on wooden picnic tables. *Salmonella* was isolated from all tables, at
+least once.
+
+### **Bird Feeder Data Exploration and Visualization**
+
+```{r, echo=FALSE, message= FALSE, fig.width=10, fig.height=8, fig.cap= "Figure. 3 Positive Salmonella Samples by Feeder Type and Date"}
+
+library(here)
+
+knitr::include_graphics(here("4. Results/Feeder_PA.png"))
+```
+
+Figure 3 depicts the the number of bird feeders that remained
+*Salmonella* positive throughout the trial. Stacked bars in various
+colors indicate the number of feeders (plastic, plastic + antimicrobial
+coating, wood, and wood + antimicrobial coating) from which we isolated
+*Salmonella*. We confirmed successful inoculation of all feeders with
+Salmonella (presence on Day Post Inoculation (DPI) 0- 2/22/2022).
+Further, results indicate that Salmonella may persist on some feeders up
+to five DPI and current analysis indicates that Salmonella persisted on
+both coated and uncoated feeders. With persistence occurring with both
+plastic and plastic coated feeders.
+
+# **Statistical Analysis**
+
+Statistical analysis was conducted on the Picnic Table Data and Feeder
+Data, utilizing RStudio "Cherry Blossom" (2023-03-09). Analysis for both
+datasets were evaluated utilizing several models including Linear
+Regression (LR) and Generalized Linear Model (GLM). Given that two
+datasets were utilized for this analysis, a holistic approach,
+considering various limitations of both trials, such as sample size, was
+taken into account when selecting a model. Because the majority of data
+is binary in nature (e.g., presence v. absence) and few variables exist
+for comparison, a LR was the first model selected to run on both
+datasets, followed by a GLM. Several predictors were selected to include
+in this the analysis including 'Salmonella_Positive\~Date' ,
+'Salmonella_Positive\~Sample_Type' (e.g., pooled v. persistent), and
+'Salmonella_Positive\~.' with all predictors for the Picnic Table Trial
+and 'Absence_0\_Presence_1\~Feeder_number',
+'Absence_0\_Presence_1\~Feeder_number+Feeder_Type', and
+'Absence_0\_Presence_1\~.' and all predictors for the Feeder Trial.
+
+## **Regression Models**
+
+### **Picnic Table Trial**
+
+```{r}
+#| label: Table 1
+#| tbl-cap: "Small sample adjusted Akaike's Information Criteria (AICc) model weights and performance scores for linear and generalized linear models predicting Salmonella Persistance on Picnic Tables. "
+#| echo: FALSE
+LMModelAICPD = readRDS(here("4. Results", "LMModelAICPD.rds"))
+knitr::kable(LMModelAICPD)
+```
+
+Of the models evaluated, the highest performing of all contained the
+predictors original persistence pile \[Original_Persistence_Pile\],
+table, and date and the outcome of *Salmonella* \[Salmonella_Positive\].
+Given the AICc_wt along with performance score, a GLM was selected for
+the Picnic Table Trial data, as depicted in Table 1. When evaluating a
+model using AICc, we would ideally like to select a model with a low
+AICc and a high performance score. Out of all of the models run, the
+model labeled "lmfit_PTglm1" was selected. In this model, original
+persistence pile along with table and date was associated with a higher
+likelihood of Salmonella persistence.
+
+### **Feeder Trial**
+
+```{r}
+#| label: Table 2
+#| tbl-cap: "Small sample adjusted Akaike's Information Criteria (AICc) model weights and performance scores for linear and generalized linear models predicting Salmonella Persistance on Various Feeder Surfaces."
+#| echo: FALSE
+ModelAICFD= readRDS(here("4. Results", "ModelAICFD.rds"))
+knitr::kable(ModelAICFD)
+```
+
+Of the models evaluated, the highest performing of all contained all
+predictors. Given the AICc_wt along with performance score, a LM was
+selected for the Feeder Trial data, as depicted in Table 2. When
+evaluating a model using AICc, we would ideally like to select a model
+with a low AICc and a high performance score, as mentioned above.
+However, because this model can be considered "global" as it includes
+all predictors, it is not the most ideal as it may overfit the data.
+Despite this, the model labeled "lmall_FD" was selected. In this model,
+feeder number, collection data, and feeder type was associated with a
+higher likelihood of Salmonella persistence on feeders.
 
 # **Discussion**
+As cases of environmental salmonellosis increase throughout the United
+States, environs that individuals come into contact with on a regular
+basis need to be evaluated to fill knowledge gaps relating to microbial
+transmission [@Hernandez2016]. With these trials we will research the
+factors that influence *Salmonella* persistence, which will allow us to
+better inform public health agencies and mitigate seasonal outbreaks in
+humans and wildlife.
 
 ## **Summary and Interpretation**
+Based on the modeling conducted above, there seems to be positive
+effects of the various predictors on *Salmonella* absence/presence. The
+Picnic Table Data showed that the original pile, date, and table all had
+statistically significant effects on *Salmonella* presence on picnic
+tables in South Florida. Persistence of *Salmonella* varied, however,
+the maximum number of days it persisted was four
+days (12 positive persistence piles/32 piles total). 
+
+Feeder data also indicate that *Salmonella* can persist on various surfaces for several days. *Salmonella* persisted for an average of ~2 days, (5 days max). Surprisingly, however, *Salmonella* persisted on plastic and plastic coated feeders longer than wooden and wooden coated feeders and had a prevalence of 15% on plastic coated feeders.
+
+The results from both trials indicate that *Salmonella* can persist on various surfaces. As human and wildlife interactions increase due to urbanization, precautions should be taken to avoid potential pathogen transmission from the wildlife directly or through interactions with anthropogenic environs that may harbor wildlife excrement. While the data collected was mainly absence/presence, through data visualization, statistical analysis, and performance evaluations, gaps in knowledge surrounding *Salmonella* persistence outside of the poultry industry can be closed.     
 
 ## **Strengths and Limitations**
+While information on *Salmonella* persistence outside of the commercial poultry industry is relatively minimal, our work with the Picnic Table and Feeder Trials, provides some interesting insight into the persistence of this pathogen and possible sources of transmission during avian outbreaks (e.g., feeders). Because both experiments were trials, limited funding was allocated to each and a small sample size was a result of such. Small sample sizes limit data interpretation. Despite the small sample size, all models were analyzed with the model_check() function and most produced the expected results. However, some residuals in certain models were not normally distributed which can lead to over fitting.
+
+Despite the limitations of these trials, steps were taken to close knowledge gaps. Trials, such as the ones conducted, can lay the groundwork for future studies that improve upon our sampling and collection methodology, as well as statistical analysis. Through the information garnered from these trials as well as future studies, more insight into *Salmonella* persistence and ways to mitigate it in our communities will inevitably be developed and enacted.
 
 ## **Conclusions**
+Globally, salmonellosis outbreaks are common in aquatic and songbird populations and Salmonella continues to be a significant pathogen for public health. Notably, in 2021 a Salmonella Typhimurium outbreak in people was associated with the use and handling of bird feeders. Research is needed to understand the interaction between humans, birds, and their interface. Key to preventing outbreaks is understanding transmission dynamics, specifically, how long Salmonella persists on various materials. Persistence has been studied in food systems and commercial poultry operations—neither are relevant to free-living birds or people in contact with shared areas. Through further research and investment some of these pressing questions may be answered. Saving lives of various species globally.  
 
 {{< pagebreak >}}
 

@@ -33,7 +33,6 @@ library(survival) #Needed for Time to Event Analysis
 library(lubridate)
 library(ggsurvfit)
 library(gt)
-library(webshot) #To save tables
 library(knitr) #For tables
 ```
 
@@ -562,4 +561,21 @@ CR_FD1
 CR_FD1%>%
   saveRDS(here("4. Results", "FD_Cox.rds"))
 ```
-It looks like the 
+With our models run, let's see which one did the best. Because we have a small sample size, we will run an AICc.
+```{r}
+
+AIC_TAB_picnic<- compare_performance(lmfit_PT,lmfit_PT1,lmall_PT, lmfit_PT_glm, lmfit_PTglm1, lmfit_PTglm2, lmall_PTGLM, rank= TRUE, metrics="AICc")
+
+print(AIC_TAB_picnic)
+
+AIC_TAB_picnic %>%
+  saveRDS(here("4. Results", "LMModelAICPD.rds"))
+
+AIC_TAB_feeder<- compare_performance(lmfit_FD_glm, lmfit_FD, lmfit_FD2, lmall_FD, lmfit_FD_GLM, lmall_FDGLM_all1, rank= TRUE, metrics="AICc")
+
+print(AIC_TAB_feeder)
+
+AIC_TAB_feeder%>%
+  saveRDS(here("4. Results", "ModelAICFD.rds"))
+```
+

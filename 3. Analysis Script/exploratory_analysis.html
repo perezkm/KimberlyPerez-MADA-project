@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kimberly M. Perez">
-<meta name="dcterms.date" content="2021-10-28">
+<meta name="dcterms.date" content="2023-05-01">
 
-<title>Combined Data Cleaning and Exploratory Analysis Script for Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health</title>
+<title>Combined Data Cleaning and Exploratory Analysis Script for Manuscript: Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,7 +110,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Combined Data Cleaning and Exploratory Analysis Script for Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health</h1>
+<h1 class="title">Combined Data Cleaning and Exploratory Analysis Script for Manuscript: Salmonella Environmental Persistence Informs Management Relevant to Avian and Public Health</h1>
 </div>
 
 
@@ -127,7 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 28, 2021</p>
+      <p class="date">May 1, 2023</p>
     </div>
   </div>
   
@@ -139,14 +139,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="data-processing-methodology" class="level1">
 <h1><strong>Data Processing Methodology</strong></h1>
-<p>Before attention can be focused on the data analysis portion, removal of unnecessary variables and visualizing data will provide a clearer picture of the data. This section will focus on data cleaning and wrangling. First, both datasets must be loaded. Prior to loading any data into RStudio, ensure that a new Quarto or RMarkdown File is established and linked to the preferred working directory. Basic packages need to be loaded to read in the data. Such packages to download include read_csv(), read_excel(), and here(), each of which can be loaded by utilizing the library() function (e.g., library(here)). Next, the datasets from both the Ibis and Feeder trials are loaded into RStudio utilizing the appropriate function (e.g., read_csv() for .csv files and read_excel() for .xlsx files). After data is loaded into R, it is best to get acquainted with the data by utilizing basic functions such as glimpse(). Glimpse provides me with insight into my data such as column names, number of rows and how each row is classified (e.g., character or numeric). After viewing the data I can work on cleaning the data by removing unnecessary variables. I would like to make the data a little more uniform and easier to work with. With that, I will change “Yes” to 1, and <em>NAs</em> to 0. I believe this will help me further in the analysis process. Given the variablility in the column names, I will then clean the names up to make them easier to include in my code as I move forward. With all of that, it is finally time to visualize the data by making some tables and/or graphs.</p>
-<p>Here, some more packages were loaded that I forsaw using in this section. Before visualization began, the glimpse() function was utilized to view the recently cleaned data. Given the uncertainty of <em>Salmonella’s</em> persistence on various surface materials and the information these trials hoped to provide, the summary() function was utilized to provide a quick glimpse of basic result summaries for positive <em>Salmonella</em> samples and if the pile present was the original pile or not. Next, I continued to explore these two variables of interest by plotting each using a stacked bar graph via ggplot().</p>
+<p>Before attention can be focused on the data analysis portion, removal of unnecessary variables and visualizing data will provide a clearer picture of the data. This section will focus on data cleaning and wrangling. First, both datasets must be loaded. Prior to loading any data into RStudio, ensure that a new Quarto or RMarkdown File is established and linked to the preferred working directory. Basic packages need to be loaded to read in the data. Such packages to download include read_csv(), read_excel(), and here(), each of which can be loaded by utilizing the library() function (e.g., library(here)). Next, the datasets from both the Ibis Picnic Table trial and Feeder trial are loaded into RStudio utilizing the appropriate function (e.g., read_csv() for .csv files and read_excel() for .xlsx files). After data is loaded into R, it is best to get acquainted with the data by utilizing basic functions such as glimpse(). Glimpse provides me with insight into my data such as column names, number of rows and how each row is classified (e.g., character or numeric). After viewing the data I can work on cleaning the data by removing unnecessary variables. I would like to make the data a little more uniform and easier to work with. With that, I will change “Yes” to 1, and <em>NAs</em> to 0. I believe this will help me further in the analysis process. Given the variablility in the column names, I will then clean the names up to make them easier to include in my code as I move forward. With all of that, it is finally time to visualize the data by making some tables and/or graphs.</p>
+<p>Here, some more packages were loaded that I foresaw using in this section. Before visualization began, the glimpse() function was utilized to view the recently cleaned data. Given the uncertainty of <em>Salmonella’s</em> persistence on various surface materials and the information these trials hoped to provide, the summary() function was utilized to provide a quick glimpse of basic result summaries for positive <em>Salmonella</em> samples and if the pile present was the original pile or not. Next, I continued to explore these two variables of interest by plotting each using a stacked bar graph via ggplot().</p>
 <p>I followed the same workflow for the Feeder Data, however, this dataset required less wrangling and did not provide as many exploratory options as the main focus was on feeder type, date, and the presence/absence of <em>Salmonella</em> for each day the feeders were sampled.</p>
-<section id="data-import-and-cleaning" class="level2">
-<h2 class="anchored" data-anchor-id="data-import-and-cleaning"><strong>Data import and cleaning</strong></h2>
-</section>
-<section id="initial-package-loading" class="level2">
-<h2 class="anchored" data-anchor-id="initial-package-loading"><strong>Initial Package Loading</strong></h2>
+<section id="loading-packages" class="level2">
+<h2 class="anchored" data-anchor-id="loading-packages"><strong>Loading Packages</strong></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load a few R packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -169,129 +166,9 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="picnic-table-data-loading" class="level2">
-<h2 class="anchored" data-anchor-id="picnic-table-data-loading"><strong>Picnic Table Data Loading</strong></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>PTD<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw_data"</span>, <span class="st">"Picnic_Table_Data.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-• `` -&gt; `...13`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(PTD)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(PTD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Sample ID              Day            Date                         Table  
- Length:192         Min.   :1.00   Min.   :2020-01-02 00:00:00   Min.   :1  
- Class :character   1st Qu.:2.75   1st Qu.:2020-01-03 18:00:00   1st Qu.:1  
- Mode  :character   Median :4.50   Median :2020-01-05 12:00:00   Median :2  
-                    Mean   :4.50   Mean   :2020-01-05 12:00:00   Mean   :2  
-                    3rd Qu.:6.25   3rd Qu.:2020-01-07 06:00:00   3rd Qu.:3  
-                    Max.   :8.00   Max.   :2020-01-09 00:00:00   Max.   :3  
-                                                                            
-    Quadrant    Sample Type (Pooled or Persistence)
- Min.   :1.00   Length:192                         
- 1st Qu.:1.75   Class :character                   
- Median :2.50   Mode  :character                   
- Mean   :2.50                                      
- 3rd Qu.:3.25                                      
- Max.   :4.00                                      
-                                                   
-  Shippng Date                    Notes           STAB TUBE NUMBER  
- Min.   :2020-01-06 00:00:00   Length:192         Length:192        
- 1st Qu.:2020-01-06 00:00:00   Class :character   Class :character  
- Median :2020-01-07 00:00:00   Mode  :character   Mode  :character  
- Mean   :2020-01-07 06:00:00                                        
- 3rd Qu.:2020-01-08 06:00:00                                        
- Max.   :2020-01-09 00:00:00                                        
-                                                                    
- ORIGIN OF FECES    Original PP still intact?   Pos orNeg      ...13          
- Length:192         Length:192                Min.   :1     Length:192        
- Class :character   Class :character          1st Qu.:1     Class :character  
- Mode  :character   Mode  :character          Median :1     Mode  :character  
-                                              Mean   :1                       
-                                              3rd Qu.:1                       
-                                              Max.   :1                       
-                                              NA's   :153                     </code></pre>
-</div>
-</div>
-</section>
-<section id="picnic-table-data-wrangling" class="level2">
-<h2 class="anchored" data-anchor-id="picnic-table-data-wrangling"><strong>Picnic Table Data Wrangling</strong></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PTD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 192
-Columns: 13
-$ `Sample ID`                           &lt;chr&gt; "DPT1Q1 PER 1-2-2020", "DPT1Q2 P…
-$ Day                                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
-$ Date                                  &lt;dttm&gt; 2020-01-02, 2020-01-02, 2020-01…
-$ Table                                 &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,…
-$ Quadrant                              &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,…
-$ `Sample Type (Pooled or Persistence)` &lt;chr&gt; "Persistence", "Persistence", "P…
-$ `Shippng Date`                        &lt;dttm&gt; 2020-01-06, 2020-01-06, 2020-01…
-$ Notes                                 &lt;chr&gt; "Originally labeled as DPT2Q1 bu…
-$ `STAB TUBE NUMBER`                    &lt;chr&gt; "x", "x", "x", "x", "x", "DPT1Q2…
-$ `ORIGIN OF FECES`                     &lt;chr&gt; "N/A*", "N/A*", "N/A*", "N/A*", …
-$ `Original PP still intact?`           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Pos orNeg`                           &lt;dbl&gt; NA, NA, NA, NA, NA, 1, 1, NA, NA…
-$ ...13                                 &lt;chr&gt; "ORIGIN OF FECES CODES:", "F= FR…</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PTD1<span class="ot">&lt;-</span> PTD <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Day, <span class="st">`</span><span class="at">Shippng Date</span><span class="st">`</span>, Notes, <span class="st">`</span><span class="at">STAB TUBE NUMBER</span><span class="st">`</span>, <span class="st">`</span><span class="at">ORIGIN OF FECES</span><span class="st">`</span>, ...<span class="dv">13</span>)) <span class="co">#Removing columns</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>PTD1<span class="sc">$</span><span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span><span class="ot">&lt;-</span> <span class="fu">ifelse</span>(PTD1<span class="sc">$</span><span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span><span class="sc">==</span><span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>PTD2<span class="ot">&lt;-</span> PTD1 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span>), <span class="dv">0</span>, <span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span>)) <span class="co">#NAs to 0 for column `Original PP still intact?`</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>PTD3<span class="ot">&lt;-</span> PTD2 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span><span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span>), <span class="dv">0</span>, <span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span>)) <span class="co">#NAs to 0 for column `Pos orNeg`</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PTD3) <span class="co">#Current variable names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 192
-Columns: 7
-$ `Sample ID`                           &lt;chr&gt; "DPT1Q1 PER 1-2-2020", "DPT1Q2 P…
-$ Date                                  &lt;dttm&gt; 2020-01-02, 2020-01-02, 2020-01…
-$ Table                                 &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,…
-$ Quadrant                              &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,…
-$ `Sample Type (Pooled or Persistence)` &lt;chr&gt; "Persistence", "Persistence", "P…
-$ `Original PP still intact?`           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ `Pos orNeg`                           &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>PTD_clean<span class="ot">&lt;-</span> PTD3 <span class="sc">%&gt;%</span> <span class="co">#Renaming column names</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID=</span> <span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sample_Type=</span> <span class="st">`</span><span class="at">Sample Type (Pooled or Persistence)</span><span class="st">`</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Salmonella_Positive=</span> <span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Original_Persistence_Pile=</span> <span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PTD_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 192
-Columns: 7
-$ ID                        &lt;chr&gt; "DPT1Q1 PER 1-2-2020", "DPT1Q2 PER 1-2-2020"…
-$ Date                      &lt;dttm&gt; 2020-01-02, 2020-01-02, 2020-01-02, 2020-01…
-$ Table                     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2,…
-$ Quadrant                  &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,…
-$ Sample_Type               &lt;chr&gt; "Persistence", "Persistence", "Persistence",…
-$ Original_Persistence_Pile &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ Salmonella_Positive       &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0,…</code></pre>
-</div>
-</div>
-</section>
-<section id="picnic-table-data-exploration-and-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="picnic-table-data-exploration-and-visualization"><strong>Picnic Table Data Exploration and Visualization</strong></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#After cleaning I have decided I need to download a few more packages for the data visualization </span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary) <span class="co">#Tables </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#StandWithUkraine</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly) <span class="co">#I may try for an interactive plot, this is a good resource to use</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary) <span class="co">#Tables </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly) <span class="co">#I may try for an interactive plot, this is a good resource to use</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: ggplot2</code></pre>
 </div>
@@ -314,152 +191,143 @@ Attaching package: 'plotly'</code></pre>
 
     layout</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co">#For basic visualization</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>PTDsumt1<span class="ot">&lt;-</span> <span class="fu">summary</span>(PTD_clean<span class="sc">$</span>Salmonella_Positive) <span class="co">#Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Salmonella positivity</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>PTDsumt1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co">#For basic visualization</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a.-loading-picnic-table-data" class="level2">
+<h2 class="anchored" data-anchor-id="a.-loading-picnic-table-data"><strong>1a. Loading: Picnic Table Data</strong></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PTD_clean<span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"2. Clean Data"</span>,<span class="st">"PTprocessed.rds"</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(PTD_clean)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(PTD_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      ID                 Date                         Table      Quadrant   
+ Length:192         Min.   :2020-01-02 00:00:00   Min.   :1   Min.   :1.00  
+ Class :character   1st Qu.:2020-01-03 18:00:00   1st Qu.:1   1st Qu.:1.75  
+ Mode  :character   Median :2020-01-05 12:00:00   Median :2   Median :2.50  
+                    Mean   :2020-01-05 12:00:00   Mean   :2   Mean   :2.50  
+                    3rd Qu.:2020-01-07 06:00:00   3rd Qu.:3   3rd Qu.:3.25  
+                    Max.   :2020-01-09 00:00:00   Max.   :3   Max.   :4.00  
+ Sample_Type        Original_Persistence_Pile Salmonella_Positive
+ Length:192         Min.   :0.0000            Min.   :0.0000     
+ Class :character   1st Qu.:0.0000            1st Qu.:0.0000     
+ Mode  :character   Median :0.0000            Median :0.0000     
+                    Mean   :0.4271            Mean   :0.2031     
+                    3rd Qu.:1.0000            3rd Qu.:0.0000     
+                    Max.   :1.0000            Max.   :1.0000     </code></pre>
+</div>
+</div>
+</section>
+<section id="a.-exploration-and-visualization-picnic-table-data" class="level2">
+<h2 class="anchored" data-anchor-id="a.-exploration-and-visualization-picnic-table-data"><strong>2a. Exploration and Visualization: Picnic Table Data</strong></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>PTDsumt1<span class="ot">&lt;-</span> <span class="fu">summary</span>(PTD_clean<span class="sc">$</span>Salmonella_Positive) <span class="co">#Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Salmonella positivity</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>PTDsumt1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0000  0.0000  0.0000  0.2031  0.0000  1.0000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>PTDsumt2<span class="ot">&lt;-</span> <span class="fu">summary</span>(PTD_clean<span class="sc">$</span>Original_Persistence_Pile) <span class="co">#Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Persistence Piles (e.g., OG or not)</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>PTDsumt2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>PTDsumt2<span class="ot">&lt;-</span> <span class="fu">summary</span>(PTD_clean<span class="sc">$</span>Original_Persistence_Pile) <span class="co">#Quick glimpse of samples, non-specific (e.g., persistence/pool) based on Persistence Piles (e.g., OG or not)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>PTDsumt2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0000  0.0000  0.0000  0.4271  1.0000  1.0000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>PTDH<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(PTD_clean, </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">fill=</span>Sample_Type, <span class="at">y=</span> Salmonella_Positive, <span class="at">x=</span> Date)) <span class="sc">+</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span> (<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span> <span class="fu">as.numeric</span> (PTD_clean<span class="sc">$</span>Date[<span class="fu">c</span>(<span class="dv">95</span>)]), <span class="at">linetype=</span> <span class="st">"dotted"</span>, <span class="at">color=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>PTDH_0<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(PTD_clean, </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">fill=</span>Sample_Type, <span class="at">y=</span> Salmonella_Positive, <span class="at">x=</span> Date)) <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span> (<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span> <span class="fu">as.numeric</span> (PTD_clean<span class="sc">$</span>Date[<span class="fu">c</span>(<span class="dv">95</span>)]), <span class="at">linetype=</span> <span class="st">"dotted"</span>, <span class="at">color=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Positive Salmonella Samples by Quadrant"</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Salmonella Positive"</span>, <span class="at">x=</span> <span class="st">"Collection Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>PTDH <span class="co">#Basic Plot: Positive Salmonella Samples by Sample Type via stacked plot, red line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>PTDH<span class="ot">&lt;-</span> PTDH_0 <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">fill=</span> <span class="st">"Sample Type"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>PTDH </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="exploratory_analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="exploratory_analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(PTDH, <span class="at">file=</span><span class="st">"Picnic_Table_PosSamp.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>PT_viz<span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"4. Results"</span>,<span class="st">"Picnic_Table_PosSamp.png"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(PTDH, <span class="at">file=</span>PT_viz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Saving 7 x 5 in image</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>PTD_Quad<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(PTD_clean, </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">fill=</span>Quadrant, <span class="at">y=</span> Salmonella_Positive, <span class="at">x=</span> Date)) <span class="sc">+</span> </span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span> (<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span> <span class="fu">as.numeric</span> (PTD_clean<span class="sc">$</span>Date[<span class="fu">c</span>(<span class="dv">95</span>)]), <span class="at">linetype=</span> <span class="st">"dotted"</span>, <span class="at">color=</span><span class="st">"green"</span>, <span class="at">lwd=</span><span class="dv">1</span>)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>PTD_Quad <span class="co">#Basic Plot: Positive Salmonella Samples (pooled v. persistence) by Quadrant via stacked plot green line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>PTD_Quad<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(PTD_clean, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">fill=</span>Quadrant, <span class="at">y=</span> Salmonella_Positive, <span class="at">x=</span> Date)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span> (<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span> <span class="fu">as.numeric</span> (PTD_clean<span class="sc">$</span>Date[<span class="fu">c</span>(<span class="dv">95</span>)]), <span class="at">linetype=</span> <span class="st">"dotted"</span>, <span class="at">color=</span><span class="st">"green"</span>, <span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Positive Salmonella Samples by Date and Quadrant"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Salmonella Positive"</span>, <span class="at">x=</span> <span class="st">"Collection Date"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>PTD_Quad <span class="co">#Basic Plot: Positive Salmonella Samples (pooled v. persistence) by Quadrant via stacked plot green line denotes decrease, will tap Dr. Hernandez for more information on this decline (e.g., weather, shipping, etc.) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="exploratory_analysis_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+<p><img src="exploratory_analysis_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(PTD_Quad, <span class="at">file=</span><span class="st">"Picnic_Table_Quad.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>PT_viz1<span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"4. Results"</span>,<span class="st">"Picnic_Table_Quad.png"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(PTD_Quad , <span class="at">file=</span>PT_viz1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Saving 7 x 5 in image</code></pre>
 </div>
 </div>
 </section>
-<section id="feeder-data-loading" class="level2">
-<h2 class="anchored" data-anchor-id="feeder-data-loading"><strong>Feeder Data Loading</strong></h2>
+<section id="b.-loading-feeder-data" class="level2">
+<h2 class="anchored" data-anchor-id="b.-loading-feeder-data"><strong>1b. Loading: Feeder Data</strong></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>FD<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw_data"</span>, <span class="st">"Feeder Data.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-Rows: 144 Columns: 6
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: "," chr
-(2): Collection_Date, Feeder_Type dbl (2): Feeder_number, Absence_0_Presence_1
-lgl (2): ...5, Absence (0)/Presence (1)
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...5`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(FD)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(FD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>FD_clean<span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"2. Clean Data"</span>,<span class="st">"FDprocessed.rds"</span>))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(FD_clean)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(FD_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> Feeder_number   Collection_Date    Absence_0_Presence_1 Feeder_Type       
- Min.   : 1.00   Length:144         Min.   :0.0000       Length:144        
- 1st Qu.: 3.75   Class :character   1st Qu.:0.0000       Class :character  
- Median : 6.50   Mode  :character   Median :0.0000       Mode  :character  
- Mean   : 6.50                      Mean   :0.1458                         
- 3rd Qu.: 9.25                      3rd Qu.:0.0000                         
- Max.   :12.00                      Max.   :1.0000                         
-   ...5         Absence (0)/Presence (1)
- Mode:logical   Mode:logical            
- NA's:144       NA's:144                
-                                        
-                                        
-                                        
-                                        </code></pre>
+<pre><code> Feeder_number   Collection_Date      Absence_0_Presence_1 Feeder_Type       
+ Min.   : 1.00   Min.   :2022-02-22   Min.   :0.0000       Length:144        
+ 1st Qu.: 3.75   1st Qu.:2022-02-24   1st Qu.:0.0000       Class :character  
+ Median : 6.50   Median :2022-02-27   Median :0.0000       Mode  :character  
+ Mean   : 6.50   Mean   :2022-02-28   Mean   :0.1458                         
+ 3rd Qu.: 9.25   3rd Qu.:2022-03-03   3rd Qu.:0.0000                         
+ Max.   :12.00   Max.   :2022-03-14   Max.   :1.0000                         </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(FD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(FD_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [144 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ Feeder_number           : num [1:144] 1 2 3 4 5 6 7 8 9 10 ...
- $ Collection_Date         : chr [1:144] "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" ...
- $ Absence_0_Presence_1    : num [1:144] 1 1 1 1 1 1 1 1 1 1 ...
- $ Feeder_Type             : chr [1:144] "Wood_coated" "Wood" "Plastic_coated" "Plastic" ...
- $ ...5                    : logi [1:144] NA NA NA NA NA NA ...
- $ Absence (0)/Presence (1): logi [1:144] NA NA NA NA NA NA ...
- - attr(*, "spec")=
-  .. cols(
-  ..   Feeder_number = col_double(),
-  ..   Collection_Date = col_character(),
-  ..   Absence_0_Presence_1 = col_double(),
-  ..   Feeder_Type = col_character(),
-  ..   ...5 = col_logical(),
-  ..   `Absence (0)/Presence (1)` = col_logical()
-  .. )
- - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+<pre><code>tibble [144 × 4] (S3: tbl_df/tbl/data.frame)
+ $ Feeder_number       : num [1:144] 1 2 3 4 5 6 7 8 9 10 ...
+ $ Collection_Date     : Date[1:144], format: "2022-02-22" "2022-02-22" ...
+ $ Absence_0_Presence_1: num [1:144] 1 1 1 1 1 1 1 1 1 1 ...
+ $ Feeder_Type         : chr [1:144] "Wood_coated" "Wood" "Plastic_coated" "Plastic" ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(FD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 144
-Columns: 6
-$ Feeder_number              &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2…
-$ Collection_Date            &lt;chr&gt; "2/22/22 (DPI_0)", "2/22/22 (DPI_0)", "2/22…
-$ Absence_0_Presence_1       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1…
-$ Feeder_Type                &lt;chr&gt; "Wood_coated", "Wood", "Plastic_coated", "P…
-$ ...5                       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ `Absence (0)/Presence (1)` &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</code></pre>
-</div>
-</div>
-</section>
-<section id="feeder-data-wrangling" class="level2">
-<h2 class="anchored" data-anchor-id="feeder-data-wrangling"><strong>Feeder Data Wrangling</strong></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>FD1<span class="ot">&lt;-</span> FD <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Absence (0)/Presence (1)</span><span class="st">`</span>, <span class="st">`</span><span class="at">...5</span><span class="st">`</span>)) <span class="co">#Removing columns</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(FD1) <span class="co">#Quick glimpse at the data, I can determine if I should wrangle the data a bit more</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(FD_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 144
 Columns: 4
 $ Feeder_number        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4…
-$ Collection_Date      &lt;chr&gt; "2/22/22 (DPI_0)", "2/22/22 (DPI_0)", "2/22/22 (D…
+$ Collection_Date      &lt;date&gt; 2022-02-22, 2022-02-22, 2022-02-22, 2022-02-22, …
 $ Absence_0_Presence_1 &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0…
 $ Feeder_Type          &lt;chr&gt; "Wood_coated", "Wood", "Plastic_coated", "Plastic…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>FD_clean<span class="ot">&lt;-</span> FD1 <span class="co">#Data looked clean so I will rename it to use with my data exploration and visualization process below </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Picnic Table Data Exploration and Visualization</strong></p>
+<p><strong>2b. Exploration and Visualization: Feeder Data</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(FD_clean<span class="sc">$</span>Absence_0_Presence_1) <span class="co"># Utilizing summary() for a quick look at result summaries- not much info here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(FD_clean<span class="sc">$</span>Absence_0_Presence_1) <span class="co"># Utilizing summary() for a quick look at result summaries- not much info here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0000  0.0000  0.0000  0.1458  0.0000  1.0000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>FD_plot<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(FD_clean, <span class="co">#Given my limited dataset I will focus my visualization on feeder type and presence/absence of Salmonella </span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">fill=</span>Feeder_Type, <span class="at">y=</span>Absence_0_Presence_1, <span class="at">x=</span> Collection_Date)) <span class="sc">+</span> </span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span> (<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) </span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>FD_plot  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>FD_plot<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(FD_clean, <span class="co">#Given my limited dataset I will focus my visualization on feeder type and presence/absence of Salmonella </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">fill=</span>Feeder_Type, <span class="at">y=</span>Absence_0_Presence_1, <span class="at">x=</span> Collection_Date)) <span class="sc">+</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span> (<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Absence or Presence of Salmonella by Date based on Feeder Type"</span>)<span class="sc">+</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span> <span class="st">"Collection Date"</span>, <span class="at">y=</span> <span class="st">"Salmonella Absence/Presence"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>FD_plot_final<span class="ot">&lt;-</span> FD_plot <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">"Feeder Type"</span>) <span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Plastic'</span>, <span class="st">'Plastic Coated'</span>, <span class="st">'Wood'</span>, <span class="st">'Wood Coated'</span>))</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>FD_plot_final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="exploratory_analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="exploratory_analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(FD_plot, <span class="at">file=</span><span class="st">"Feeder_PA.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>FD_viz<span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"4. Results"</span>,<span class="st">"Feeder_PA.png"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(FD_plot_final, <span class="at">file=</span>FD_viz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Saving 7 x 5 in image</code></pre>
 </div>

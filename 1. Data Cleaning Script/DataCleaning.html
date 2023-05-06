@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>datacleaning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="DataCleaning_files/libs/clipboard/clipboard.min.js"></script>
+<script src="DataCleaning_files/libs/quarto-html/quarto.js"></script>
+<script src="DataCleaning_files/libs/quarto-html/popper.min.js"></script>
+<script src="DataCleaning_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="DataCleaning_files/libs/quarto-html/anchor.min.js"></script>
+<link href="DataCleaning_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="DataCleaning_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="DataCleaning_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="DataCleaning_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="DataCleaning_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="processing-picnic-table-and-feeder-data-script" class="level1">
+<h1><strong>Processing Picnic Table and Feeder Data Script</strong></h1>
+<p>The script I use below will load the raw data, process and clean it for both.</p>
+<p>The picnic table data and the feeder data will also be saved as a RDS file in the processed_data folder.</p>
+<p>I will also include full text and code in my manuscript in the meantime.</p>
+</section>
+<section id="loading-packages" class="level1">
+<h1><strong>Loading Packages</strong></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's load a few R packages for processing</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co">#Loading in for data cleaning</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) <span class="co">#This will load in excel files (picnic table )</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co">#Very important as this will circumvent any absolute path issues, makes more reproducible, easily set paths</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co">#Easy to get data from csv files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a.-loading-picnic-table-data" class="level1">
+<h1><strong>1a. Loading: Picnic Table Data</strong></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PTD<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"0. Raw Data"</span>, <span class="st">"Picnic_Table_Data.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...13`</code></pre>
+</div>
+</div>
+</section>
+<section id="a.-exploring-picnic-table-data" class="level1">
+<h1><strong>2a. Exploring: Picnic Table Data</strong></h1>
+<p>Let’s take a look at the data we just loaded in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(PTD)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(PTD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sample ID              Day            Date                         Table  
+ Length:192         Min.   :1.00   Min.   :2020-01-02 00:00:00   Min.   :1  
+ Class :character   1st Qu.:2.75   1st Qu.:2020-01-03 18:00:00   1st Qu.:1  
+ Mode  :character   Median :4.50   Median :2020-01-05 12:00:00   Median :2  
+                    Mean   :4.50   Mean   :2020-01-05 12:00:00   Mean   :2  
+                    3rd Qu.:6.25   3rd Qu.:2020-01-07 06:00:00   3rd Qu.:3  
+                    Max.   :8.00   Max.   :2020-01-09 00:00:00   Max.   :3  
+                                                                            
+    Quadrant    Sample Type (Pooled or Persistence)
+ Min.   :1.00   Length:192                         
+ 1st Qu.:1.75   Class :character                   
+ Median :2.50   Mode  :character                   
+ Mean   :2.50                                      
+ 3rd Qu.:3.25                                      
+ Max.   :4.00                                      
+                                                   
+  Shippng Date                    Notes           STAB TUBE NUMBER  
+ Min.   :2020-01-06 00:00:00   Length:192         Length:192        
+ 1st Qu.:2020-01-06 00:00:00   Class :character   Class :character  
+ Median :2020-01-07 00:00:00   Mode  :character   Mode  :character  
+ Mean   :2020-01-07 06:00:00                                        
+ 3rd Qu.:2020-01-08 06:00:00                                        
+ Max.   :2020-01-09 00:00:00                                        
+                                                                    
+ ORIGIN OF FECES    Original PP still intact?   Pos orNeg      ...13          
+ Length:192         Length:192                Min.   :1     Length:192        
+ Class :character   Class :character          1st Qu.:1     Class :character  
+ Mode  :character   Mode  :character          Median :1     Mode  :character  
+                                              Mean   :1                       
+                                              3rd Qu.:1                       
+                                              Max.   :1                       
+                                              NA's   :153                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PTD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 192
+Columns: 13
+$ `Sample ID`                           &lt;chr&gt; "DPT1Q1 PER 1-2-2020", "DPT1Q2 P…
+$ Day                                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ Date                                  &lt;dttm&gt; 2020-01-02, 2020-01-02, 2020-01…
+$ Table                                 &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,…
+$ Quadrant                              &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,…
+$ `Sample Type (Pooled or Persistence)` &lt;chr&gt; "Persistence", "Persistence", "P…
+$ `Shippng Date`                        &lt;dttm&gt; 2020-01-06, 2020-01-06, 2020-01…
+$ Notes                                 &lt;chr&gt; "Originally labeled as DPT2Q1 bu…
+$ `STAB TUBE NUMBER`                    &lt;chr&gt; "x", "x", "x", "x", "x", "DPT1Q2…
+$ `ORIGIN OF FECES`                     &lt;chr&gt; "N/A*", "N/A*", "N/A*", "N/A*", …
+$ `Original PP still intact?`           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Pos orNeg`                           &lt;dbl&gt; NA, NA, NA, NA, NA, 1, 1, NA, NA…
+$ ...13                                 &lt;chr&gt; "ORIGIN OF FECES CODES:", "F= FR…</code></pre>
+</div>
+</div>
+</section>
+<section id="a.-cleaning-picnic-table-data" class="level1">
+<h1><strong>3a. Cleaning: Picnic Table Data</strong></h1>
+<p>There is a lot to clean here. Overall, the excel seems a bit messy and disorganized. From what I saw in step 2a, I want to:</p>
+<ul>
+<li><p>Replace NAs</p></li>
+<li><p>Keep the dates, type of sample (e.g., persistence/pooled), positive samples</p></li>
+<li><p>Rename columns</p></li>
+<li><p>Check how the cleaning process is going</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> PTD1<span class="ot">&lt;-</span> PTD <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Day, <span class="st">`</span><span class="at">Shippng Date</span><span class="st">`</span>, Notes,<span class="st">`</span><span class="at">STAB TUBE NUMBER</span><span class="st">`</span>, <span class="st">`</span><span class="at">ORIGIN OF FECES</span><span class="st">`</span>, ...<span class="dv">13</span>)) <span class="co">#Removing columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>PTD1<span class="sc">$</span><span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span><span class="ot">&lt;-</span> <span class="fu">ifelse</span>(PTD1<span class="sc">$</span><span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span><span class="sc">==</span><span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>PTD2<span class="ot">&lt;-</span> PTD1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span> <span class="ot">=</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span>), <span class="dv">0</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span>)) <span class="co">#NAs to 0 for column`Original PP still intact?`</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>PTD3<span class="ot">&lt;-</span> PTD2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span><span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span>), <span class="dv">0</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span>)) <span class="co">#NAs to 0 for column `Pos orNeg`</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PTD3) <span class="co">#Current variable names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 192
+Columns: 7
+$ `Sample ID`                           &lt;chr&gt; "DPT1Q1 PER 1-2-2020", "DPT1Q2 P…
+$ Date                                  &lt;dttm&gt; 2020-01-02, 2020-01-02, 2020-01…
+$ Table                                 &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,…
+$ Quadrant                              &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,…
+$ `Sample Type (Pooled or Persistence)` &lt;chr&gt; "Persistence", "Persistence", "P…
+$ `Original PP still intact?`           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ `Pos orNeg`                           &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>PTD_clean<span class="ot">&lt;-</span> PTD3 <span class="sc">%&gt;%</span> <span class="co">#Renaming column names </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="at">ID=</span> <span class="st">`</span><span class="at">Sample ID</span><span class="st">`</span>, <span class="at">Sample_Type=</span> <span class="st">`</span><span class="at">Sample Type (Pooled or Persistence)</span><span class="st">`</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Salmonella_Positive=</span><span class="st">`</span><span class="at">Pos orNeg</span><span class="st">`</span>, <span class="at">Original_Persistence_Pile=</span> <span class="st">`</span><span class="at">Original PP still intact?</span><span class="st">`</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(PTD_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 192
+Columns: 7
+$ ID                        &lt;chr&gt; "DPT1Q1 PER 1-2-2020", "DPT1Q2 PER 1-2-2020"…
+$ Date                      &lt;dttm&gt; 2020-01-02, 2020-01-02, 2020-01-02, 2020-01…
+$ Table                     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2,…
+$ Quadrant                  &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3,…
+$ Sample_Type               &lt;chr&gt; "Persistence", "Persistence", "Persistence",…
+$ Original_Persistence_Pile &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ Salmonella_Positive       &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0,…</code></pre>
+</div>
+</div>
+<section id="a.-save-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="a.-save-the-data"><strong>4a. Save the Data!</strong></h2>
+<p>The cleaned data looks much better! I would like to pick a location to save this portion as a file. In this step, I will save the file as an RDS to the <strong>2. Cleaned Data</strong> folder under the name “PTprocessed”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>save_data_location <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"2. Clean Data"</span>,<span class="st">"PTprocessed.rds"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(PTD_clean, <span class="at">file =</span> save_data_location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="lets-do-it-all-again-this-time-with-the-feeder-data" class="level1">
+<h1><strong>Let’s do it all again, this time with the Feeder Data</strong></h1>
+</section>
+<section id="b.-loading-feeder-data" class="level1">
+<h1><strong>1b. Loading: Feeder Data</strong></h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>FD<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"0. Raw Data"</span>, <span class="st">"Feeder Data.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 144 Columns: 6
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(2): Collection_Date, Feeder_Type dbl (2): Feeder_number, Absence_0_Presence_1
+lgl (2): ...5, Absence (0)/Presence (1)
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...5`</code></pre>
+</div>
+</div>
+</section>
+<section id="b.-exploring-feeder-data" class="level1">
+<h1><strong>2b. Exploring: Feeder Data</strong></h1>
+<p>Let’s take a look at the data we just loaded into R!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(FD)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(FD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Feeder_number   Collection_Date    Absence_0_Presence_1 Feeder_Type       
+ Min.   : 1.00   Length:144         Min.   :0.0000       Length:144        
+ 1st Qu.: 3.75   Class :character   1st Qu.:0.0000       Class :character  
+ Median : 6.50   Mode  :character   Median :0.0000       Mode  :character  
+ Mean   : 6.50                      Mean   :0.1458                         
+ 3rd Qu.: 9.25                      3rd Qu.:0.0000                         
+ Max.   :12.00                      Max.   :1.0000                         
+   ...5         Absence (0)/Presence (1)
+ Mode:logical   Mode:logical            
+ NA's:144       NA's:144                
+                                        
+                                        
+                                        
+                                        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(FD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [144 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ Feeder_number           : num [1:144] 1 2 3 4 5 6 7 8 9 10 ...
+ $ Collection_Date         : chr [1:144] "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" ...
+ $ Absence_0_Presence_1    : num [1:144] 1 1 1 1 1 1 1 1 1 1 ...
+ $ Feeder_Type             : chr [1:144] "Wood_coated" "Wood" "Plastic_coated" "Plastic" ...
+ $ ...5                    : logi [1:144] NA NA NA NA NA NA ...
+ $ Absence (0)/Presence (1): logi [1:144] NA NA NA NA NA NA ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   Feeder_number = col_double(),
+  ..   Collection_Date = col_character(),
+  ..   Absence_0_Presence_1 = col_double(),
+  ..   Feeder_Type = col_character(),
+  ..   ...5 = col_logical(),
+  ..   `Absence (0)/Presence (1)` = col_logical()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(FD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 144
+Columns: 6
+$ Feeder_number              &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2…
+$ Collection_Date            &lt;chr&gt; "2/22/22 (DPI_0)", "2/22/22 (DPI_0)", "2/22…
+$ Absence_0_Presence_1       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1…
+$ Feeder_Type                &lt;chr&gt; "Wood_coated", "Wood", "Plastic_coated", "P…
+$ ...5                       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ `Absence (0)/Presence (1)` &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</code></pre>
+</div>
+</div>
+</section>
+<section id="b.-cleaning-feeder-data" class="level1">
+<h1><strong>3b. Cleaning: Feeder Data</strong></h1>
+<p>Unlike the picnic table data, this is a fairly clean and short dataset. I think we can clean this with a few lines of code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>FD1<span class="ot">&lt;-</span> FD <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Absence (0)/Presence (1)</span><span class="st">`</span>, <span class="st">`</span><span class="at">...5</span><span class="st">`</span>)) <span class="co">#Removing columns</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(FD1) <span class="co">#Quick glimpse at the data, I can determine if I should wrangle the data a bit more</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 144
+Columns: 4
+$ Feeder_number        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4…
+$ Collection_Date      &lt;chr&gt; "2/22/22 (DPI_0)", "2/22/22 (DPI_0)", "2/22/22 (D…
+$ Absence_0_Presence_1 &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0…
+$ Feeder_Type          &lt;chr&gt; "Wood_coated", "Wood", "Plastic_coated", "Plastic…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(FD1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [144 × 4] (S3: tbl_df/tbl/data.frame)
+ $ Feeder_number       : num [1:144] 1 2 3 4 5 6 7 8 9 10 ...
+ $ Collection_Date     : chr [1:144] "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" "2/22/22 (DPI_0)" ...
+ $ Absence_0_Presence_1: num [1:144] 1 1 1 1 1 1 1 1 1 1 ...
+ $ Feeder_Type         : chr [1:144] "Wood_coated" "Wood" "Plastic_coated" "Plastic" ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Replacing Collection Dates (removing DPI_...) </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"2/22/22 (DPI_0)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/02/22"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"2/23/22 (DPI_1)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/02/23"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"2/24/22 (DPI_2)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/02/24"</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"2/25/22 (DPI_3)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/02/25"</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"2/26/22 (DPI_4)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/02/26"</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"2/27/22 (DPI_5)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/02/27"</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"2/28/22 (DPI_6)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/02/28"</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"3/1/22 (DPI_7)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/03/01"</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"3/3/22 (DPI_9)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/03/03"</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"3/5/22 (DPI_11)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/03/05"</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"3/7/22 (DPI_13)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/03/07"</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>FD1[FD1<span class="sc">==</span> <span class="st">"3/14/22 (DPI_20)"</span>]<span class="ot">&lt;-</span> <span class="st">"2022/03/14"</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>FD1 <span class="co">#Looks much better! Now, let's use as.Date to convert these</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 144 × 4
+   Feeder_number Collection_Date Absence_0_Presence_1 Feeder_Type   
+           &lt;dbl&gt; &lt;chr&gt;                          &lt;dbl&gt; &lt;chr&gt;         
+ 1             1 2022/02/22                         1 Wood_coated   
+ 2             2 2022/02/22                         1 Wood          
+ 3             3 2022/02/22                         1 Plastic_coated
+ 4             4 2022/02/22                         1 Plastic       
+ 5             5 2022/02/22                         1 Plastic       
+ 6             6 2022/02/22                         1 Plastic_coated
+ 7             7 2022/02/22                         1 Wood          
+ 8             8 2022/02/22                         1 Wood_coated   
+ 9             9 2022/02/22                         1 Wood          
+10            10 2022/02/22                         1 Wood_coated   
+# … with 134 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>FD1<span class="sc">$</span>Collection_Date<span class="ot">&lt;-</span> <span class="fu">as.Date</span>(FD1<span class="sc">$</span>Collection_Date, <span class="at">fomrat=</span> <span class="st">"%Y %M %D"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>FD1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 144 × 4
+   Feeder_number Collection_Date Absence_0_Presence_1 Feeder_Type   
+           &lt;dbl&gt; &lt;date&gt;                         &lt;dbl&gt; &lt;chr&gt;         
+ 1             1 2022-02-22                         1 Wood_coated   
+ 2             2 2022-02-22                         1 Wood          
+ 3             3 2022-02-22                         1 Plastic_coated
+ 4             4 2022-02-22                         1 Plastic       
+ 5             5 2022-02-22                         1 Plastic       
+ 6             6 2022-02-22                         1 Plastic_coated
+ 7             7 2022-02-22                         1 Wood          
+ 8             8 2022-02-22                         1 Wood_coated   
+ 9             9 2022-02-22                         1 Wood          
+10            10 2022-02-22                         1 Wood_coated   
+# … with 134 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>FD_clean<span class="ot">&lt;-</span> FD1 <span class="co">#Data looked clean so I will rename it to use with my data exploration and visualization process below</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="b.-save-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="b.-save-the-data"><strong>4b. Save the Data!</strong></h2>
+<p>The cleaned data looks good. I would like to pick a location to save this portion as a file. I will save the file as an RDS to the <strong>2. Cleaned Data</strong> folder under the name “FDprocessed”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>save_data_location2<span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"2. Clean Data"</span>,<span class="st">"FDprocessed.rds"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(FD_clean, <span class="at">file =</span> save_data_location2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -357,22 +357,39 @@ display: none;
 <p>[<strong>Please note, Feeder Data is abbreviated FD, while Picnic
 Table Data is abbreviated as PT</strong>]</p>
 <ul>
-<li><strong>0. Raw Data</strong>- This folder contains the raw data for
-both the Picnic Table and Feeder datasets. These are included to
-encoura<br />
-R script needed to clean and analyze the data. Two sub folders and a
-readme.md file are also included in this folder and contain further
-instructions.
+<li><p><strong>0. Raw Data</strong>- This folder contains the raw data
+for both the Picnic Table and Feeder Trials, which are saved as .xlsx
+and .csv, respectivelty, along with a readme file.</p>
 <ul>
-<li><strong>processing_code</strong> folder
-<ul>
-<li><strong>processingcode.R</strong> contains all of the R Script
-needed to clean both datasets and save them to the appropriate folder
-(“processed_data”).</li>
+<li><p><strong>Picnic_Table_Data.xlsx</strong>- <em>Salmonella</em>
+persistence and prevalence data collected in South Florida.</p></li>
+<li><p><strong>Feeder Data.csv</strong>- <em>Salmonella</em> persistence
+data collected on feeders of various materials (e.g., wood [cedar, wood
+[cedar] coated, plastic, and plastic coated) in Athens,
+Georgia.</p></li>
+<li><p><strong>readme. html</strong>/<strong>readme.md</strong>-
+Provides a succinct snapshot of the items contained in the given folder
+for ease and to reduce navigation back to this file.</p></li>
 </ul></li>
-<li>The <strong>analysis_code</strong> sub folder houses all R Script
-needed to explore both datasets. It also contains <strong>three</strong>
-documents:
+<li><p><strong>1. Data Cleaning Script</strong>- This folder contains
+two documents <strong>DataCleaning.qmd</strong> and
+<strong>readme.qmd</strong>.</p>
+<ul>
+<li><p><strong>DataCleaning.qmd</strong>- This file contains all of the
+R Script needed to clean both datasets and save the cleaned data (.rds)
+to the appropriate folder [“2. Clean Data”].</p></li>
+<li><p><strong>readme.qmd</strong>- Provides a succinct snapshot of the
+items contained in the given folder for ease and to reduce navigation
+back to this file. Also guides viewers back to the “0. Raw Data” folder
+if this was missed or overlooked as the project’s starting
+point.</p></li>
+</ul></li>
+<li><p><strong>2. Clean Data</strong>- This folder contains the cleaned
+.rds files of the Feeder and Picnic Table Trial datasets titled
+“FDprocessed.rds” and “PTprocessed.rds”, respectively.</p></li>
+<li><p><strong>3. Analysis Script</strong>- This folder houses all R
+Script needed to explore and run statistical analysis on both cleaned
+datasets:</p>
 <ul>
 <li><strong>exploratory_analysis.html</strong>- This document will
 render the code written in the exploratory_analysis.qmd file in a
@@ -380,49 +397,64 @@ browser window. Here you can utilize the document to view code and
 outputs without having to run the associated code.</li>
 <li><strong>exploratory_analysis.qmd</strong>- This document contains
 the actual R Script written to conduct the exploratory analysis on both
-data sets. Here you can run my code and edit any visuals created.</li>
-<li><strong>statistical_analysis.R</strong>- At the moment, this
-Markdown file contains some basic statistical analysis (lm fits) I have
-run on the data. However, as I tighten up my project, this will house
-the code I utilize for my model.</li>
-<li>The <strong>exploratory_analysis_files</strong>, specifically the
-<strong>figure-html</strong> folder houses all of the saved figures from
-the .qmd and R Markdown documents housed in the <strong>Code</strong>
-folder. These figures are also found in my Manuscript.qmd file.</li>
+datasets. Here you can run my code and edit any visuals created. An
+option to save visuals for inclusion in the manuscript occurs throughout
+the R Script [Lines 57-58, 70-71, &amp; 104-105]. These visuals are
+saved as .png to the folder titled <strong>“4. Results”</strong></li>
+<li><strong>statistical_analysis.qmd</strong>- This document contains
+several statistical analysis run on both datasets. Detailed step-by-step
+notes are included in this analysis to ensure ease of
+reproducibility.</li>
 </ul></li>
-</ul></li>
-<li><strong>data</strong>- This folder contains <strong>two</strong>
-subfolders- <strong>processed_data</strong> and
-<strong>raw_data</strong>, respectively, plus a readme.md file.
+<li><p><strong>4. Results</strong>- This folder contains saved .pngs,
+high-quality graphics, that are included in the final product of this
+project, the manuscript.</p>
 <ul>
-<li><strong>processed_data</strong> houses saved RDS files of the
-processed data for both datasets</li>
-<li><strong>raw_data</strong> houses the raw data for both data sets
-which are saved as .csv and .xlsx. Plus a readme.md file <strong>I MAY
-DELETE THIS README</strong></li>
+<li><p><strong>Feeder_PA.png</strong>- Graphical depiction of the
+presence or absence of <em>Salmonella</em> by feeder type and
+date.</p></li>
+<li><p><strong>Picnic_Table_PosSamp.png</strong>- Graphical depiction of
+the number of positive samples by sample type by date for the Picnic
+Table Trial.</p></li>
+<li><p><strong>Picnic_Table_Quad.png</strong>- Graphical depiction of
+positive <em>Salmonella</em> samples by date and quadrant.</p></li>
+<li><p><strong>FD_Cox.rds</strong>- Table depicting the Cox Regression
+output for the Feeder data.</p></li>
+<li><p><strong>Feeder_Median_Survival.rds</strong>- Simple table
+depicting the median time of <em>Salmonella</em> survival for the
+duration of the FD trial.</p></li>
+<li><p><strong>Picnic_Table_Median_Survival.rds</strong>- Simple table
+depicting the median time of <em>Salmonella</em> survival for the
+duration of the PT trial.</p></li>
+<li><p><strong>PT_Cox.rds</strong>- Table depicting the Cox Regression
+output for the Picnic Table Data.</p></li>
+<li><p><strong>LMModelAICPD.rds</strong>- Table depicting model
+performance via AICc for Picnic Table Models.</p></li>
+<li><p><strong>ModelAICFD.rds</strong>- Table depicting model
+performance via AICc for Feeder Models.</p></li>
 </ul></li>
-<li><strong>product</strong>- This folder contains <strong>one</strong>
-subfolder- <strong>manuscript</strong>, and two files necessary for
-references.
+<li><p><strong>5. Manuscript</strong>- This folder contains
+<strong>three</strong> documents- Manuscript.qmd, Manuscript.docx, and
+ref.bib, along with a subfolder [<strong>supplement</strong>].</p>
 <ul>
-<li><strong>manuscript</strong>- contains <strong>two</strong>
-documents- Manuscript.qmd and Manuscript.docx, and <strong>two</strong>
-subfolders- images and supplement <strong>(as of Part 3, I have not
-decided if I will keep either subfolder but should have this decided by
-Part 4)</strong>
+<li><p><strong>Manuscript.qmd</strong>- This document contains the
+written portion of my manuscript along with code that will render
+outputs including figures and various data analysis.</p></li>
+<li><p><strong>Manuscript.docx</strong>- This is the culminating
+document that is produced via a Word document when the Manuscript.qmd
+file is run.</p></li>
+<li><p><strong>Ref.bib</strong>- This document houses the text needed to
+render in-text citations in the manuscript documents mentioned
+above.</p></li>
+<li><p><strong>supplement</strong>- This file contains a .qmd file with
+supplemental code that was run but not included in the final
+manuscript.</p>
 <ul>
-<li><strong>Manuscript.qmd</strong>- This document contains my written
-portion of my manuscript along with figures and analysis rendered in
-other sections.</li>
-<li><strong>Manuscript.docx</strong>- This is the culminating document
-that is produced when the Manuscrit.qmd file is run.</li>
+<li><strong>Supplemental_Material.qmd</strong>- code, visualizations,
+and data analysis that were omitted from the final manuscript draft can
+be viewed and run in this corresponding file.</li>
 </ul></li>
 </ul></li>
-<li><strong>results</strong>- This folder contains <strong>four</strong>
-subfolders- <strong>FD_Graphs</strong>, <strong>FD_Sum_T</strong>,
-<strong>RTD_Graphs</strong>, <strong>RTD_Sum_T</strong>, and a
-readme.md. **I AM TRYING TO DECIDE IF I WILL USE THIS FOLDER OR IF I
-WILL HOUSE THINGS IN A SUBFOLDER IN ANOTHER SECTION.</li>
 </ul>
 </div>
 

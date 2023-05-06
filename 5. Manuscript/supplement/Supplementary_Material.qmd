@@ -1,40 +1,270 @@
 ---
 title: "Supplement to *Salmonella* Environmental Persistence Informs Management Relevant to Avian and Public Health for a Data Analysis Project"
-
-subtitle: ""
 author: Kimberly Perez
 date: "`r Sys.Date()`"
-format:
-  pdf:
-    toc: false
-    number-sections: true
-    highlight-style: github
-bibliography: ../../dataanalysis_template_references.bib
-csl: ../../vancouver.csl
+output: html_document
 ---
 
 # **Overview**
-Overview of what I will include for readers needs to be included here. 
+The information included on this .qmd file is code that was written but not utilized in final version of my manuscript. The majority of what you will find on this page comes directly from my "StatisticalAnalysis.qmd".  
+
+Loading in the packages we may need...
+```{r}
+#Load needed packages
+library(tidyverse)
+library(ggplot2) #For plotting/data vis.
+library(broom) #For cleaning up output from lm()
+library(dotwhisker) #Visualization for regression outputs
+library(here) #Setting paths/for data loading/saving
+library(tidymodels) #Great package for models and other resources used for fitting
+library(tidyr) #Helps with data wrangling
+library(gtsummary) #To create tables 
+library(dplyr)
+library(vip)
+library(performance) #Model evaluation
+library(jtools)
+library(broom)
+library(broom.mixed) #Converts fitted to tiddy dfs
+library(finalfit) #Needed for Time to Event Analysis 
+library(forcats) #Needed for Time to Event Analysis 
+library(survival) #Needed for Time to Event Analysis 
+library(lubridate)
+library(ggsurvfit)
+library(gt)
+library(knitr) #For tables
+```
+
+We need the data from both trials, so let's load them in using here() 
+```{r}
+#Picnic Table Data
+PT_Data<- readRDS(here::here("2. Clean Data","PTprocessed.rds"))
+
+#Feeder Data 
+FD_Data <-readRDS(here::here("2. Clean Data","FDprocessed.rds"))
+
+glimpse(PT_Data)
+
+glimpse (FD_Data)
+```
 
 
-# **Code and file information**
+```{r}
+#### Model fit another way
+# fit linear model using Salmonella_Pos as outcome, Table as predictor
+lmfit3.0 <- lm(Salmonella_Positive~Table, PT_Data) 
+lmfit3.0
+plot(lmfit3.0)
 
-Here is where I will provide a step-by-step document so others will be able to follow along and easily reproduce my code. I will utilize some of the text I included in the main text/Manuscript.qmd and will expand upon it as I work through this project. 
+# Here we place results from the above fit into a data frame via tidy function
+lmtable1 <- broom::tidy(lmfit3.0)
+
+#Let's check out the results
+print(lmtable1)
+
+#A different way 
+# I will do the same as above, however, I am now adding persistence pile
+lmfit2 <- lm(Salmonella_Positive~Original_Persistence_Pile+Table, PT_Data) 
+plot(lmfit2)
+
+# Convert to a data frame via tidy function
+lmtable2 <- broom::tidy(lmfit2)
+
+#Results
+print(lmtable2)
+```
 
 
-{{< pagebreak >}}
+This section is a continuation of what was produced above, however, we will now be utilizing the Feeder Trial Data
+
+```{r}
+#Doing the same for FEEDER DATA
+lmog_FD<-linear_reg() %>% 
+  set_engine("lm")
+
+model_lmFD<- linear_reg()
+
+lmfit_FD<- model_lmFD %>% #Training; outcome: Salmonella Pos and Main Predictor Table
+  fit(Absence_0_Presence_1~Feeder_number, FD_Data) 
+
+lmfit_FD #Let's view what we just did
+
+glimpse(lmfit_FD)
+
+tidy(lmfit_FD) #We can use the tidy() function to produce the output/ summary statistics
+
+plot_summs(lmfit_FD)
+
+#Checking model performance: FEEDER
+check_model(lmfit_FD$fit)
+```
+
+**Time to Event Analysis: Picnic Table Trial**
+```{r}
+
+PT_Data_TTE<- #First let's format the dates 
+  PT_Data %>% 
+  mutate(
+    Date= ymd(Date))
+
+PT_Data_TTE$Date<- as.numeric(PT_Data_TTE$Date) #Let's make these numeric
+
+PT_Data_TTE <- #I want to add a column displaying time between events (by day)
+  PT_Data_TTE %>%
+  mutate(
+    os_day= as.duration(Date)/ddays(1))
+
+PT_Data_TTE$os_day<- as.numeric(PT_Data_TTE$os_day) #Again let's make sure our new column is in the proper format
+
+surv1<- Surv(PT_Data_TTE$Date,PT_Data_TTE$Salmonella_Positive) 
+
+#Let's visualize!
+sfit1<- survfit(Surv(Date, Salmonella_Positive) ~  1, data=PT_Data_TTE)  %>% 
+  ggsurvfit() + 
+  labs(
+    x = "Days",
+    y = "Overall Salmonella Persistence") + #Let's add some labels
+  add_confidence_interval() +
+  add_risktable()
+
+#I am not confident with this graphic so I will include this in my supplemental section
+```
+
+```{r}
+glimpse(PT_Data)
 
 
-# **Additional Method Details**
-{{< pagebreak >}}
+PT_Data = PT_Data %>% 
+ mutate(
+  salmonella_crr= case_when(
+   Salmonella_Positive ==  0~1,
+    Salmonella_Positive == 1~1,
+     TRUE ~ 1))
 
+dependent_crr= "Surv(Date, salmonella_crr)"
+explanatory= c("Table", "Quadrant", "Sample_Type")
 
-# **Additional results**
-{{< pagebreak >}}
+PT_Data$Date<- as.numeric(PT_Data$Date)
 
+PT_Data %>% finalfit(dependent_crr, explanatory)
 
-# **Discussion**
-{{< pagebreak >}}
+PT_Data %>% 
+   finalfit(dependent_crr, explanatory, add_dependent_label = FALSE) %>% 
+    rename("Overall survival" = label) %>% 
+    rename(" " = levels) %>% 
+    rename("  " = all) 
 
+survfit(Surv(Date, Salmonella_Positive)~1, data=PT_Data)
 
-# **References**
+PT_MedSurv<-PT_Data %>%
+ filter(salmonella_crr==1) %>%
+  summarize(median_surv=median(Date))
+
+PT_MedSurv <- ((PT_MedSurv)/31556952000)*100
+
+PT_Surv_Table<- gt(PT_MedSurv) %>%
+   tab_header(
+    title = "Median Survival of Salmonella",
+    subtitle = ("01/02/2020 to 01/09/2020")) %>%
+  cols_label(
+    median_surv= "Median Salmonella Survival (days)") 
+
+PT_Surv_Table # persistence seems to be roughly 5 days
+```
+
+**Time to Event Analysis: Feeder Trial**
+```{r}
+FD_Data_TTE<- #First let's format the dates 
+  FD_Data %>% 
+  mutate(
+    Date= ymd(Collection_Date))
+
+FD_Data_TTE$Collection_Date<- as.numeric(FD_Data_TTE$Collection_Date) #Let's make these numeric
+
+FD_Data_TTE <- #I want to add a column displaying time between events (by day)
+  FD_Data_TTE %>%
+  mutate(
+    os_day= as.duration(Collection_Date)/ddays(1))
+
+FD_Data_TTE$os_day<- as.numeric(FD_Data_TTE$os_day) #Again let's make sure our new column is in the proper format
+
+surv1_FD<- Surv(FD_Data_TTE$Collection_Date,FD_Data_TTE$Absence_0_Presence_1) 
+
+#Let's visualize!
+sfit1<- survfit(Surv(Collection_Date, Absence_0_Presence_1) ~  1, data=FD_Data_TTE)  %>% 
+  ggsurvfit() + 
+  labs(
+    x = "Days",
+    y = "Overall Salmonella Persistence") + #Let's add some labels
+  add_confidence_interval() +
+  add_risktable()
+
+sfit1
+```
+
+```{r}
+FD_Data = FD_Data %>% 
+ mutate(
+  salmonella_crr= case_when(
+   Absence_0_Presence_1 ==  0~1,
+    Absence_0_Presence_1 == 1~1,
+     TRUE ~ 1))
+
+dependent_crr= "Surv(Collection_Date, salmonella_crr)"
+explanatory= c("Feeder_Type")
+
+FD_Data$Collection_Date<- as.numeric(FD_Data$Collection_Date)
+
+FD_Data %>% finalfit(dependent_crr, explanatory)
+
+FD_Data %>% 
+   finalfit(dependent_crr, explanatory, add_dependent_label = FALSE) %>% 
+    rename("Overall survival" = label) %>% 
+    rename(" " = levels) %>% 
+    rename("  " = all) 
+
+survfit(Surv(Collection_Date, Absence_0_Presence_1)~1, data=FD_Data)
+
+FD_MedSurv<-FD_Data %>%
+ filter(salmonella_crr==1) %>%
+  summarize(median_surv=median(Collection_Date))
+
+FD_MedSurv <- ((FD_MedSurv)/604800)*100 #Persistence seems to be roughly 3 days for the FD
+
+FD_Surv_Table<- gt(FD_MedSurv) %>%
+   tab_header(
+    title = "Median Survival of Salmonella",
+    subtitle = ("02/22/2022 to 03/14/2022")) %>%
+  cols_label(
+    median_surv= "Median Salmonella Survival (days)") 
+
+FD_Surv_Table # seems to be roughly 3 days
+```
+
+**Cox regression: Picnic Table Trial**
+
+```{r}
+PT_Data$Date<- as.numeric(PT_Data$Date)
+
+coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data)
+
+CR_PT1<-coxph(Surv(Date, Salmonella_Positive) ~ Sample_Type, PT_Data) %>%
+  tbl_regression(exp=TRUE)
+
+CR_PT1
+```
+
+**Cox regression: Feeder Trial**
+
+```{r}
+FD_Data$Collection_Date<- as.numeric(FD_Data$Collection_Date)
+
+coxph(Surv(Collection_Date, Absence_0_Presence_1) ~ Feeder_Type, FD_Data)
+
+CR_FD1<- coxph(Surv(Collection_Date, Absence_0_Presence_1) ~ Feeder_Type, FD_Data) %>%
+  tbl_regression(exp=TRUE)
+
+CR_FD1
+
+CR_FD1%>%
+  saveRDS(here("4. Results", "FD_Cox.rds"))
+```

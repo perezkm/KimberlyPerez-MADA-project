@@ -84,8 +84,14 @@ is abbreviated as PT**]
         median time of *Salmonella* survival for the duration of the PT
         trial.
 
-    -    **PT_Cox.rds**- Table depicting the Cox Regression output for
+    -   **PT_Cox.rds**- Table depicting the Cox Regression output for
         the Picnic Table Data.
+
+    -   **LMModelAICPD.rds**- Table depicting model performance via AICc
+        for Picnic Table Models.
+
+    -   **ModelAICFD.rds**- Table depicting model performance via AICc
+        for Feeder Models.
 
 -   **5. Manuscript**- This folder contains **three** documents-
     Manuscript.qmd, Manuscript.docx, and ref.bib, along with a subfolder
